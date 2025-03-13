@@ -1,6 +1,5 @@
 import React from "react";
 import Banner from "../Banner/Banner";
-import Footer from "../../Components/Footer/footer";
 
 const Home = () => {
   return (
