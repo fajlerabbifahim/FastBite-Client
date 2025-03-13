@@ -1,4 +1,11 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import { MdEmail, MdDeliveryDining } from "react-icons/md";
 import { BiTime } from "react-icons/bi";
 
@@ -10,8 +17,12 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="text-2xl text-black font-bold">Subscribe to Our Newsletter</h3>
-              <p className="text-gray-600">Get special offers and latest updates!</p>
+              <h3 className="text-2xl text-black font-bold">
+                Subscribe to Our Newsletter
+              </h3>
+              <p className="text-gray-600">
+                Get special offers and latest updates!
+              </p>
             </div>
             <div className="flex w-full md:w-auto gap-2">
               <input
@@ -32,11 +43,11 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-6">
             <div className="flex flex-col items-center md:items-start">
-              <img
+              {/* <img
                 src="https://img.freepik.com/premium-photo/food-logo-icon_925121-2625.jpg"
                 alt="FastBite Logo"
-                className="w-24 h-24 rounded-full border-4 border-orange-500"
-              />
+                className="w-10 h-10 rounded-full border-4 border-orange-500"
+              /> */}
               <h2 className="text-2xl font-bold mt-4">FastBite</h2>
               <p className="text-gray-400 text-center md:text-left">
                 Delivering happiness since 1992
@@ -60,19 +71,43 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-orange-500">Quick Links</h3>
+            <h3 className="text-xl font-semibold mb-6 text-orange-500">
+              Quick Links
+            </h3>
             <ul className="space-y-4">
-              <li><a href="#" className="hover:text-orange-500 transition">Menu</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition">Order Tracking</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition">Rewards Program</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition">Partner With Us</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition">Download App</a></li>
+              <li>
+                <a href="#" className="hover:text-orange-500 transition">
+                  Menu
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-orange-500 transition">
+                  Order Tracking
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-orange-500 transition">
+                  Rewards Program
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-orange-500 transition">
+                  Partner With Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-orange-500 transition">
+                  Download App
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Opening Hours */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-orange-500">Opening Hours</h3>
+            <h3 className="text-xl font-semibold mb-6 text-orange-500">
+              Opening Hours
+            </h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <BiTime className="text-orange-500 text-xl" />
@@ -93,7 +128,9 @@ const Footer = () => {
 
           {/* Delivery Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-orange-500">Delivery Areas</h3>
+            <h3 className="text-xl font-semibold mb-6 text-orange-500">
+              Delivery Areas
+            </h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <MdDeliveryDining className="text-2xl text-orange-500" />
@@ -119,15 +156,29 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex gap-6">
-              <a href="#" className="text-2xl hover:text-orange-500 transition"><FaFacebookF /></a>
-              <a href="#" className="text-2xl hover:text-orange-500 transition"><FaTwitter /></a>
-              <a href="#" className="text-2xl hover:text-orange-500 transition"><FaInstagram /></a>
-              <a href="#" className="text-2xl hover:text-orange-500 transition"><FaYoutube /></a>
+              <a href="#" className="text-2xl hover:text-orange-500 transition">
+                <FaFacebookF />
+              </a>
+              <a href="#" className="text-2xl hover:text-orange-500 transition">
+                <FaTwitter />
+              </a>
+              <a href="#" className="text-2xl hover:text-orange-500 transition">
+                <FaInstagram />
+              </a>
+              <a href="#" className="text-2xl hover:text-orange-500 transition">
+                <FaYoutube />
+              </a>
             </div>
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-orange-500 transition">Terms & Conditions</a>
-              <a href="#" className="hover:text-orange-500 transition">Privacy Policy</a>
-              <a href="#" className="hover:text-orange-500 transition">Cookie Policy</a>
+              <a href="#" className="hover:text-orange-500 transition">
+                Terms & Conditions
+              </a>
+              <a href="#" className="hover:text-orange-500 transition">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-orange-500 transition">
+                Cookie Policy
+              </a>
               <p>© 2024 FastBite. All rights reserved.</p>
             </div>
           </div>
