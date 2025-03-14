@@ -76,7 +76,7 @@ const Navbar = () => {
 
                         {/* Navigation Links and User Actions */}
                         <div
-                            className={`absolute inset-x-0 bg-[#C70039] z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${isOpen
+                            className={`absolute inset-x-0 bg-slate-200  z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${isOpen
                                 ? "translate-x-0 opacity-100 "
                                 : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
                                 }`}
@@ -110,6 +110,11 @@ const Navbar = () => {
                                 >
                                     Home
                                 </NavLink>
+
+
+
+
+
                                 <NavLink
                                     to="/menu"
                                     className={({ isActive }) =>
