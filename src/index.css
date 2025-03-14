@@ -1,6 +1,1 @@
 @import "tailwindcss";
-@plugin "daisyui";
-html {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
