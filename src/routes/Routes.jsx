@@ -7,16 +7,15 @@ import Restaurants from "../pages/Restaurants/Restaurants";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/ContactUs/ContactUs";
 
-
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: '/',
-        element: <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
         path: '/menu',
@@ -36,8 +35,6 @@ const router = createBrowserRouter([
       }
     ]
   },
-
-
-])
+]);
 
 export default router;
