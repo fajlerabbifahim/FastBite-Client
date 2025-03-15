@@ -231,7 +231,7 @@ const Navbar = () => {
                       Sign up
                     </Link>
                     <Link
-                      to="/signin"
+                      to="/login"
                       className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-50"
                     >
                       Sign in
