@@ -12,32 +12,6 @@ import { BiTime } from "react-icons/bi";
 const Footer = () => {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-black text-white">
-      {/* Newsletter Section */}
-      <div className="bg-base-300 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="text-2xl text-white font-bold">
-                Subscribe to Our Newsletter
-              </h3>
-              <p className="text-gray-600">
-                Get special offers and latest updates!
-              </p>
-            </div>
-            <div className="flex w-full md:w-auto gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-lg flex-1 border-white border md:w-80 text-gray-500"
-              />
-              <button className="bg-gray-900 hover:bg-gray-800 px-6 py-2 rounded-lg transition duration-300">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Section */}
