@@ -17,27 +17,22 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-6">
             <div className="flex flex-col items-center md:items-start">
-              {/* <img
-                src="https://img.freepik.com/premium-photo/food-logo-icon_925121-2625.jpg"
-                alt="FastBite Logo"
-                className="w-10 h-10 rounded-full border-4 border-orange-500"
-              /> */}
-              <h2 className="text-2xl font-bold mt-4">FastBite</h2>
+              <h2 className="text-2xl font-bold mt-4 text-red-600">FastBite</h2>
               <p className="text-gray-400 text-center md:text-left">
                 Delivering happiness since 1992
               </p>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <FaPhoneAlt className="text-orange-500" />
+                <FaPhoneAlt className="text-red-600" />
                 <span>+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center gap-3">
-                <MdEmail className="text-orange-500" />
+                <MdEmail className="text-red-600" />
                 <span>support@fastbite.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-orange-500" />
+                <FaMapMarkerAlt className="text-red-600" />
                 <span>123 Food Street, NY 10001</span>
               </div>
             </div>
@@ -45,69 +40,55 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-orange-500">
+            <h3 className="text-xl font-semibold mb-6 text-red-600">
               Quick Links
             </h3>
             <ul className="space-y-4">
-              <li>
-                <a href="#" className="hover:text-orange-500 transition">
-                  Menu
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-500 transition">
-                  Order Tracking
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-500 transition">
-                  Rewards Program
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-500 transition">
-                  Partner With Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-500 transition">
-                  Download App
-                </a>
-              </li>
+              {[
+                "Menu",
+                "Order Tracking",
+                "Rewards Program",
+                "Partner With Us",
+                "Download App",
+              ].map((item, index) => (
+                <li key={index}>
+                  <a href="#" className="hover:text-red-500 transition">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Opening Hours */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-orange-500">
+            <h3 className="text-xl font-semibold mb-6 text-red-600">
               Opening Hours
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <BiTime className="text-orange-500 text-xl" />
-                <div>
-                  <p className="font-medium">Monday - Friday</p>
-                  <p className="text-gray-400">8:00 AM - 11:00 PM</p>
+              {[
+                { day: "Monday - Friday", time: "8:00 AM - 11:00 PM" },
+                { day: "Saturday - Sunday", time: "9:00 AM - 12:00 AM" },
+              ].map((schedule, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <BiTime className="text-red-600 text-xl" />
+                  <div>
+                    <p className="font-medium">{schedule.day}</p>
+                    <p className="text-gray-400">{schedule.time}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <BiTime className="text-orange-500 text-xl" />
-                <div>
-                  <p className="font-medium">Saturday - Sunday</p>
-                  <p className="text-gray-400">9:00 AM - 12:00 AM</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Delivery Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-orange-500">
+            <h3 className="text-xl font-semibold mb-6 text-red-600">
               Delivery Areas
             </h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <MdDeliveryDining className="text-2xl text-orange-500" />
+                <MdDeliveryDining className="text-2xl text-red-600" />
                 <div>
                   <p className="font-medium">Fast Delivery</p>
                   <p className="text-gray-400">30 mins or free</p>
@@ -116,10 +97,11 @@ const Footer = () => {
               <div className="bg-gray-800 p-4 rounded-lg">
                 <p className="font-medium mb-2">We Deliver To:</p>
                 <ul className="text-gray-400 space-y-1">
-                  <li>Manhattan</li>
-                  <li>Brooklyn</li>
-                  <li>Queens</li>
-                  <li>The Bronx</li>
+                  {["Manhattan", "Brooklyn", "Queens", "The Bronx"].map(
+                    (location, index) => (
+                      <li key={index}>{location}</li>
+                    )
+                  )}
                 </ul>
               </div>
             </div>
@@ -130,29 +112,30 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex gap-6">
-              <a href="#" className="text-2xl hover:text-orange-500 transition">
-                <FaFacebookF />
-              </a>
-              <a href="#" className="text-2xl hover:text-orange-500 transition">
-                <FaTwitter />
-              </a>
-              <a href="#" className="text-2xl hover:text-orange-500 transition">
-                <FaInstagram />
-              </a>
-              <a href="#" className="text-2xl hover:text-orange-500 transition">
-                <FaYoutube />
-              </a>
+              {[FaFacebookF, FaTwitter, FaInstagram, FaYoutube].map(
+                (Icon, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="text-2xl hover:text-red-500 transition"
+                  >
+                    <Icon />
+                  </a>
+                )
+              )}
             </div>
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-orange-500 transition">
-                Terms & Conditions
-              </a>
-              <a href="#" className="hover:text-orange-500 transition">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-orange-500 transition">
-                Cookie Policy
-              </a>
+              {["Terms & Conditions", "Privacy Policy", "Cookie Policy"].map(
+                (policy, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="hover:text-red-500 transition"
+                  >
+                    {policy}
+                  </a>
+                )
+              )}
               <p>© 2024 FastBite. All rights reserved.</p>
             </div>
           </div>
