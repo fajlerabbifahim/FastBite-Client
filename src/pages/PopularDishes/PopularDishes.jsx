@@ -67,13 +67,13 @@ const popularDishesData = [
 const RatingStars = ({ rating }) => {
   const numRating = parseInt(rating);
   return (
-    <div className="rating rating-sm">
+    <div className="rating rating-sm  dark:bg-gray-800 dark:text-white ">
       {[1, 2, 3, 4, 5].map((star) => (
         <input
           key={star}
           type="radio"
           name={`rating-${star}`}
-          className="mask mask-star-2 bg-orange-400"
+          className="mask mask-star-2 bg-orange-400   "
           checked={star <= numRating}
           readOnly
           aria-label={`${star} star`}
@@ -95,11 +95,11 @@ const PopularDishes = () => {
         }
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
         {popularDishesData.map((dish) => (
           <div
             key={dish.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
+            className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
           >
             <div className="h-64 overflow-hidden">
               <img
@@ -109,11 +109,13 @@ const PopularDishes = () => {
               />
             </div>
             <div className="flex flex-col justify-center items-center text-center py-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 {dish.name}
               </h3>
               <RatingStars rating={dish.rating} />
-              <p className="text-gray-600 font-bold text-lg">{dish.price}</p>
+              <p className="text-gray-600 font-bold text-lg  dark:text-white">
+                {dish.price}
+              </p>
               <button className=" cursor-pointer mt-4 rounded-full bg-red-600 text-white py-2  hover:bg-red-500 transition-colors px-10">
                 Add To Cart
               </button>
