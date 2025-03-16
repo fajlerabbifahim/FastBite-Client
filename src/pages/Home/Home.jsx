@@ -7,7 +7,7 @@ const Home = () => {
     <>
       {/* banner */}
       <Banner />
-      <ChefCriteria/>
+      <ChefCriteria />
     </>
   );
 };

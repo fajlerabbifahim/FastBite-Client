@@ -10,7 +10,7 @@ const Navbar = () => {
   const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
   return (
-    <div className="sticky top-0 z-[900] ">
+    <div className="sticky top-0 z-[900] bg-white ">
       <nav className="relative shadow">
         <div className="w-11/12 py-5 mx-auto">
           <div className="lg:flex justify-between">
