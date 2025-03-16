@@ -10,7 +10,7 @@ const Navbar = () => {
   const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
   return (
-    <div className="sticky top-0 z-[900] ">
+    <div className="sticky top-0 z-[900] bg-white ">
       <nav className="relative shadow">
         <div className="w-11/12 py-5 mx-auto">
           <div className="lg:flex justify-between">
@@ -25,7 +25,7 @@ const Navbar = () => {
                 />
                 <h1 className="text-center flex">
                   <span className="text-2xl font-extrabold text-center ">
-                    First Bite
+                    Fast Bite
                   </span>
                 </h1>
               </div>
