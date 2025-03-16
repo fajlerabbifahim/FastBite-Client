@@ -25,7 +25,7 @@ const Navbar = () => {
                                 /> */}
                 <h1 className="text-center flex">
                   <span className="text-2xl font-extrabold text-center ">
-                    First Bite
+                    Fast Bite
                   </span>
                 </h1>
               </div>
