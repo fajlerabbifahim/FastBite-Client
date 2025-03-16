@@ -17,12 +17,6 @@ const Navbar = () => {
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
-                {/* <img
-                                    className="w-12 h-12 mr-2 rounded-full"
-                                    // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
-                                    alt="First Bite"
-                                    loading="lazy"
-                                /> */}
                 <h1 className="text-center flex">
                   <span className="text-2xl font-extrabold text-center ">
                     Fast Bite
@@ -81,20 +75,7 @@ const Navbar = () => {
                   : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
               }`}
             >
-              <div className="flex flex-col  -mx-6 lg:flex-row lg:items-center lg:mx-2 xl:mx-4 xl:text-lg">
-                {/* <NavLink
-                                    to="/"
-                                    className={({ isActive }) =>
-                                        `
-    relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
-    ${isActive ? "text-[#E10101] underline underline-offset-4 decoration-2" : ""}
-    before:content-[''] before:absolute before:left-0 before:bottom-0 before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out
-    before:w-0 hover:before:w-full
-    `
-                                    }
-                                >
-                                    Home
-                                </NavLink> */}
+              <div className="flex flex-col  -mx-6 lg:flex-row lg:items-center lg:mx-2 xl:mx-4 xl:text-lg text-black ">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
