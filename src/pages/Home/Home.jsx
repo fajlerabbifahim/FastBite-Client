@@ -11,7 +11,7 @@ const Home = () => {
       {/* banner */}
       <Banner />
       <ChefCriteria />
-      <PopularDishes/>
+      <PopularDishes />
       <Offer />
       <TopReview/>
     </>
