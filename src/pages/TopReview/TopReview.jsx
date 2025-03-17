@@ -1,6 +1,6 @@
 import { FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
 import SectionHeading from "../../Components/Shared/SectionHeading";
-
 
 const products = [
   { name: "Margherita Pizza", price: "$12.99", discount: "$25.99", rating: 5, status: "Save 50%", image: "https://i.ibb.co.com/Q3H5jDrc/370860292-11475286.png" },
@@ -22,21 +22,30 @@ const TopReview = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product, index) => (
-          <div key={index} className="p-4 rounded-lg shadow-lg text-center relative bg-white dark:bg-gray-800">
-            {product.status && (
-              <span className={`absolute top-2 left-2 px-2 py-1 text-xs font-bold text-white rounded ${product.status === "Sold Out" ? "bg-red-500" : "bg-green-500"}`}>
-                {product.status}
-              </span>
-            )}
-            <img src={product.image} alt={product.name} className="w-full h-40 object-cover rounded-md" />
-            <h3 className="text-lg font-semibold mt-3 dark:text-white">{product.name}</h3>
-            <div className="flex justify-center mt-2 text-yellow-500">
-              {[...Array(Math.floor(product.rating))].map((_, i) => (
-                <FaStar key={i} />
-              ))}
+          <motion.div 
+            key={index} 
+            className="flex items-center p-4 rounded-lg shadow-lg bg-white dark:bg-gray-800"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <img src={product.image} alt={product.name} className="w-2/5 h-28 object-cover rounded-md mr-4" />
+            <div className="text-left">
+              {product.status && (
+                <span className={`px-2 py-1 text-xs font-bold text-white rounded ${product.status === "Sold Out" ? "bg-red-500" : "bg-green-500"}`}>
+                  {product.status}
+                </span>
+              )}
+              <h3 className="text-lg font-semibold mt-2 dark:text-white">{product.name}</h3>
+              <div className="flex mt-2 text-yellow-500">
+                {[...Array(Math.floor(product.rating))].map((_, i) => (
+                  <FaStar key={i} />
+                ))}
+              </div>
+              <p className="text-green-600 text-lg font-semibold mt-2 dark:text-green-400">
+                {product.price} <span className="text-gray-400 line-through dark:text-gray-500">{product.discount}</span>
+              </p>
             </div>
-            <p className="text-green-600 text-lg font-semibold mt-2 dark:text-green-400">{product.price} <span className="text-gray-400 line-through dark:text-gray-500">{product.discount}</span></p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
