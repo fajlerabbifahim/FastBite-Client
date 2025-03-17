@@ -3,6 +3,7 @@ import { Banner } from "../Banner/Banner";
 import ChefCriteria from "../ChefCriteria/ChefCriteria";
 import Offer from "../OfferSection/Offer";
 import PopularDishes from "../PopularDishes/PopularDishes";
+import TopReview from "../TopReview/TopReview";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <ChefCriteria />
       <PopularDishes/>
       <Offer />
+      <TopReview/>
     </>
   );
 };
