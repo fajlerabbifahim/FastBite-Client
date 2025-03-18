@@ -3,8 +3,8 @@ import { FaCheckCircle } from "react-icons/fa";
 
 const Offer = () => {
   return (
-    <div className="flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
-      <div className="relative bg-gradient-to-r from-red-100 to-orange-200 shadow-2xl rounded-lg p-8 md:p-12 w-full max-w-7xl overflow-hidden">
+    <div className="flex items-center justify-center ">
+      <div className="relative bg-gradient-to-r from-red-100 to-orange-200   p-6 md:p-12 w-full  overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-24 h-24 bg-red-500 opacity-20 rounded-br-full"></div>
         <div className="absolute bottom-0 right-0 w-24 h-24 bg-orange-500 opacity-20 rounded-tl-full"></div>
