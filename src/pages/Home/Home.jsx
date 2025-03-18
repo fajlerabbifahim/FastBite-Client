@@ -4,6 +4,7 @@ import ChefCriteria from "../ChefCriteria/ChefCriteria";
 import Offer from "../OfferSection/Offer";
 import PopularDishes from "../PopularDishes/PopularDishes";
 import TopReview from "../TopReview/TopReview";
+import DownloadOurApp from "../DownloadOurApp/DownloadOurApp";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <PopularDishes />
       <Offer />
       <TopReview/>
+      <DownloadOurApp></DownloadOurApp>
     </>
   );
 };
