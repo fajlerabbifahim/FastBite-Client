@@ -21,7 +21,6 @@ const Navbar = () => {
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
-<<<<<<< HEAD
                 <img
                   className="w-12 h-12 mr-2 rounded-full"
                   // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
@@ -31,20 +30,8 @@ const Navbar = () => {
                 <h1 className="text-center flex">
                   <span className="text-2xl font-extrabold text-center ">
                     First Bite
-=======
-                {/* <img
-                                    className="w-12 h-12 mr-2 rounded-full"
-                                    // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
-                                    alt="First Bite"
-                                    loading="lazy"
-                                /> */}
-                <Link to="/" className="text-center flex">
-                  <span className="text-4xl font-extrabold text-center ">
-                    F<span className="text-[#E10101]">i</span>rst B
-                    <span className="text-[#E10101]">i</span>te
->>>>>>> 13395466e85bd6f4fa87d5c0df04d052bb73d964
                   </span>
-                </Link>
+                
               </div>
 
               {/* Mobile Menu Toggle Button */}
