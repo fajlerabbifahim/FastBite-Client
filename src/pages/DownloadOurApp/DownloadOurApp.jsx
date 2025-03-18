@@ -14,7 +14,7 @@ const DownloadOurApp = () => {
         // Note: bg-primary-color class added from index.css
 
         <section className="w-11/12 mx-auto my-4">
-            <div className="flex gap-4 justify-between flex-col-reverse lg:flex-row">
+            <div className="flex gap-4 justify-between flex-col-reverse lg:flex-row transition-all duration-500 ease-in-out">
                 <div>
                     <h3 className="uppercase primary-color text-3xl font-medium">Best app for food ordering</h3>
                     <h2 className="text-4xl font-bold mt-2 mb-10">Manage Your Restaurant Anytime! <br /> Anywhere!</h2>
@@ -52,12 +52,12 @@ const DownloadOurApp = () => {
                         </button>
                     </div>
                 </div>
-                <div className="relative lg:w-3/6 w-full h-[400px] md:scale-100 hidden md:block">
+                <div className="relative lg:w-3/6 w-full h-[400px]">
                     <div className="bg-primary-color w-full h-3/4 absolute bottom-0 right-0 rounded-tl-full rounded-bl-full"></div>
-                    <img className="w-[96px] relative top-[15%] left-[80%] drop-shadow-2xl" src={food1} alt="" />
-                    <img className="w-[96px] absolute top-[60%] left-[75%] drop-shadow-2xl" src={food2} alt="" />
-                    <img className="w-[300px] transform  bottom-0 left-[30%] absolute drop-shadow-2xl " src={mockUp} alt="" />
-                    <img className="w-[200px] absolute transform bottom-0 drop-shadow-2xl" src={delivery} alt="" />
+                    <img className="w-[96px] relative top-[15%] left-[75%] md:left-[80%] drop-shadow-2xl" src={food1} alt="" />
+                    <img className="w-[96px] absolute top-[40%] left-[10%] md:top-[60%] md:left-[75%] drop-shadow-2xl" src={food2} alt="" />
+                    <img className="w-[240px] md:w-[300px] transform  bottom-0 left-[30%] absolute drop-shadow-2xl " src={mockUp} alt="" />
+                    <img className="w-[150px] md:w-[200px] absolute transform bottom-0 drop-shadow-2xl" src={delivery} alt="" />
                     <img className="w-[30px] absolute top-[40%] left-[75%] drop-shadow-xl " src={leaf} alt="" />
                     <img className="w-[80px] absolute top-[15%] left-[23%] drop-shadow-xl rotate-90 " src={leaf} alt="" />
                     <img className="w-[60px] absolute top-[5%] left-[70%] drop-shadow-xl  " src={leaf} alt="" />
