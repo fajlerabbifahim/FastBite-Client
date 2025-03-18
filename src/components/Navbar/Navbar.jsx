@@ -21,17 +21,18 @@ const Navbar = () => {
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
-                <img
+                {/* <img
                   className="w-12 h-12 mr-2 rounded-full"
                   // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
                   alt="First Bite"
                   loading="lazy"
-                />
-                <h1 className="text-center flex">
-                  <span className="text-2xl font-extrabold text-center ">
-                    First Bite
+                                /> */}
+                <Link to="/" className="text-center flex">
+                  <span className="text-4xl font-extrabold text-center ">
+                    F<span className="text-[#E10101]">i</span>rst B
+                    <span className="text-[#E10101]">i</span>te
                   </span>
-                
+                </Link>
               </div>
 
               {/* Mobile Menu Toggle Button */}
