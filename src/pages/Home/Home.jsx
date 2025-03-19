@@ -19,7 +19,6 @@ const Home = () => {
       <Offer />
       <TopReview />
       <Review />
-      <TopReview />
       <DownloadOurApp></DownloadOurApp>
     </>
   );
