@@ -5,7 +5,7 @@ import aboutusbannerimg2 from "../../assets/AboutUs_img/aboutusbannerimg2.jpg";
 
 const AboutUs = () => {
     return (
-        <div className="bg-white">
+        <div className="bg-white dark:bg-gray-900 transition-colors duration-300">
             {/* Banner Section */}
             <div className="relative">
                 <motion.img 
@@ -32,7 +32,7 @@ const AboutUs = () => {
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 1, delay: 0.3 }}
                     >
-                        At <span className="font-semibold">Fast Bite</span>, we are passionate about bringing delicious food straight to your doorstep. Whether you're craving a quick bite, a gourmet meal, or something in between, we connect you with the best local restaurants and eateries with <span className="font-semibold">fast, fresh, and reliable delivery.</span>
+                        At <span className="font-semibold">Fast Bite</span>, we are passionate about bringing delicious food straight to your doorstep.
                     </motion.p>
                 </div>
             </div>
@@ -57,13 +57,13 @@ const AboutUs = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 1 }}
                     >
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101]">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101] dark:text-red-400">
                             Who We Are
                         </h1>
-                        <p className="py-4 text-gray-600 text-lg leading-relaxed">
-                            We believe in making food delivery effortless, quick, and enjoyable. Our platform connects food lovers with a wide range of restaurants, ensuring every meal is delivered fresh and on time.
+                        <p className="py-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                            We believe in making food delivery effortless, quick, and enjoyable.
                         </p>
-                        <ul className="text-gray-700 space-y-2">
+                        <ul className="text-gray-700 dark:text-gray-400 space-y-2">
                             <li> A Wide Selection - Hundreds of restaurants and cuisines.</li>
                             <li> Fast & Reliable Delivery - Your food, fresh and on time.</li>
                             <li> Easy & Secure Payments - Multiple payment options.</li>
@@ -74,7 +74,7 @@ const AboutUs = () => {
             </div>
 
             {/* Our Mission Section */}
-            <div className="bg-gray-100 py-12 lg:py-20">
+            <div className="bg-gray-100 dark:bg-gray-800 py-12 lg:py-20">
                 <div className="w-11/12 mx-auto px-6 flex flex-col lg:flex-row items-center gap-10">
                     
                     {/* Left: Text Content */}
@@ -84,16 +84,16 @@ const AboutUs = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 1 }}
                     >
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101]">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101] dark:text-red-400">
                             Our Mission
                         </h1>
-                        <p className="py-4 text-gray-600 text-lg leading-relaxed">
-                            We’re on a mission to redefine food delivery! Whether you’re a food lover, a restaurant owner, or a delivery partner, we strive to make every meal a delightful experience.
+                        <p className="py-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                            We’re on a mission to redefine food delivery!
                         </p>
-                        <ul className="text-gray-700 space-y-2">
+                        <ul className="text-gray-700 dark:text-gray-400 space-y-2">
                             <li> Diverse Menu - From local favorites to international cuisines.</li>
                             <li> Speedy Delivery - Real-time tracking and fast service.</li>
-                            <li>Flexible Payments - Pay via cash, card, or digital wallets.</li>
+                            <li> Flexible Payments - Pay via cash, card, or digital wallets.</li>
                         </ul>
                     </motion.div>
                     
@@ -120,10 +120,10 @@ const AboutUs = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 1 }}
                     >
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101]">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101] dark:text-red-400">
                             Join Our Journey
                         </h1>
-                        <p className="py-4 text-gray-600 text-lg leading-relaxed">
+                        <p className="py-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                             We’re revolutionizing food delivery! Whether you’re a foodie, a restaurant owner, or a delivery partner, join us in making every meal memorable.
                         </p>
                     </motion.div>
@@ -135,13 +135,13 @@ const AboutUs = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 1 }}
                     >
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101]">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-[#e10101] dark:text-red-400">
                             Why Choose Us?
                         </h1>
-                        <ul className="text-gray-700 text-lg mt-2 space-y-2">
+                        <ul className="text-gray-700 dark:text-gray-400 text-lg mt-2 space-y-2">
                             <li> Diverse Menu - Local favorites & international cuisines.</li>
                             <li> Speedy Delivery - Real-time tracking & quick service.</li>
-                            <li>Secure Payments - Multiple payment options available.</li>
+                            <li> Secure Payments - Multiple payment options available.</li>
                             <li> Customer Support - 24/7 assistance for a seamless experience.</li>
                         </ul>
                     </motion.div>

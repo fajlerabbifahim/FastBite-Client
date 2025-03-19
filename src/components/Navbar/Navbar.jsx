@@ -2,32 +2,32 @@ import React, { useContext, useState, useCallback } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { AuthContext } from "../../providers/AuthProvider";
+import { MdDarkMode, MdOutlinePets } from "react-icons/md";
+import { IoMdSunny } from "react-icons/io";
+import { useDarkMode } from "../../hooks/ThemeContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, handleLogout } = useContext(AuthContext);
 
   const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen]);
+  const { darkMode, setDarkMode } = useDarkMode();
 
   return (
-    <div className="sticky top-0 z-[900] bg-white ">
-      <nav className="relative shadow">
+    <div className="sticky top-0 z-[900]  bg-white dark:bg-gray-800 dark:text-white ">
+      <nav className="relative shadow  ">
         <div className="w-11/12 py-5 mx-auto">
           <div className="lg:flex justify-between">
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
-                <img
-                  className="w-12 h-12 mr-2 rounded-full"
-                  // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
-                  alt="First Bite"
-                  loading="lazy"
-                />
-                <h1 className="text-center flex">
-                  <span className="text-2xl font-extrabold text-center ">
-                    Fast Bite
+               
+                <Link to="/" className="text-center flex">
+                  <span className="text-4xl font-extrabold text-center ">
+                    F<span className="text-[#E10101]">i</span>rst B
+                    <span className="text-[#E10101]">i</span>te
                   </span>
-                </h1>
+                </Link>
               </div>
 
               {/* Mobile Menu Toggle Button */}
@@ -75,13 +75,13 @@ const Navbar = () => {
 
             {/* Navigation Links and User Actions */}
             <div
-              className={`absolute inset-x-0 bg-slate-200  z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
+              className={`absolute inset-x-0  z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
                 isOpen
-                  ? "translate-x-0 opacity-100 "
+                  ? "translate-x-0 opacity-100 bg-slate-300 dark:bg-gray-800 dark:text-white "
                   : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
               }`}
             >
-              <div className="flex flex-col  -mx-6 lg:flex-row lg:items-center lg:mx-2 xl:mx-4 xl:text-lg">
+              <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-2 xl:mx-4 xl:text-lg">
                 {/* <NavLink
                                     to="/"
                                     className={({ isActive }) =>
@@ -98,17 +98,15 @@ const Navbar = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `
-                                                relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
-                                                ${
-                                                  isActive
-                                                    ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
-                                                    : ""
-                                                }
-                                                
-                                                before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
-                                                after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
-                                             `
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                      ${
+                        isActive
+                          ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
+                          : ""
+                      } 
+                      before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                      after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                      `
                   }
                 >
                   Home
@@ -117,17 +115,16 @@ const Navbar = () => {
                 <NavLink
                   to="/menu"
                   className={({ isActive }) =>
-                    `
-                                                relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
-                                                ${
-                                                  isActive
-                                                    ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
-                                                    : ""
-                                                }
-                                                
-                                                before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
-                                                after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
-                                             `
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                      ${
+                        isActive
+                          ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
+                          : ""
+                      }
+
+                      before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                      after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                      `
                   }
                 >
                   Menu
@@ -135,17 +132,15 @@ const Navbar = () => {
                 <NavLink
                   to="/restaurants"
                   className={({ isActive }) =>
-                    `
-                                                relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
-                                                ${
-                                                  isActive
-                                                    ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
-                                                    : ""
-                                                }
-                                                
-                                                before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
-                                                after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
-                                             `
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                     ${
+                       isActive
+                         ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
+                         : ""
+                     }
+                      before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                      after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                      `
                   }
                 >
                   Restaurants
@@ -153,36 +148,31 @@ const Navbar = () => {
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>
-                    `
-                                                relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
-                                                ${
-                                                  isActive
-                                                    ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
-                                                    : ""
-                                                }
-                                                
-                                                before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
-                                                after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
-                                             `
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                    ${
+                      isActive
+                        ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
+                        : ""
+                    }
+                      before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                      after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                      `
                   }
                 >
                   About Us
                 </NavLink>
-
                 <NavLink
                   to="/contact"
                   className={({ isActive }) =>
-                    `
-                                                relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
-                                                ${
-                                                  isActive
-                                                    ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
-                                                    : ""
-                                                }
-                                                
-                                                before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
-                                                after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
-                                             `
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                    ${
+                      isActive
+                        ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
+                        : ""
+                    }
+                      before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                      after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                      `
                   }
                 >
                   Contact Us
@@ -190,6 +180,17 @@ const Navbar = () => {
               </div>
 
               {/* User Actions */}
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="p-2 rounded-full bg-white dark:bg-gray-700 mr-3 cursor-pointer"
+              >
+                {darkMode ? (
+                  <IoMdSunny size={30} color="#F04335" />
+                ) : (
+                  <MdDarkMode size={30} color="#1E1E1E" />
+                )}
+              </button>
+
               <div className="flex items-center mt-4 lg:mt-0 gap-3">
                 {user && user?.email ? (
                   <div className="flex justify-between items-center gap-2">
