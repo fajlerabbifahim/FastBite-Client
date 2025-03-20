@@ -25,9 +25,9 @@ const DashboardLayout = () => {
   // const role = "rider";
 
   return (
-    <div className="lg:grid grid-cols-12 gap-4">
+    <div className="lg:grid grid-cols-12 gap-2 -mt-5 lg:mt-0">
       <div
-        className={`lg:col-span-2 absolute inset-x-0 z-20 w-full -mt-12 lg:px-0 transition-all duration-700 ease-in-out  lg:mt-0  lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
+        className={`lg:border-r-2 border-green-600 lg:col-span-2 absolute inset-x-0 z-20 w-full lg:px-0 transition-all duration-700 ease-in-out lg:mt-0  lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
           isMenuOpen
             ? "translate-x-0 opacity-100 bg-slate-400  dark:text-white"
             : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
@@ -47,8 +47,8 @@ const DashboardLayout = () => {
       >
         {isMenuOpen ? <RxCross1 /> : <FaBars />}
       </button>
-      <div className="lg:col-span-10 ">
-        <Outlet></Outlet>
+      <div className={`lg:col-span-10 mt-5 ${!isMenuOpen && "mt-16"}`}>
+        <Outlet isMenuOpen={isMenuOpen}></Outlet>
       </div>
     </div>
   );

@@ -14,9 +14,9 @@ const AdminMenu = () => {
     // navigate("/");
   };
   return (
-    <div className="h-screen ">
-      <aside className="flex flex-col h-full  px-2 lg:-mr-8 py-2 overflow-y-auto lg:border-r-2  dark:bg-gray-900 dark:border-gray-700">
-        <Title></Title>
+    <div className="h-screen container mx-auto pl-2 ">
+      <Title></Title>
+      <aside className="flex flex-col h-full  px-2 lg:-mr-8 py-2 overflow-y-auto">
         <div className="flex flex-col items-center mt-3">
           <img
             referrerPolicy="no-referrer"
@@ -37,7 +37,7 @@ const AdminMenu = () => {
         </div>
 
         {/* <div className=""> */}
-        <nav className="flex flex-col gap-1 flex-1 mt-6 ">
+        <nav className="flex flex-col gap-1 flex-1 lg:mt-6 ">
           <NavLink
             to="/dashboard/admin/reports"
             className={({ isActive }) =>
@@ -58,7 +58,7 @@ const AdminMenu = () => {
           <NavLink
             to="/dashboard/admin/users"
             className={({ isActive }) =>
-              `relative inline-block pr-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+              `relative inline-block pr-0 py-2  mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
                                 isActive
                                   ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-26 z-10"
@@ -106,8 +106,8 @@ const AdminMenu = () => {
           >
             Manage Restaurants
           </NavLink>
-          <div>
-            <p className="border-b-2 border-blue-600 mt-4"></p>
+          <div className="mr-5 mt-5">
+            <p className="border-b-2 border-blue-600"></p>
           </div>
           <div className="flex flex-col justify-center items-start my-2 ">
             <NavLink

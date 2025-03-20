@@ -2,9 +2,9 @@ import { Calendar } from "react-date-range";
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
 import { IoIosRestaurant } from "react-icons/io";
-const AdminStatistics = () => {
+const AdminStatistics = ({ isMenuOpen }) => {
   return (
-    <div className="mt-12 container mx-auto pl-2">
+    <div className="container mx-auto pl-2 lg:mt-8">
       {/* small cards */}
       <div className="mb-12 pr-3 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-grow">
         {/* Sales Card */}
