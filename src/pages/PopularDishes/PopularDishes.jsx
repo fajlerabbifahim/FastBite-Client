@@ -68,9 +68,9 @@ const RatingStars = ({ rating }) => {
   const numRating = parseInt(rating);
   return (
     <div className="rating rating-sm  dark:bg-gray-800 dark:text-white ">
-      {[1, 2, 3, 4, 5].map((star) => (
+      {[1, 2, 3, 4, 5].map((star, idx) => (
         <input
-          key={star}
+          key={idx}
           type="radio"
           name={`rating-${star}`}
           className="mask mask-star-2 bg-orange-400   "
@@ -96,9 +96,10 @@ const PopularDishes = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-        {popularDishesData.map((dish) => (
+        {popularDishesData.map((dish, idx) => (
           <div
-            key={dish.id}
+            // key={dish.id}
+            key={idx}
             className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
           >
             <div className="h-64 overflow-hidden">
