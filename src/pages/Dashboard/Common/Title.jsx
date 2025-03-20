@@ -10,7 +10,7 @@ const Title = () => {
   const { darkMode, setDarkMode } = useDarkMode();
   return (
     <div>
-      <div className="relative flex justify-between items-center my-2  lg:gap-4">
+      <div className="relative flex justify-between items-center my-2 lg:gap-4">
         <Link to="/dashboard/admin/reports" className="text-center flex">
           <span className="text-3xl font-extrabold text-center ">
             F<span className="text-[#E10101]">i</span>rst B

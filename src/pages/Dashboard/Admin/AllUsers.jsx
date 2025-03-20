@@ -3,32 +3,32 @@ import { MdDelete } from "react-icons/md";
 
 const AllUsers = () => {
   return (
-    <section class="w-11/12 mx-auto my-10">
-      <div class="flex items-center gap-x-3">
-        <h2 class="text-lg font-medium text-gray-800 dark:text-white">
+    <section className="container mx-auto pl-2">
+      <div className="flex items-center gap-x-3">
+        <h2 className="text-lg font-medium text-gray-800 dark:text-white">
           Team Users
         </h2>
 
-        <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
           10 users
         </span>
       </div>
 
-      <div class="flex flex-col mt-6">
-        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-              <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead class="bg-gray-50 dark:bg-gray-800">
+      <div className="flex flex-col mt-6">
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr>
                     <th
                       scope="col"
-                      class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      <div class="flex items-center gap-x-3">
+                      <div className="flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                         />
                         <span>Name</span>
                       </div>
@@ -36,9 +36,9 @@ const AllUsers = () => {
 
                     <th
                       scope="col"
-                      class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      <button class="flex items-center gap-x-2">
+                      <button className="flex items-center gap-x-2">
                         <span>Role</span>
 
                         <svg
@@ -47,7 +47,7 @@ const AllUsers = () => {
                           viewBox="0 0 24 24"
                           stroke-width="2"
                           stroke="currentColor"
-                          class="w-4 h-4"
+                          className="w-4 h-4"
                         >
                           <path
                             stroke-linecap="round"
@@ -60,43 +60,43 @@ const AllUsers = () => {
 
                     <th
                       scope="col"
-                      class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
                       Email address
                     </th>
 
                     {/* <th
                       scope="col"
-                      class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
                       Teams
                     </th> */}
 
-                    <th scope="col" class="relative py-3.5 px-4">
-                      <span class="sr-only">Edit</span>
+                    <th scope="col" className="relative py-3.5 px-4">
+                      <span className="sr-only">Edit</span>
                     </th>
                   </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div class="inline-flex items-center gap-x-3">
+                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                      <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                         />
 
-                        <div class="flex items-center gap-x-2">
+                        <div className="flex items-center gap-x-2">
                           <img
-                            class="object-cover w-10 h-10 rounded-full"
+                            className="object-cover w-10 h-10 rounded-full"
                             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                             alt=""
                           />
                           <div>
-                            <h2 class="font-medium text-gray-800 dark:text-white ">
+                            <h2 className="font-medium text-gray-800 dark:text-white ">
                               Arthur Melo
                             </h2>
-                            <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                            <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                               @authurmelo
                             </p>
                           </div>
@@ -104,35 +104,35 @@ const AllUsers = () => {
                       </div>
                     </td>
 
-                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                       Customer
                     </td>
-                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                       authurmelo@example.com
                     </td>
-                    {/* <td class="px-4 py-4 text-sm whitespace-nowrap">
-                      <div class="flex items-center gap-x-2">
-                        <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
+                    {/* <td className="px-4 py-4 text-sm whitespace-nowrap">
+                      <div className="flex items-center gap-x-2">
+                        <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
                           Design
                         </p>
-                        <p class="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
+                        <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
                           Product
                         </p>
-                        <p class="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
+                        <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                           Marketing
                         </p>
                       </div>
                     </td> */}
-                    {/* <td class="px-4 py-4 text-sm whitespace-nowrap">
-                      <div class="flex items-center gap-x-6">
-                        <button class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                    {/* <td className="px-4 py-4 text-sm whitespace-nowrap">
+                      <div className="flex items-center gap-x-6">
+                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-5 h-5"
+                            className="w-5 h-5"
                           >
                             <path
                               stroke-linecap="round"
@@ -142,14 +142,14 @@ const AllUsers = () => {
                           </svg>
                         </button>
 
-                        <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-5 h-5"
+                            className="w-5 h-5"
                           >
                             <path
                               stroke-linecap="round"
@@ -160,12 +160,12 @@ const AllUsers = () => {
                         </button>
                       </div>
                     </td> */}
-                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                       <button
                         // onClick={() => handleDelete(member._id)}
-                        className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
+                        classNameName="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
                       >
-                        <span className="mr-2">remove</span>
+                        <span classNameName="mr-2">remove</span>
                         <MdDelete />
                       </button>
                     </td>

@@ -2,7 +2,7 @@ import React from "react";
 
 const ManageAllFoodItems = () => {
   return (
-    <div>
+    <div className="container mx-auto pl-2">
       <h1>ManageAllFoodItems</h1>
     </div>
   );

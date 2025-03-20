@@ -14,6 +14,7 @@ import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import ManageAllFoodItems from "../pages/Dashboard/Admin/ManageAllFoodItems";
 import ManageRestaurants from "../pages/Dashboard/Admin/ManageRestaurants";
 import RestaurantDetails from "../pages/RestaurantDetails/RestaurantDetails";
+import Roll from "./Roll";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <DashboardLayout></DashboardLayout>,
     children: [
+      {
+        index: true,
+        element: (
+          // <PrivateRoute>
+          <Roll />
+          // </PrivateRoute>
+        ),
+      },
       {
         path: "admin/reports",
         element: <AdminStatistics></AdminStatistics>,
