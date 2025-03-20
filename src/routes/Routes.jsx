@@ -13,6 +13,7 @@ import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import ManageAllFoodItems from "../pages/Dashboard/Admin/ManageAllFoodItems";
 import ManageRestaurants from "../pages/Dashboard/Admin/ManageRestaurants";
+import RestaurantDetails from "../pages/RestaurantDetails/RestaurantDetails";
 
 const router = createBrowserRouter([
   {
@@ -37,11 +38,20 @@ const router = createBrowserRouter([
         element: <AboutUs></AboutUs>,
       },
       {
+        path: "/RestaurantDetails/:id",
+        element: <RestaurantDetails />,
+      },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
+      },
+      {
         path: "/contact",
         element: <ContactUs></ContactUs>,
       },
     ],
   },
+
   {
     path: "/signup",
     element: <SignUp />,

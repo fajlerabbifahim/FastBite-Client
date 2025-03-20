@@ -85,7 +85,7 @@ const RatingStars = ({ rating }) => {
 
 const PopularDishes = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto w-11/12 py-12">
       {/* sheared heading  components use */}
 
       <SectionHeading

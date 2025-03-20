@@ -22,10 +22,10 @@ const Navbar = () => {
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
                 {/* <img
-                                    className="w-12 h-12 mr-2 rounded-full"
-                                    // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
-                                    alt="First Bite"
-                                    loading="lazy"
+                  className="w-12 h-12 mr-2 rounded-full"
+                  // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
+                  alt="First Bite"
+                  loading="lazy"
                                 /> */}
                 <Link to="/" className="text-center flex">
                   <span className="text-4xl font-extrabold text-center ">
@@ -253,7 +253,7 @@ const Navbar = () => {
                       Sign up
                     </Link>
                     <Link
-                      to="/signin"
+                      to="/login"
                       className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-50"
                     >
                       Sign in
