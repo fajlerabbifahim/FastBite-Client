@@ -1,60 +1,109 @@
-
+import React from 'react';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import SectionHeading from '../../Components/Shared/SectionHeading';
 
 const ContactUs = () => {
+    const contactInfo = [
+        {
+            icon: <FaPhone className="w-6 h-6" />,
+            title: "Phone",
+            details: ["+49078-039-23-11", "+49078-028-55-60"],
+            color: "text-blue-500"
+        },
+        {
+            icon: <FaEnvelope className="w-6 h-6" />,
+            title: "Email",
+            details: ["support@fastbite.com", "info@fastbite.com"],
+            color: "text-red-500"
+        },
+        {
+            icon: <FaMapMarkerAlt className="w-6 h-6" />,
+            title: "Address",
+            details: ["Goldschmidtstraße 13,", "04103 Leipzig, Germany"],
+            color: "text-green-500"
+        }
+    ];
+
     return (
-        <div className="bg-gray-100 dark:bg-gray-900 py-16 transition-colors duration-300">
-            <div className="max-w-6xl mx-auto px-6">
-                <div>
-                    <img src="" alt="" />
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#e10101] dark:text-red-400">
-                    Contact Us
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300 text-center mt-3">
-                    Have questions or need assistance? We're here to help!
-                </p>
+        <div className="min-h-screen bg-white dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <SectionHeading
+                    title="Contact Us"
+                    subTitle="Have questions? We're here to help! Reach out to us through any of these channels."
+                />
+
+                {/* Contact Info Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    {contactInfo.map((info, index) => (
+                        <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            <div className={`${info.color} mb-4`}>
+                                {info.icon}
+                            </div>
+                            <h3 className="text-xl font-semibold mb-2 dark:text-white">{info.title}</h3>
+                            {info.details.map((detail, idx) => (
+                                <p key={idx} className="text-gray-600 dark:text-gray-300">{detail}</p>
+                            ))}
+                        </div>
+                    ))}
                 </div>
 
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {/* Left: Contact Form */}
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Send Us a Message</h3>
-                        <form>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 dark:text-gray-300">Name</label>
-                                <input type="text" className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#e10101] dark:focus:ring-red-400" placeholder="Enter your name" />
+                {/* Contact Form */}
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                    <form className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Full Name
+                                </label>
+                                <input
+                                    type="text"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                    placeholder="John Doe"
+                                />
                             </div>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 dark:text-gray-300">Email</label>
-                                <input type="email" className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#e10101] dark:focus:ring-red-400" placeholder="Enter your email" />
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                    placeholder="john@example.com"
+                                />
                             </div>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 dark:text-gray-300">Message</label>
-                                <textarea className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#e10101] dark:focus:ring-red-400" rows="4" placeholder="Write your message"></textarea>
-                            </div>
-                            <button className="w-full bg-[#e10101] dark:bg-red-500 text-white py-2 rounded-lg hover:bg-red-700 dark:hover:bg-red-600 transition duration-300">
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Subject
+                            </label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                placeholder="How can we help?"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Message
+                            </label>
+                            <textarea
+                                rows="4"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                placeholder="Your message..."
+                            ></textarea>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                className="w-full bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                            >
                                 Send Message
                             </button>
-                        </form>
-                    </div>
-
-                    {/* Right: Contact Info */}
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col justify-center">
-                        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Get in Touch</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">
-                            Feel free to reach out to us for any inquiries, support, or feedback!
-                        </p>
-                        <div className="space-y-4">
-                            <p className="flex items-center text-gray-700 dark:text-gray-300">
-                                📍 <span className="ml-2">123 Food Street, City, Country</span>
-                            </p>
-                            <p className="flex items-center text-gray-700 dark:text-gray-300">
-                                📞 <span className="ml-2">+123 456 7890</span>
-                            </p>
-                            <p className="flex items-center text-gray-700 dark:text-gray-300">
-                                ✉️ <span className="ml-2">support@fastbite.com</span>
-                            </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -62,4 +111,3 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
-
