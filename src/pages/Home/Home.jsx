@@ -19,7 +19,6 @@ const Home = () => {
       <TopReviewedRestaurant></TopReviewedRestaurant>
       <ChefCriteria />
       <BecomePartner/>
-      <BecomePartner/>
       <PopularDishes />
       <Offer />
       <TopReview />
