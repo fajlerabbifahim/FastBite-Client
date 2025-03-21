@@ -8,6 +8,7 @@ import TopReview from "../TopReview/TopReview";
 import Review from "../../Components/Review/Review";
 
 import DownloadOurApp from "../DownloadOurApp/DownloadOurApp";
+import BecomePartner from "../BecomePartner/BecomePartner";
 
 const Home = () => {
   return (
@@ -15,11 +16,11 @@ const Home = () => {
       {/* banner */}
       <Banner />
       <ChefCriteria />
+      <BecomePartner/>
       <PopularDishes />
       <Offer />
       <TopReview />
       <Review />
-      <TopReview />
       <DownloadOurApp></DownloadOurApp>
     </>
   );
