@@ -15,6 +15,9 @@ import ManageAllFoodItems from "../pages/Dashboard/Admin/ManageAllFoodItems";
 import ManageRestaurants from "../pages/Dashboard/Admin/ManageRestaurants";
 import RestaurantDetails from "../pages/RestaurantDetails/RestaurantDetails";
 import Roll from "./Roll";
+import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+import Profile from "../pages/Dashboard/Common/Profile";
+import BecomeSeller from "../pages/Dashboard/Customer/BecomeSeller";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +91,18 @@ const router = createBrowserRouter([
       {
         path: "admin/manageRestaurants",
         element: <ManageRestaurants></ManageRestaurants>,
+      },
+      {
+        path: "customer/orders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "customer/profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "customer/becomeSeller",
+        element: <BecomeSeller></BecomeSeller>,
       },
     ],
   },
