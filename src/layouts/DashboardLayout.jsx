@@ -18,9 +18,9 @@ const DashboardLayout = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   // console.log(isMenuOpen)
-  const role = "admin";
+  // const role = "admin";
 
-  // const role = "customer";
+  const role = "customer";
   // const role = "seller";
   // const role = "rider";
 
