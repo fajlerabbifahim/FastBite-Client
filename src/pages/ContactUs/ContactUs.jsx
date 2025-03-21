@@ -1,13 +1,18 @@
+
+
 const ContactUs = () => {
     return (
         <div className="bg-gray-100 dark:bg-gray-900 py-16 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-6">
-                <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#e10101] dark:text-red-400">
+                <div>
+                    <img src="" alt="" />
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#e10101] dark:text-red-400">
                     Contact Us
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 text-center mt-3">
                     Have questions or need assistance? We're here to help!
                 </p>
+                </div>
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
                     {/* Left: Contact Form */}
