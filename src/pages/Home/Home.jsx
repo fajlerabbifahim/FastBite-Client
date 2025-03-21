@@ -8,6 +8,7 @@ import TopReview from "../TopReview/TopReview";
 import Review from "../../Components/Review/Review";
 
 import DownloadOurApp from "../DownloadOurApp/DownloadOurApp";
+import BecomePartner from "../BecomePartner/BecomePartner";
 import TopReviewedRestaurant from "../TopReviewedRestaurant/TopReviewedRestaurant";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <Banner />
       <TopReviewedRestaurant></TopReviewedRestaurant>
       <ChefCriteria />
+      <BecomePartner/>
       <PopularDishes />
       <Offer />
       <TopReview />

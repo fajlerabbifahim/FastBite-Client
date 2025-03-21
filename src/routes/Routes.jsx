@@ -8,7 +8,13 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import DashboardLayout from "../layouts/DashboardLayout";
+import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers";
+import ManageAllFoodItems from "../pages/Dashboard/Admin/ManageAllFoodItems";
+import ManageRestaurants from "../pages/Dashboard/Admin/ManageRestaurants";
 import RestaurantDetails from "../pages/RestaurantDetails/RestaurantDetails";
+import Roll from "./Roll";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurants",
         element: <Restaurants></Restaurants>,
+      },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/RestaurantDetails/:id",
@@ -50,6 +60,36 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        index: true,
+        element: (
+          // <PrivateRoute>
+          <Roll />
+          // </PrivateRoute>
+        ),
+      },
+      {
+        path: "admin/reports",
+        element: <AdminStatistics></AdminStatistics>,
+      },
+      {
+        path: "admin/users",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "admin/ManageAllFoodItems",
+        element: <ManageAllFoodItems></ManageAllFoodItems>,
+      },
+      {
+        path: "admin/manageRestaurants",
+        element: <ManageRestaurants></ManageRestaurants>,
+      },
+    ],
   },
 ]);
 
