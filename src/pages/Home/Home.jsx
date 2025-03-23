@@ -17,11 +17,11 @@ const Home = () => {
       {/* banner */}
       <Banner />
       <TopReviewedRestaurant></TopReviewedRestaurant>
-      <ChefCriteria />
-      <BecomePartner/>
       <PopularDishes />
       <Offer />
       <TopReview />
+      <ChefCriteria />
+      <BecomePartner />
       <Review />
       <DownloadOurApp></DownloadOurApp>
     </>
