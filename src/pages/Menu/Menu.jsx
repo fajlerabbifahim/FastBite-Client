@@ -40,35 +40,39 @@ const Menu = () => {
 
   return (
     <>
-      {/* 🔷 Beautiful Banner Section */}
-      <section className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] flex items-center justify-center">
+      {/* Banner Section */}
+      <section className="relative bg-[#FF5722] text-white h-[200px] md:h-[250px] flex items-center justify-center">
         <img
           src={allFoodPageBanner}
           alt="All Foods Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative z-10 text-center w-11/12 max-w-3xl text-white">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+
+        <div className="relative z-10 text-center w-11/12 max-w-2xl">
+          <h1 className="text-3xl md:text-4xl font-semibold">
             Savor Every Bite!
           </h1>
-          <p className="text-sm md:text-lg mt-2 text-gray-300 italic">
+          <p className="text-sm md:text-base mt-2 text-gray-300 italic">
             Find your favorite food here!
           </p>
-          <div className="flex items-center mt-4 bg-white rounded-full px-4 py-2 shadow-lg max-w-md mx-auto">
+          <div className="flex items-center mt-4 bg-white rounded-full px-4 py-2 shadow-md">
+            {/* Search Input */}
             <input
               type="text"
               placeholder="Search your favorite food..."
-              className="flex-grow text-gray-700 text-sm md:text-base outline-none px-2"
+              className="flex-grow text-gray-700 text-sm md:text-base outline-none"
+              // value={searchTerm}
+              // onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all">
+            <button className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold ml-2">
               Search
             </button>
           </div>
         </div>
       </section>
 
-      {/* 🔷 Tabs & Sorting Section */}
+      {/*  Tabs & Sorting Section */}
       <div className="w-full px-4 md:px-8 lg:px-20 py-6">
         <Tabs
           selectedIndex={categories.indexOf(selectedCategory)}
@@ -80,7 +84,7 @@ const Menu = () => {
               {categories.map((category, index) => (
                 <Tab
                   key={index}
-                  className="px-4 py-2 text-sm md:text-base cursor-pointer rounded-md transition-all"
+                  className="px-4 py-2 text-sm md:text-base cursor-pointer rounded-md transition-all outline-none"
                   selectedClassName="bg-red-600 text-white font-bold shadow-lg"
                 >
                   {category}
@@ -88,7 +92,7 @@ const Menu = () => {
               ))}
             </TabList>
 
-            {/* 🔷 Sort Dropdown */}
+            {/*  Sort Dropdown */}
             <select
               className="px-4 py-2 border rounded-md text-gray-700 text-sm md:text-base bg-white shadow-sm"
               onChange={(e) => setSortOrder(e.target.value)}
@@ -100,7 +104,7 @@ const Menu = () => {
             </select>
           </div>
 
-          {/* 🔷 Food Items Section */}
+          {/*  Food Items Section */}
           <div className="w-full py-6">
             {loading ? (
               <div className="text-center text-lg font-semibold">
@@ -109,9 +113,6 @@ const Menu = () => {
             ) : (
               categories.map((category, index) => (
                 <TabPanel key={index} className="w-full">
-                  <h2 className="text-2xl font-semibold text-gray-800">
-                    {category}
-                  </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
                     {sortedFoods.length > 0 ? (
                       sortedFoods.map((food, idx) => (
