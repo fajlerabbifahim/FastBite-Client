@@ -11,16 +11,15 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 import auth from "../firebase/firebase.config";
-import { useAsyncError } from "react-router-dom";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const googleProvider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(true);
   const [menuItems, setMenuItems] = useState([]);
   const [cart, setCart] = useState(0);
@@ -56,10 +55,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email);
-      // if (currentUser?.email) {
-      //     setUser(currentUser)
+      if (currentUser?.email) {
+          setUser(currentUser)
 
-      //     // Get JWT token
+          // Get JWT token
       //     await axios.post(
       //         `${import.meta.env.VITE_API_URL}/jwt`,
       //         {
@@ -72,7 +71,7 @@ const AuthProvider = ({ children }) => {
       //     await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
       //         withCredentials: true,
       //     })
-      // }
+      }
       setLoading(false);
     });
     return () => {
