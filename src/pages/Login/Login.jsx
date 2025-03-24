@@ -1,11 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "react-lottie-player";
 import loginAnimation from "../../assets/authLotties/login-animation.json";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { saveUser } from "../../api/utils";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
+
+  // Email Password Signin
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const pass = form.password.value;
+
+    try {
+      //User Login
+      await signIn(email, pass);
+      toast.success("Login Successful");
+      const user = { email: email };
+      console.log(user.email);
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+  };
+  // const handleSubmit = () => {};
+  const handleGoogleSignIn = async () => {
+    try {
+      //User Registration using google
+      const data = await signInWithGoogle();
+      await saveUser(data?.user);
+      navigate("/");
+      toast.success("Signup Successful");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full bg-white p-8 rounded-xl shadow-2xl flex flex-col md:flex-row items-center">
@@ -34,61 +75,39 @@ const Login = () => {
             </p>
           </div>
 
-          <form className="mt-8 space-y-6">
-            <div className="rounded-md shadow-sm space-y-4">
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="appearance-none rounded-sm w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 sm:text-sm"
-                  placeholder="Email address"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="appearance-none rounded-sm w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900   sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
+          {/* <form onSubmit={handleSignIn}>
+            <div className='mt-7 w-10/12 mx-auto '>
+              
+              <input
+                placeholder='Email Address'
+                name='email'
+                className=' w-full px-4 py-2 text-gray-700 bg-gray-500 border border-white shadow-xl rounded-2xl  '
+                type='email'
+              />
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="text-sm">
-                <button
-                  type="button"
-                  className="cursor-pointer font-medium text-red-600 hover:text-red-500"
-                >
-                  Forgot your password?
-                </button>
+            <div className=' mt-5 w-10/12 mx-auto'>
+              <div className='flex justify-between'>
+                
               </div>
+
+            <input
+                name='password'
+                placeholder='Password'
+                className=' w-full px-4 py-2  border rounded-3xl text-white bg-gray-500 border-white shadow-xl'
+                
+              />
             </div>
-
-            <div className="space-y-4">
+            <div className='flex justify-between w-10/12  mx-auto text-white my-4'>
+              <div><h2>Remember me</h2></div>
+              <div><h2>Forgot password</h2></div>
+            </div>
+            <div className='mt-6 w-10/12 mx-auto '>
               <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none"
+                type='submit'
+                className='w-full px-6 py-3 text-sm font-bold tracking-wide text-black capitalize transition-colors duration-300 transform bg-white hover:bg-slate-300 focus:outline-none focus:ring focus:ring-gray-300 rounded-2xl'
               >
-                Sign in
-              </button>
-
-              <button
-                type="button"
-                className=" cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-sm shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
-              >
-                <FcGoogle className="h-5 w-5 mr-2" />
-                Sign in with Google
+                Sign In
               </button>
             </div>
           </form>
@@ -103,6 +122,66 @@ const Login = () => {
                 Sign up
               </Link>
             </p>
+          </div> */}
+          <form onSubmit={handleSubmit}>
+            <div className="mt-4">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                htmlFor="LoggingEmailAddress"
+              >
+                Email Address
+              </label>
+              <input
+                id="LoggingEmailAddress"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                type="email"
+                name="email"
+              />
+            </div>
+
+            <div className="mt-4">
+              <div className="flex justify-between">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                  htmlFor="loggingPassword"
+                >
+                  Password
+                </label>
+              </div>
+              <input
+                id="loggingPassword"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                type="password"
+                name="password"
+              />
+            </div>
+
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full cursor-pointer px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+              >
+                Sign In
+              </button>
+            </div>
+          </form>
+          <div className="flex items-center justify-between mt-4">
+            <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+            <Link
+              to={"/signup"}
+              className="text-xs hover:text-blue-500 hover:font-bold text-gray-500 uppercase dark:text-gray-400 hover:underline"
+            >
+              or sign up
+            </Link>
+            <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+          </div>
+          <div
+            onClick={handleGoogleSignIn}
+            className="flex justify-center items-center space-x-2 border m-2 p-2 border-gray-300 border-rounded cursor-pointer rounded-xl"
+          >
+            <FcGoogle size={32} />
+
+            <p>Continue with Google</p>
           </div>
         </div>
       </div>

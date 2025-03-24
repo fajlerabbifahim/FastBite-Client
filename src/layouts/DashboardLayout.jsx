@@ -11,16 +11,22 @@ import RiderMenu from "../pages/Dashboard/Rider/ReiderMenu";
 import { IoMdSunny } from "react-icons/io";
 import { MdDarkMode } from "react-icons/md";
 import { useDarkMode } from "../hooks/ThemeContext";
+import useRole from "../hooks/useRole";
+import LoadingSpinner from "../pages/LoadingSpinner";
 const DashboardLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const navigate = useNavigate();
+  const [role, isPending] = useRole();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  if (isPending) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   // console.log(isMenuOpen)
   // const role = "admin";
 
-  const role = "customer";
+  // const role = "customer";
   // const role = "seller";
   // const role = "rider";
 

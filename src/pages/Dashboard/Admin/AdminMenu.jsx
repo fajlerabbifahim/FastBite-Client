@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import AdminStatistics from "./AdminStatistics";
 import CommonDashboard from "../Common/CommonDashboard";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Title from "../Common/Title";
 import { CiLogout } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
+import useUser from "../../../hooks/useUser";
+import LoadingSpinner from "../../LoadingSpinner";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const AdminMenu = () => {
-  // const { user, handleLogout } = useContext(AuthContext);
+  const { user, handleLogout } = useContext(AuthContext);
+  const [users, isPending] = useUser();
   const navigate = useNavigate();
+  if (isPending) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
+  // console.log(users);
   const handleLogout1 = () => {
-    // handleLogout("s");
-    // navigate("/");
+    handleLogout("s");
+    navigate("/");
   };
   return (
     <div className="h-screen container mx-auto pl-2 ">
@@ -21,18 +29,18 @@ const AdminMenu = () => {
           <img
             referrerPolicy="no-referrer"
             className="object-cover w-24 h-24 mx-2 rounded-full"
-            // src={user?.photoURL}
-            src={
-              "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            }
+            src={users?.image}
+            // src={
+            //   "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            // }
             alt="avatar"
           />
           <h4 className="mx-0 mt-2 text-2xl font-medium dark:text-white">
-            {/* {user?.displayName} */}
-            Ema Watson
+            {users?.name}
+            {/* Ema Watson */}
           </h4>
           <p className="mx-2 mt-1 bg-green-400 px-2 py-1 rounded-2xl text-sm font-medium dark:text-white">
-            Admin
+            {users.role}
           </p>
         </div>
 
@@ -129,7 +137,7 @@ const AdminMenu = () => {
             </NavLink>
             <button
               onClick={handleLogout1}
-              className="cursor-pointer px-2 -ml-1 mt-4 py-1 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-700 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              className="cursor-pointer px-2 -ml-1 mt-4 py-1 text-sm w-[97%] font-medium tracking-wide text-white capitalize transition-colors duration-700 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
             >
               <span className="text-xl text-white flex justify-center items-center gap-2">
                 <span className="text-white">
