@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import the star icons
 import SectionHeading from "../../Components/Shared/SectionHeading";
+import { Link } from "react-router-dom";
 
 const RatingStars = ({ rating }) => {
   const numRating = parseFloat(rating); // Using parseFloat to support decimals
@@ -50,7 +51,7 @@ const PopularDishes = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {foods.map((dish, idx) => (
+        {foods.slice(0, 8).map((dish, idx) => (
           <div
             key={idx}
             className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
@@ -77,6 +78,11 @@ const PopularDishes = () => {
           </div>
         ))}
       </div>
+      <Link to={"/menu"}>
+        <button className=" flex items-center mx-auto mt-10 cursor-pointer px-8 py-2.5 bg-gradient-to-r from-red-600 to-red-900 text-white rounded-full text-lg font-semibold shadow-md hover:scale-105 transform transition-all">
+          Explore More
+        </button>
+      </Link>
     </div>
   );
 };
