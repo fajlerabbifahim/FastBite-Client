@@ -6,7 +6,7 @@ export function Banner() {
   const [location, setLocation] = useState("");
 
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-gray-800 dark:text-white  py-10 md:py-14">
+    <div className="relative overflow-hidden bg-white dark:bg-gray-800 dark:text-white  py-10 md:py-5">
       {/* Background Texture */}
       {/* <div className="absolute inset-0 bg-gray-100 bg-[url('/path-to-texture.png')] bg-cover opacity-20"></div> */}
 
@@ -16,7 +16,9 @@ export function Banner() {
           <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
               <span className="text-red-600">Fast, Fresh &amp; Right</span>{" "}
-              <span className="text-gray-800 dark:text-white">To Your Door</span>
+              <span className="text-gray-800 dark:text-white">
+                To Your Door
+              </span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-white max-w-lg mx-auto md:mx-0">
               Order dishes from favorite restaurants near you. Enjoy hot meals

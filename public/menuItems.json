@@ -1,0 +1,43 @@
+[
+    {
+      "name": "Cheese Burger",
+      "description": "Juicy grilled beef patty with melted cheese, lettuce, and special sauce.",
+      "price": 5.99,
+      "category": "Burger",
+      "stock": 20,
+      "image": "https://i.ibb.co.com/tTjdL4gM/cheese-burger.jpg"
+    },
+    {
+      "name": "Margherita Pizza",
+      "description": "Classic Italian pizza with fresh tomatoes, mozzarella, and basil.",
+      "price": 8.99,
+      "category": "Pizza",
+      "stock": 15,
+      "image": "https://i.ibb.co.com/bgVMyFkX/pizza.jpg"
+    },
+    {
+      "name": "Chicken Biryani",
+      "description": "Fragrant basmati rice cooked with spiced chicken, saffron, and herbs.",
+      "price": 6.99,
+      "category": "Rice",
+      "stock": 25,
+      "image": "https://i.ibb.co.com/hJdC4HHd/chicken-biriyani.jpg"
+    },
+    {
+      "name": "Spaghetti Carbonara",
+      "description": "Creamy Italian pasta with crispy bacon, egg, and parmesan cheese.",
+      "price": 7.49,
+      "category": "Pasta",
+      "stock": 18,
+      "image": "https://i.ibb.co.com/nN3mm51W/pasta.jpg"
+    },
+    {
+      "name": "Mango Smoothie",
+      "description": "Fresh mango blended with yogurt and a hint of honey.",
+      "price": 4.50,
+      "category": "Beverage",
+      "stock": 30,
+      "image": "https://i.ibb.co.com/Dg53tN89/smoothie.jpg"
+    }
+  ]
+  
