@@ -9,7 +9,7 @@ const Menu = () => {
     const { data = [] } = useQuery({
         queryKey: [`menu-items`],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/menu`);
+            const { data } = await axios.get(`${import.meta.env.VITE_Server}/menu`);
             setMenuItems(data);
             return data;
         }
