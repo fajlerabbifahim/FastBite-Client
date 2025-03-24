@@ -1,8 +1,43 @@
+import { useState, useEffect } from "react";
 import allFoodPageBanner from "../../assets/Menubanner/all-food-page-banner.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import "./coustomTabs.css";
+import MenuCard from "./MenuCard";
+
+const categories = ["Salad", "Pizza", "Drinks", "Desserts", "Pasta"];
 
 const Menu = () => {
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [sortOrder, setSortOrder] = useState(""); // Sorting state
+
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const response = await fetch("/foods.json");
+        const data = await response.json();
+        setFoods(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching food data:", error);
+        setLoading(false);
+      }
+    };
+    fetchFoods();
+  }, []);
+
+  // Filter & Sort Foods
+  const filteredFoods = foods.filter(
+    (food) => food.category === selectedCategory
+  );
+  const sortedFoods = [...filteredFoods].sort((a, b) => {
+    if (sortOrder === "lowToHigh") return a.price - b.price;
+    if (sortOrder === "highToLow") return b.price - a.price;
+    return 0;
+  });
+
   return (
     <>
       {/* Banner Section */}
@@ -27,38 +62,74 @@ const Menu = () => {
               type="text"
               placeholder="Search your favorite food..."
               className="flex-grow text-gray-700 text-sm md:text-base outline-none"
-              //   value={searchTerm}
-              //   onChange={(e) => setSearchTerm(e.target.value)}
+              // value={searchTerm}
+              // onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="bg-red-600 cursor-pointer text-white px-4 py-2 rounded-full text-sm font-semibold ml-2">
+            <button className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold ml-2">
               Search
             </button>
           </div>
         </div>
       </section>
 
-      {/* tabs */}
-      <Tabs>
-        <TabList className="flex justify-between px-20 items-center ">
-          <div>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
-          </div>
-          <div>
-            <select name="short" id="">
-              <option value="vaf">Fahim</option>
-              <option value="vaf">Fahimm</option>
-              <option value="vaf">Fahimm</option>
+      {/*  Tabs & Sorting Section */}
+      <div className="w-full px-4 md:px-8 lg:px-20 py-6">
+        <Tabs
+          selectedIndex={categories.indexOf(selectedCategory)}
+          onSelect={(index) => setSelectedCategory(categories[index])}
+        >
+          <div className="flex flex-wrap items-center justify-between border-b py-4">
+            {/* 🔷 Tab List */}
+            <TabList className="flex flex-wrap gap-2 md:gap-4">
+              {categories.map((category, index) => (
+                <Tab
+                  key={index}
+                  className="px-4 py-2 text-sm md:text-base cursor-pointer rounded-md transition-all outline-none"
+                  selectedClassName="bg-red-600 text-white font-bold shadow-lg"
+                >
+                  {category}
+                </Tab>
+              ))}
+            </TabList>
+
+            {/*  Sort Dropdown */}
+            <select
+              className="px-4 py-2 border rounded-md text-gray-700 text-sm md:text-base bg-white shadow-sm"
+              onChange={(e) => setSortOrder(e.target.value)}
+              value={sortOrder}
+            >
+              <option value="">Sort By</option>
+              <option value="lowToHigh">Low to High</option>
+              <option value="highToLow">High to Low</option>
             </select>
           </div>
-        </TabList>
-        <TabPanel>
-          <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
-        </TabPanel>
-      </Tabs>
+
+          {/*  Food Items Section */}
+          <div className="w-full py-6">
+            {loading ? (
+              <div className="text-center text-lg font-semibold">
+                Loading...
+              </div>
+            ) : (
+              categories.map((category, index) => (
+                <TabPanel key={index} className="w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+                    {sortedFoods.length > 0 ? (
+                      sortedFoods.map((food, idx) => (
+                        <MenuCard key={idx} food={food} />
+                      ))
+                    ) : (
+                      <p className="text-gray-500 text-center col-span-full">
+                        No items available
+                      </p>
+                    )}
+                  </div>
+                </TabPanel>
+              ))
+            )}
+          </div>
+        </Tabs>
+      </div>
     </>
   );
 };
