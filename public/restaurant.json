@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Spicy Bites",
+    "location": "Dhanmondi, Dhaka",
+    "contact_number": "+8801711122233",
+    "description": "Spicy Bites is the ultimate destination for spice lovers who crave bold and flavorful dishes. From sizzling kebabs to fiery curries, this restaurant brings the heat to every meal. The ambiance is warm and inviting, making it a great place for family gatherings, casual dining, or even a quick spicy bite. Whether you love traditional spicy foods or fusion-style hot delicacies, Spicy Bites ensures a memorable dining experience.",
+    "rating": 4.7,
+    "image": "https://i.ibb.co/HDFRX0pv/nick-karvounis-Ciqxn7-FE4v-E-unsplash.jpg",
+    "status": "open",
+    "isApproved": true
+  },
+  {
+    "id": 2,
+    "name": "Seafood Delight",
+    "location": "Cox's Bazar",
+    "contact_number": "+8801712233445",
+    "description": "Located right by the beach, Seafood Delight offers the freshest seafood in town with breathtaking ocean views. The menu includes a variety of seafood dishes such as grilled prawns, spicy crab curry, and buttery lobster tail. Whether you prefer deep-fried, grilled, or steamed seafood, this restaurant has something for every seafood enthusiast. The sound of waves crashing and the salty sea breeze add to the perfect dining experience.",
+    "rating": 4.8,
+    "image": "https://i.ibb.co/QjTPzsbg/toa-heftiba-6b-Kp-HAun4d8-unsplash.jpg",
+    "status": "open",
+    "isApproved": true
+  },
+  {
+    "id": 3,
+    "name": "Burger Hub",
+    "location": "Gulshan, Dhaka",
+    "contact_number": "+8801713344556",
+    "description": "Burger Hub is a paradise for burger lovers, offering a wide variety of juicy and delicious burgers. From classic beef and chicken burgers to gourmet specialties loaded with cheese and special sauces, every bite is a treat. The restaurant has a casual and cozy setting, perfect for hanging out with friends or grabbing a quick yet fulfilling meal. Although currently closed, once reopened, it promises to deliver an exceptional burger experience.",
+    "rating": 4.6,
+    "image": "https://i.ibb.co/5zFqYz1/louis-hansel-w-Vo-P-Q2-Bg-A-unsplash.jpg",
+    "status": "closed",
+    "isApproved": false
+  },
+  {
+    "id": 4,
+    "name": "Deshi Bhoj",
+    "location": "Old Dhaka",
+    "contact_number": "+8801714455667",
+    "description": "Deshi Bhoj takes you on a journey through the authentic flavors of Bangladesh. Specializing in traditional Bengali cuisine, this restaurant serves dishes like kacchi biryani, beef tehari, hilsa fish curry, and pitha. The rich aroma of spices and slow-cooked delicacies make it a favorite among food lovers. If you want to experience the true taste of Bengali heritage, Deshi Bhoj is the perfect place to dine.",
+    "rating": 4.9,
+    "image": "https://i.ibb.co/jZqZxn3J/jason-leung-po-I7-Del-Fi-VA-unsplash.jpg",
+    "status": "open",
+    "isApproved": true
+  },
+  {
+    "id": 5,
+    "name": "Pizza Paradise",
+    "location": "Banani, Dhaka",
+    "contact_number": "+8801715566778",
+    "description": "Pizza Paradise is a haven for pizza lovers, offering a variety of mouthwatering pizzas with generous toppings and rich, melted cheese. Whether you crave a classic Margherita, spicy Pepperoni, or a fully loaded meat feast, this place has it all. The restaurant aims to provide the perfect balance of crispy crust, flavorful sauce, and high-quality cheese, making every bite unforgettable. Though currently closed, it will soon be back to serve its signature delights.",
+    "rating": 4.5,
+    "image": "https://i.ibb.co/kgNx3Rdf/albert-YYZU0-Lo1u-XE-unsplash.jpg",
+    "status": "closed",
+    "isApproved": false
+  },
+  {
+    "id": 6,
+    "name": "Sweet Treats",
+    "location": "Chittagong",
+    "contact_number": "+8801716677889",
+    "description": "Sweet Treats is a dessert lover's dream, offering a delightful selection of cakes, pastries, chocolates, and traditional sweets. From rich chocolate mousse to delicate strawberry cheesecakes, every dessert is crafted with perfection. Whether you're celebrating a special occasion or simply satisfying your sweet cravings, Sweet Treats promises a heavenly experience with every bite.",
+    "rating": 4.8,
+    "image": "https://i.ibb.co/bjDSFCdp/carolina-marinelli-Pkbyxvk-GWc-U-unsplash.jpg",
+    "status": "open",
+    "isApproved": true
+  }
+]

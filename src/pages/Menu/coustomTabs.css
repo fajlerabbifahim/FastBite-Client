@@ -1,0 +1,90 @@
+/* Container for full-width tabs */
+.tabs-container {
+  width: 100%;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+/* Tabs wrapper */
+.custom-tabs {
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Header containing TabList and Sort button */
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff; /* White background for contrast */
+  padding: 10px;
+}
+
+/* Tab List Styling */
+.custom-tab-list {
+  display: flex;
+  margin: 0;
+  border-bottom: none;
+  flex-grow: 1;
+  justify-content: center; /* Center the tabs */
+  gap: 10px; /* Space between tabs */
+}
+
+.custom-tab {
+  background: #e5e7eb; /* Light gray for inactive tabs */
+  border: none;
+  padding: 12px 20px;
+  color: #374151; /* Gray-700 for text */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  list-style: none;
+  border-radius: 5px;
+}
+
+.custom-tab:hover {
+  background: #d1d5db; /* Slightly darker gray on hover */
+}
+
+.custom-tab--selected {
+  background: #dc2626; /* Red-600 for active tab */
+  color: white; /* White text for active tab */
+}
+
+/* Sort Button Styling */
+.sort-button {
+  background: #dc2626; /* Red-600 */
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+}
+
+.sort-button:hover {
+  background: #b91c1c; /* Darker shade of red-600 */
+}
+
+/* Tab Panel Styling */
+.custom-tab-panel {
+  padding: 20px;
+}
+
+.custom-tab-panel h2 {
+  color: #dc2626; /* Red-600 */
+  margin-bottom: 15px;
+}
+
+/* Remove focus outline */
+.custom-tab:focus {
+  outline: none;
+}

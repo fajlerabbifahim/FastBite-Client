@@ -6,10 +6,7 @@ const LoadingSpinner = () => {
         role="status"
         className="flex items-center space-x-2"
       >
-        <svg
-          className="h-20 w-20 animate-spin"
-          viewBox="0 0 256 256"
-        >
+        <svg className="h-20 w-20 animate-spin " viewBox="0 0 256 256">
           <line
             x1="128"
             y1="32"
@@ -91,9 +88,7 @@ const LoadingSpinner = () => {
             strokeWidth="24"
           ></line>
         </svg>
-        <span className="text-4xl font-medium ">
-          Loading...
-        </span>
+        <span className="text-4xl font-medium ">Loading...</span>
       </div>
     </div>
   );

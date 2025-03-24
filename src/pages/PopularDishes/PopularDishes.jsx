@@ -1,89 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import the star icons
 import SectionHeading from "../../Components/Shared/SectionHeading";
-// import img1 from '../../assets/popularDish/img1.jpg'
-// import img2 from '../../assets/popularDish/img2.jpg'
-// import img3 from '../../assets/popularDish/img3.jpg'
-const popularDishesData = [
-  {
-    id: 1,
-    name: "Horse Gram",
-    rating: "4",
-    price: "$4.69",
-
-    image: "https://i.postimg.cc/C1h0f0Ly/img3.jpg",
-  },
-  {
-    id: 2,
-    name: "Coco Cookies",
-    rating: "5",
-    price: "$2.54",
-    image: "https://i.postimg.cc/g0qdJjpq/img2.jpg",
-  },
-  {
-    id: 3,
-    name: "Vetch Seeds",
-    rating: "4",
-    price: "$9.64",
-    image: "https://i.postimg.cc/65gBbFzR/img1.jpg",
-  },
-  {
-    id: 1,
-    name: "Horse Gram",
-    rating: "4",
-    price: "$4.69",
-
-    image: "https://i.postimg.cc/C1h0f0Ly/img3.jpg",
-  },
-  {
-    id: 2,
-    name: "Coco Cookies",
-    rating: "5",
-    price: "$2.54",
-    image: "https://i.postimg.cc/g0qdJjpq/img2.jpg",
-  },
-  {
-    id: 3,
-    name: "Vetch Seeds",
-    rating: "4",
-    price: "$9.64",
-    image: "https://i.postimg.cc/65gBbFzR/img1.jpg",
-  },
-  {
-    id: 2,
-    name: "Coco Cookies",
-    rating: "5",
-    price: "$2.54",
-    image: "https://i.postimg.cc/g0qdJjpq/img2.jpg",
-  },
-  {
-    id: 3,
-    name: "Vetch Seeds",
-    rating: "4",
-    price: "$9.64",
-    image: "https://i.postimg.cc/65gBbFzR/img1.jpg",
-  },
-];
+import { Link } from "react-router-dom";
 
 const RatingStars = ({ rating }) => {
-  const numRating = parseInt(rating);
+  const numRating = parseFloat(rating); // Using parseFloat to support decimals
+
+  const renderStars = () => {
+    let stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= Math.floor(numRating)) {
+        stars.push(<FaStar key={i} className="text-orange-400" />); // Full star
+      } else if (i - 0.5 === numRating) {
+        stars.push(<FaStarHalfAlt key={i} className="text-orange-400" />); // Half star
+      } else {
+        stars.push(<FaRegStar key={i} className="text-orange-400" />); // Empty star
+      }
+    }
+    return stars;
+  };
+
   return (
-    <div className="rating rating-sm  dark:bg-gray-800 dark:text-white ">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <input
-          key={star}
-          type="radio"
-          name={`rating-${star}`}
-          className="mask mask-star-2 bg-orange-400   "
-          checked={star <= numRating}
-          readOnly
-          aria-label={`${star} star`}
-        />
-      ))}
+    <div className="flex justify-center items-center space-x-1">
+      {renderStars()}
     </div>
   );
 };
 
 const PopularDishes = () => {
+  const [foods, setFoods] = useState([]);
+
+  useEffect(() => {
+    fetch("/public/foods.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setFoods(data);
+        console.log("food data", data);
+      });
+  }, []);
+
   return (
     <div className="container mx-auto w-11/12 py-12">
       {/* sheared heading  components use */}
@@ -95,10 +50,10 @@ const PopularDishes = () => {
         }
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-        {popularDishesData.map((dish) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {foods.slice(0, 8).map((dish, idx) => (
           <div
-            key={dish.id}
+            key={idx}
             className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
           >
             <div className="h-64 overflow-hidden">
@@ -113,16 +68,21 @@ const PopularDishes = () => {
                 {dish.name}
               </h3>
               <RatingStars rating={dish.rating} />
-              <p className="text-gray-600 font-bold text-lg  dark:text-white">
-                {dish.price}
+              <p className="text-gray-600 font-bold text-lg dark:text-white">
+                ${dish.price}
               </p>
-              <button className=" cursor-pointer mt-4 rounded-full bg-red-600 text-white py-2  hover:bg-red-500 transition-colors px-10">
+              <button className="cursor-pointer mt-4 rounded-full bg-red-600 text-white py-2 hover:bg-red-500 transition-colors px-10">
                 Add To Cart
               </button>
             </div>
           </div>
         ))}
       </div>
+      <Link to={"/menu"}>
+        <button className=" flex items-center mx-auto mt-10 cursor-pointer px-8 py-2.5 bg-gradient-to-r from-red-600 to-red-900 text-white rounded-full text-lg font-semibold shadow-md hover:scale-105 transform transition-all">
+          Explore More
+        </button>
+      </Link>
     </div>
   );
 };
