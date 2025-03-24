@@ -7,6 +7,7 @@ import signupAnimation from "../../assets/authLotties/signup-animation.json";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
 const { register, handleSubmit, reset, formState: { errors }, } = useForm();const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -121,12 +122,7 @@ const navigate = useNavigate()
             </button>
 
             {/* Google Signup */}
-            <button
-              type="button"
-              className="cursor-pointer w-full flex items-center border-gray-300 justify-center py-2 border rounded-sm hover:text-red-600 transition-colors"
-            >
-              <FcGoogle className="h-5 w-5 mr-2" /> Continue with Google
-            </button>
+            <SocialLogin></SocialLogin>
           </form>
 
           {/* Login Redirect */}
