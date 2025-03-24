@@ -16,11 +16,14 @@ import axios from "axios";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 import auth from "../firebase/firebase.config";
+import { useAsyncError } from "react-router-dom";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [menuItems, setMenuItems] = useState([]);
+  const [cart, setCart] = useState(0);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -87,6 +90,10 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
+    menuItems,
+    setMenuItems,
+    cart,
+    setCart,
   };
 
   return (
