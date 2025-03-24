@@ -6,7 +6,7 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="fixed top-20 right-16 z-[2000]">
+      <div className="fixed top-20 right-[4%] z-[20]">
         <CartLogo></CartLogo>
       </div>
 
