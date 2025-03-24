@@ -15,6 +15,7 @@ import {
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -58,6 +59,17 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
           setUser(currentUser)
 
+          const {data = {}} = await axios.get(`${import.meta.env.VITE_Server}/cartItems?email=${currentUser.email}`)
+          let totalQuantity = 0;
+          Object.keys(data).forEach(key =>{
+            if(key !== 'email' && key !=='_id')
+            {
+              totalQuantity = totalQuantity + data[key];
+            }
+          });
+          setCart(totalQuantity);
+
+          // console.log('cartdata ---- > ', data);
           // Get JWT token
       //     await axios.post(
       //         `${import.meta.env.VITE_API_URL}/jwt`,

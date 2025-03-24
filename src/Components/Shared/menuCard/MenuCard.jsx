@@ -1,19 +1,25 @@
 import { use, useContext, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
+import axios from "axios";
 
 const MenuCard = ({ menu }) => {
 
-    const {cart, setCart} = useContext(AuthContext);
+    const {cart, setCart, user} = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
 
-    const handleAddToCart = () =>{
+    const handleAddToCart = async() =>{
         const cartItems = {
             [menu?._id] : quantity,
+            email: user.email
         }
-        console.log(cartItems);
+
+        const {data} = await axios.put(`${import.meta.env.VITE_Server}/cartItems?email=${user?.email}`, cartItems);
+
+        // console.log(cartItems);
+        console.log(data);
         setCart(prev => prev+quantity);
     }
 
