@@ -11,16 +11,19 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const googleProvider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(true);
+  const [menuItems, setMenuItems] = useState([]);
+  const [cart, setCart] = useState(0);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -53,10 +56,21 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email);
-      // if (currentUser?.email) {
-      //     setUser(currentUser)
+      if (currentUser?.email) {
+          setUser(currentUser)
 
-      //     // Get JWT token
+          const {data = {}} = await axios.get(`${import.meta.env.VITE_Server}/cartItems?email=${currentUser.email}`)
+          let totalQuantity = 0;
+          Object.keys(data).forEach(key =>{
+            if(key !== 'email' && key !=='_id')
+            {
+              totalQuantity = totalQuantity + data[key];
+            }
+          });
+          setCart(totalQuantity);
+
+          // console.log('cartdata ---- > ', data);
+          // Get JWT token
       //     await axios.post(
       //         `${import.meta.env.VITE_API_URL}/jwt`,
       //         {
@@ -69,7 +83,7 @@ const AuthProvider = ({ children }) => {
       //     await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
       //         withCredentials: true,
       //     })
-      // }
+      }
       setLoading(false);
     });
     return () => {
@@ -87,6 +101,10 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
+    menuItems,
+    setMenuItems,
+    cart,
+    setCart,
   };
 
   return (

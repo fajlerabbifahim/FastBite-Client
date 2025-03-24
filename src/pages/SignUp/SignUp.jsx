@@ -1,11 +1,51 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaHome, FaUpload } from "react-icons/fa";
+
+import { Link, useNavigate } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 import Lottie from "react-lottie-player";
+import { useForm } from "react-hook-form";
 import signupAnimation from "../../assets/authLotties/signup-animation.json";
 import { FcGoogle } from "react-icons/fc";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const SignUp = () => {
+const { register, handleSubmit, reset, formState: { errors }, } = useForm();const { createUser, updateUserProfile } = useContext(AuthContext);
+const navigate = useNavigate()
+   
+  const onSubmit = data => {
+  ;
+        createUser(data.email, data.password)
+            .then(resul => {
+                const loggedUser = resul.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL) 
+                    .then(() => {
+                        // create user entry in the database
+                      
+                       
+                        const res =  userinfo
+                         .then(res => {
+                          if (res.data.insertedId) {
+                          console.log('user added to the database');     
+                          reset()
+                          navigate('/');
+                           Swal.fire({
+                           position: "top-end",
+                           icon: "success",
+                           title: "User create successfully",
+                           showConfirmButton: false,
+                           timer: 1500
+                           });
+                           
+                           }
+                           })
+                       
+                    })
+                .catch(error=> console.log(error))
+        })
+  };
+  
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 to-black px-4">
       <div className="bg-white rounded-3xl mt-10 shadow-lg overflow-hidden w-full max-w-4xl flex flex-col md:flex-row items-center">
@@ -35,21 +75,30 @@ const SignUp = () => {
             Join FastBite and start ordering delicious food
           </p>
 
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <input
+                 {...register("name", { required: true })}
                 type="text"
                 placeholder="Full Name"
                 className="w-full px-4 py-2 border rounded-sm  border-gray-300"
-                required
+             
               />
               <input
+                {...register("email", { required: true })}
                 type="email"
                 placeholder="Email address"
                 className="w-full px-4 py-2 border rounded-sm border-gray-300"
-                required
+                
               />
               <input
+                 {...register("password", {
+             required: true,
+             minLength: 6,
+             maxLength: 20,
+             pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                 })}
+                
                 type="password"
                 placeholder="Password"
                 className="w-full px-4 py-2 border rounded-sm border-gray-300"

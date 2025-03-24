@@ -3,9 +3,8 @@ import { Navigate } from "react-router-dom";
 
 const Roll = () => {
   //   const [role, isPending] = useRole();
-  const role = "admin";
-
-  // const role = "customer";
+  // const role = "admin";
+  const role = "customer";
   // const role = "seller";
   // const role = "rider";
   //   if (isPending) return <LoadingSpinner></LoadingSpinner>;
@@ -14,7 +13,8 @@ const Roll = () => {
   //   if (role === "seller")
   //     return <Navigate to="/dashboard/my-inventory"></Navigate>;
   //   else
-  return <Navigate to="/dashboard/admin/reports"></Navigate>;
+  // return <Navigate to="/dashboard/admin/reports"></Navigate>;
+  return <Navigate to="/dashboard/customer/orders"></Navigate>;
 };
 
 export default Roll;

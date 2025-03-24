@@ -9,17 +9,19 @@ import Review from "../../Components/Review/Review";
 
 import DownloadOurApp from "../DownloadOurApp/DownloadOurApp";
 import BecomePartner from "../BecomePartner/BecomePartner";
+import TopReviewedRestaurant from "../TopReviewedRestaurant/TopReviewedRestaurant";
 
 const Home = () => {
   return (
     <>
       {/* banner */}
       <Banner />
-      <ChefCriteria />
-      <BecomePartner/>
+      <TopReviewedRestaurant></TopReviewedRestaurant>
       <PopularDishes />
       <Offer />
       <TopReview />
+      <ChefCriteria />
+      <BecomePartner />
       <Review />
       <DownloadOurApp></DownloadOurApp>
     </>
