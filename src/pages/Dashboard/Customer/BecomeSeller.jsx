@@ -2,8 +2,8 @@ import React from "react";
 
 const BecomeSeller = () => {
   return (
-    <div>
-      <h1>Become a seller</h1>
+    <div className="w-11/12 mx-auto my-10">
+      <h1></h1>
     </div>
   );
 };

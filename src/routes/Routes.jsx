@@ -18,6 +18,7 @@ import Roll from "./Roll";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import Profile from "../pages/Dashboard/Common/Profile";
 import BecomeSeller from "../pages/Dashboard/Customer/BecomeSeller";
+import BecomeMember from "../pages/Dashboard/Common/BecomeMember";
 
 const router = createBrowserRouter([
   {
@@ -101,8 +102,8 @@ const router = createBrowserRouter([
         element: <Profile></Profile>,
       },
       {
-        path: "customer/becomeSeller",
-        element: <BecomeSeller></BecomeSeller>,
+        path: "customer/becomeMember",
+        element: <BecomeMember></BecomeMember>,
       },
     ],
   },

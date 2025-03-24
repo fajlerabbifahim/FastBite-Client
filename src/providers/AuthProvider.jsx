@@ -25,6 +25,10 @@ const AuthProvider = ({ children }) => {
   const [menuItems, setMenuItems] = useState([]);
   const [cart, setCart] = useState(0);
 
+  const notify = (value, message) => {
+    if (value == "success") toast.success(`${message}`, { toastId: "hello" });
+    else toast.error(`${message}`, { toastId: "hello" });
+  };
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -45,6 +49,18 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const handleLogout = (v) => {
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        if (v === "s") {
+          notify("success", "logout successfully");
+        } else {
+          notify("error", "login first");
+        }
+      })
+      .catch((error) => {});
+  };
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -56,33 +72,37 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("CurrentUser-->", currentUser?.email);
+      // setUser(currentUser);
       if (currentUser?.email) {
-          setUser(currentUser)
+        setUser(currentUser);
 
-          const {data = {}} = await axios.get(`${import.meta.env.VITE_Server}/cartItems?email=${currentUser.email}`)
-          let totalQuantity = 0;
-          Object.keys(data).forEach(key =>{
-            if(key !== 'email' && key !=='_id')
-            {
-              totalQuantity = totalQuantity + data[key];
-            }
-          });
-          setCart(totalQuantity);
+        const { data = {} } = await axios.get(
+          `${import.meta.env.VITE_Server}/cartItems?email=${currentUser.email}`
+        );
+        let totalQuantity = 0;
+        Object.keys(data).forEach((key) => {
+          if (key !== "email" && key !== "_id") {
+            totalQuantity = totalQuantity + data[key];
+          }
+        });
+        setCart(totalQuantity);
 
-          // console.log('cartdata ---- > ', data);
-          // Get JWT token
-      //     await axios.post(
-      //         `${import.meta.env.VITE_API_URL}/jwt`,
-      //         {
-      //             email: currentUser?.email,
-      //         },
-      //         { withCredentials: true }
-      //     )
-      // } else {
-      //     setUser(currentUser)
-      //     await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-      //         withCredentials: true,
-      //     })
+        // console.log('cartdata ---- > ', data);
+        // Get JWT token
+        //     await axios.post(
+        //         `${import.meta.env.VITE_API_URL}/jwt`,
+        //         {
+        //             email: currentUser?.email,
+        //         },
+        //         { withCredentials: true }
+        //     )
+        // } else {
+        //     setUser(currentUser)
+        //     await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+        //         withCredentials: true,
+        //     })
+      } else {
+        setUser(currentUser);
       }
       setLoading(false);
     });
@@ -94,12 +114,14 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     setUser,
+    notify,
     loading,
     setLoading,
     createUser,
     signIn,
     signInWithGoogle,
     logOut,
+    handleLogout,
     updateUserProfile,
     menuItems,
     setMenuItems,
