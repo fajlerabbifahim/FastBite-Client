@@ -1,93 +1,134 @@
-<<<<<<< HEAD
+import { useState, useEffect } from "react";
 import allFoodPageBanner from "../../assets/Menubanner/all-food-page-banner.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import "./coustomTabs.css";
+import MenuCard from "./MenuCard";
+
+const categories = ["Salad", "Pizza", "Drinks", "Desserts", "Pasta"];
 
 const Menu = () => {
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [sortOrder, setSortOrder] = useState(""); // Sorting state
+
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const response = await fetch("/foods.json");
+        const data = await response.json();
+        setFoods(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching food data:", error);
+        setLoading(false);
+      }
+    };
+    fetchFoods();
+  }, []);
+
+  // Filter & Sort Foods
+  const filteredFoods = foods.filter(
+    (food) => food.category === selectedCategory
+  );
+  const sortedFoods = [...filteredFoods].sort((a, b) => {
+    if (sortOrder === "lowToHigh") return a.price - b.price;
+    if (sortOrder === "highToLow") return b.price - a.price;
+    return 0;
+  });
+
   return (
     <>
-      {/* Banner Section */}
-      <section className="relative bg-[#FF5722] text-white h-[200px] md:h-[250px] flex items-center justify-center">
+      {/* 🔷 Beautiful Banner Section */}
+      <section className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] flex items-center justify-center">
         <img
           src={allFoodPageBanner}
           alt="All Foods Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-
-        <div className="relative z-10 text-center w-11/12 max-w-2xl">
-          <h1 className="text-3xl md:text-4xl font-semibold">
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="relative z-10 text-center w-11/12 max-w-3xl text-white">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">
             Savor Every Bite!
           </h1>
-          <p className="text-sm md:text-base mt-2 text-gray-300 italic">
+          <p className="text-sm md:text-lg mt-2 text-gray-300 italic">
             Find your favorite food here!
           </p>
-          <div className="flex items-center mt-4 bg-white rounded-full px-4 py-2 shadow-md">
-            {/* Search Input */}
+          <div className="flex items-center mt-4 bg-white rounded-full px-4 py-2 shadow-lg max-w-md mx-auto">
             <input
               type="text"
               placeholder="Search your favorite food..."
-              className="flex-grow text-gray-700 text-sm md:text-base outline-none"
-              //   value={searchTerm}
-              //   onChange={(e) => setSearchTerm(e.target.value)}
+              className="flex-grow text-gray-700 text-sm md:text-base outline-none px-2"
             />
-            <button className="bg-red-600 cursor-pointer text-white px-4 py-2 rounded-full text-sm font-semibold ml-2">
+            <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all">
               Search
             </button>
           </div>
-=======
-import React, { useContext } from 'react'
-import MenuCard from '../../Components/Shared/menuCard/MenuCard'
-import { AuthContext } from '../../providers/AuthProvider'
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
-const Menu = () => {
-    const { menuItems, setMenuItems } = useContext(AuthContext);
-    const { data = [] } = useQuery({
-        queryKey: [`menu-items`],
-        queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_Server}/menu`);
-            setMenuItems(data);
-            return data;
-        }
-    });
-
-    console.log(menuItems);
-
-    return (
-        <div className='bg-white dark:bg-black w-11/12 mx-auto'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4'>
-                {
-                    menuItems.map(menu => <MenuCard key={menu._id} menu={menu}></MenuCard>)
-                }
-            </div>
->>>>>>> b9024ee3f85480f2d9658e229a540188064eda4f
         </div>
       </section>
 
-      {/* tabs */}
-      <Tabs>
-        <TabList className="flex justify-between px-20 items-center ">
-          <div>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
-          </div>
-          <div>
-            <select name="short" id="">
-              <option value="vaf">Fahim</option>
-              <option value="vaf">Fahimm</option>
-              <option value="vaf">Fahimm</option>
+      {/* 🔷 Tabs & Sorting Section */}
+      <div className="w-full px-4 md:px-8 lg:px-20 py-6">
+        <Tabs
+          selectedIndex={categories.indexOf(selectedCategory)}
+          onSelect={(index) => setSelectedCategory(categories[index])}
+        >
+          <div className="flex flex-wrap items-center justify-between border-b py-4">
+            {/* 🔷 Tab List */}
+            <TabList className="flex flex-wrap gap-2 md:gap-4">
+              {categories.map((category, index) => (
+                <Tab
+                  key={index}
+                  className="px-4 py-2 text-sm md:text-base cursor-pointer rounded-md transition-all"
+                  selectedClassName="bg-red-600 text-white font-bold shadow-lg"
+                >
+                  {category}
+                </Tab>
+              ))}
+            </TabList>
+
+            {/* 🔷 Sort Dropdown */}
+            <select
+              className="px-4 py-2 border rounded-md text-gray-700 text-sm md:text-base bg-white shadow-sm"
+              onChange={(e) => setSortOrder(e.target.value)}
+              value={sortOrder}
+            >
+              <option value="">Sort By</option>
+              <option value="lowToHigh">Low to High</option>
+              <option value="highToLow">High to Low</option>
             </select>
           </div>
-        </TabList>
-        <TabPanel>
-          <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
-        </TabPanel>
-      </Tabs>
+
+          {/* 🔷 Food Items Section */}
+          <div className="w-full py-6">
+            {loading ? (
+              <div className="text-center text-lg font-semibold">
+                Loading...
+              </div>
+            ) : (
+              categories.map((category, index) => (
+                <TabPanel key={index} className="w-full">
+                  <h2 className="text-2xl font-semibold text-gray-800">
+                    {category}
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+                    {sortedFoods.length > 0 ? (
+                      sortedFoods.map((food, idx) => (
+                        <MenuCard key={idx} food={food} />
+                      ))
+                    ) : (
+                      <p className="text-gray-500 text-center col-span-full">
+                        No items available
+                      </p>
+                    )}
+                  </div>
+                </TabPanel>
+              ))
+            )}
+          </div>
+        </Tabs>
+      </div>
     </>
   );
 };
