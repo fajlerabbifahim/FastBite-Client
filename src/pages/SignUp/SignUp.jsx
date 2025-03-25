@@ -1,48 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import Lottie from "react-lottie-player";
-import { useForm } from "react-hook-form";
 import signupAnimation from "../../assets/authLotties/signup-animation.json";
 import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+
 
 const SignUp = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   formState: { errors },
-  // } = useForm();
-  // const { createUser, updateUserProfile } = useContext(AuthContext);
-  // const navigate = useNavigate();
-
-  // const onSubmit = (data) => {
-  //   createUser(data.email, data.password).then((result) => {
-  //     const loggedUser = result.user;
-  //     console.log(loggedUser);
-  //     updateUserProfile(data.name, data.photoURL)
-  //       .then(() => {
-  //         // create user entry in the database
-
-  //         const res = userinfo.then((res) => {
-  //           if (res.data.insertedId) {
-  //             console.log("user added to the database");
-  //             reset();
-  //             navigate("/");
-  //             Swal.fire({
-  //               position: "top-end",
-  //               icon: "success",
-  //               title: "User create successfully",
-  //               showConfirmButton: false,
-  //               timer: 1500,
-  //             });
-  //           }
-  //         });
-  //       })
-  //       .catch((error) => console.log(error));
-  //   });
-  // };
+  
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
   const navigate = useNavigate();
@@ -121,7 +85,7 @@ const SignUp = () => {
             Join FastBite and start ordering delicious food
           </p>
 
-          {/* <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <input
                 {...register("name", { required: true })}

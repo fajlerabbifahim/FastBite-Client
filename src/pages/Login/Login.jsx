@@ -8,6 +8,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 import { toast } from "react-toastify";
 import { saveUser } from "../../api/utils";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const navigate = useNavigate();
