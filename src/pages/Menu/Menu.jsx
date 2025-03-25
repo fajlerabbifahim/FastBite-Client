@@ -4,29 +4,40 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./coustomTabs.css";
 import MenuCard from "../../Components/Shared/menuCard/MenuCard";
+import {useQuery} from '@tanstack/react-query';
+import axios from "axios";
 
 const categories = ["Salad", "Pizza", "Drinks", "Desserts", "Pasta"];
 
 const Menu = () => {
   const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [sortOrder, setSortOrder] = useState("");
 
-  useEffect(() => {
-    const fetchFoods = async () => {
-      try {
-        const response = await fetch("/foods.json");
-        const data = await response.json();
-        setFoods(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching food data:", error);
-        setLoading(false);
-      }
-    };
-    fetchFoods();
-  }, []);
+  // useEffect(() => {
+  //   const fetchFoods = async () => {
+  //     try {
+  //       const response = await fetch("/foods.json");
+  //       const data = await response.json();
+  //       setFoods(data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching food data:", error);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchFoods();
+  // }, []);
+
+  const {data, isLoading} = useQuery({
+    queryKey: ['menu-items'],
+    queryFn: async()=>{
+      const {data = []} = await axios.get(`${import.meta.env.VITE_Server}/menu`);
+      setFoods(data);
+      return data;
+    }
+  });
 
   // Filter & Sort Foods
   const filteredFoods = foods.filter(
@@ -106,7 +117,7 @@ const Menu = () => {
 
           {/*  Food Items Section */}
           <div className="w-full py-6">
-            {loading ? (
+            {isLoading ? (
               <div className="text-center text-lg font-semibold">
                 Loading...
               </div>

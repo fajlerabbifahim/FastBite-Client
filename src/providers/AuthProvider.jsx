@@ -16,6 +16,7 @@ import {
 export const AuthContext = createContext(null);
 import auth from "../firebase/firebase.config";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -24,6 +25,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [menuItems, setMenuItems] = useState([]);
   const [cart, setCart] = useState(0);
+  const [cartItems, setCartItems] = useState({});
 
   const notify = (value, message) => {
     if (value == "success") toast.success(`${message}`, { toastId: "hello" });
@@ -59,7 +61,7 @@ const AuthProvider = ({ children }) => {
           notify("error", "login first");
         }
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
@@ -67,6 +69,30 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     });
   };
+
+
+  //get cart items quantity
+  const {data, refetch: cartItemRefetch } = useQuery({
+    queryKey: ['cart-items'],
+    enabled: !!user && !!user.email,
+    queryFn: async () => {
+      const { data = {} } = await axios.get(
+        `${import.meta.env.VITE_Server}/cartItems?email=${user?.email}`
+      );
+      setCartItems(data);
+
+      //set cart item total quantity
+      let totalQuantity = 0;
+      Object.keys(data).forEach((key) => {
+        if (key !== "email" && key !== "_id") {
+          totalQuantity = totalQuantity + data[key];
+        }
+      });
+      setCart(totalQuantity);
+
+      return data;
+    }
+  });
 
   // onAuthStateChange
   useEffect(() => {
@@ -76,16 +102,8 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         setUser(currentUser);
 
-        const { data = {} } = await axios.get(
-          `${import.meta.env.VITE_Server}/cartItems?email=${currentUser.email}`
-        );
-        let totalQuantity = 0;
-        Object.keys(data).forEach((key) => {
-          if (key !== "email" && key !== "_id") {
-            totalQuantity = totalQuantity + data[key];
-          }
-        });
-        setCart(totalQuantity);
+
+
 
         // console.log('cartdata ---- > ', data);
         // Get JWT token
@@ -127,6 +145,10 @@ const AuthProvider = ({ children }) => {
     setMenuItems,
     cart,
     setCart,
+    cartItems,
+    setCartItems,
+    cartItemRefetch,
+
   };
 
   return (

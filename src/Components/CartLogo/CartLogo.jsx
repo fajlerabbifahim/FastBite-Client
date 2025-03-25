@@ -14,7 +14,7 @@ const CartLogo = () => {
               <IoMdCart />
             </span>
             <p className="absolute min-w-5 min-h-5 bg-red-600 p-1 rounded-4xl -top-[12%] -right-[0.2%] text-xs text-center text-white">
-              0
+              {cart}
             </p>
           </div>
         </Link>
