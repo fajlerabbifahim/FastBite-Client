@@ -79,12 +79,12 @@ const AuthProvider = ({ children }) => {
         const { data = {} } = await axios.get(
           `${import.meta.env.VITE_Server}/cartItems?email=${currentUser.email}`
         );
-        let totalQuantity = 0;
-        Object.keys(data).forEach((key) => {
-          if (key !== "email" && key !== "_id") {
-            totalQuantity = totalQuantity + data[key];
-          }
-        });
+        // let totalQuantity = 0;
+        // Object.keys(data).forEach((key) => {
+        //   if (key !== "email" && key !== "_id") {
+        //     totalQuantity = totalQuantity + data[key];
+        //   }
+        // });
         setCart(totalQuantity);
 
         // console.log('cartdata ---- > ', data);
