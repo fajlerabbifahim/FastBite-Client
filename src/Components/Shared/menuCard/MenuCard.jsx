@@ -1,71 +1,69 @@
 import { use, useContext, useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus, FaStar, FaShoppingCart, FaInfoCircle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import axios from "axios";
 
-const MenuCard = ({ menu }) => {
+const MenuCard = ({ food }) => {
 
-    const {cart, setCart, user} = useContext(AuthContext);
-    const [isOpen, setIsOpen] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+    // const {cart, setCart, user} = useContext(AuthContext);
+    // const [isOpen, setIsOpen] = useState(false);
+    // const [quantity, setQuantity] = useState(1);
 
 
-    const handleAddToCart = async() =>{
-        const cartItems = {
-            [menu?._id] : quantity,
-            email: user.email
-        }
+    // const handleAddToCart = async() =>{
+    //     const cartItems = {
+    //         [menu?._id] : quantity,
+    //         email: user.email
+    //     }
 
-        const {data} = await axios.put(`${import.meta.env.VITE_Server}/cartItems?email=${user?.email}`, cartItems);
+    //     const {data} = await axios.put(`${import.meta.env.VITE_Server}/cartItems?email=${user?.email}`, cartItems);
 
-        // console.log(cartItems);
-        console.log(data);
-        setCart(prev => prev+quantity);
-    }
+    //     // console.log(cartItems);
+    //     console.log(data);
+    //     setCart(prev => prev+quantity);
+    // }
 
 
     return (
         <div>
-            <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-900 transition-all duration-300  hover:shadow-xl">
-                <img
-                    className="w-full h-48 object-cover"
-                    src={menu?.image}
-                    alt="Cheese Burger"
-                />
-                <div className="p-4">
-                    <div className="flex justify-between items-center">
-                        <h2 className="text-xl font-bold text-gray-800 dark:text-white">{menu?.name}</h2>
-                        <span className="px-3 py-1 text-sm font-semibold text-white bg-yellow-500 rounded-lg">
-                            {menu?.category}
-                        </span>
+            <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-900 transition-all hover:shadow-xl flex flex-col justify-between h-full">
+                <div>
+                    <img className="w-full h-48 object-cover" src={food?.image} alt={food?.name} />
+                    <div className="p-4">
+                        <div className="flex flex-col grow">
+                            <div className="flex justify-between items-start">
+                                <h2 className="text-xl font-bold text-gray-800 dark:text-white">{food?.name}</h2>
+                                <span className="px-3 py-1 text-sm font-semibold text-white bg-yellow-500 rounded-lg">{food?.category}</span>
+                            </div>
+                            <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">
+                                {food?.shortDescription}
+                            </p>
+                        </div>
+                        <div className="mt-4 flex justify-between items-center">
+                            <span className="text-lg font-bold text-green-600 dark:text-green-400">${food?.price}</span>
+                            <span className="flex items-center gap-1 text-yellow-500 font-semibold">
+                                <FaStar className="w-5 h-5" /> {food?.rating}/5
+                            </span>
+                        </div>
+                        <div className="mt-4 flex justify-between items-center text-sm">
+                            <span className="text-gray-500">Stock: {food?.stock}</span>
+                            <span className="text-gray-500">Sold: {food?.sellCount}</span>
+                        </div>
                     </div>
-                    <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">
-                        {menu?.description}
-                    </p>
-                    <div className="mt-4 flex justify-between items-center">
-                        <span className="text-lg font-bold text-green-600 dark:text-green-400">${menu?.price}</span>
-                        <span
-                            className={`text-xs font-semibold px-3 py-1 rounded-full ${menu?.stock > 0 ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
-                                }`}
-                        >
-                            {menu?.stock > 0 ? "In Stock" : "Out of Stock"}
-                        </span>
-                    </div>
-
-                    <div className="flex gap-4 justify-between">
-                        <button className="mt-4 w-full bg-red-600 text-white font-semibold py-2 rounded-lg transition-all cursor-pointer">
-                            View Details
-                        </button>
-                        <button onClick={() => setIsOpen(true)} className="mt-4 w-full border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 rounded-lg transition-all cursor-pointer">
-                            Add to Cart
-                        </button>
-                    </div>
+                </div>
+                <div className="mt-4 flex gap-2 p-4 pt-0">
+                    <button className="flex-1 flex items-center gap-2 px-4 py-2 border-2 border-red-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-red-600">
+                        <FaInfoCircle className="w-4 h-4" /> <p className="font-bold">Details</p>
+                    </button>
+                    <button className="flex-1 flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold p-2 rounded-lg transition-all">
+                        <FaShoppingCart className="w-4 h-4" /> Add to Cart
+                    </button>
                 </div>
             </div>
 
 
             {/* Modal-> add to cart */}
-            {isOpen && (
+            {/* {isOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black/30">
                     <div className="bg-white rounded-lg p-6 w-96 shadow-lg">
                         <h2 className="text-lg font-semibold text-gray-800">{menu?.name}</h2>
@@ -104,7 +102,7 @@ const MenuCard = ({ menu }) => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
         </div>
     );

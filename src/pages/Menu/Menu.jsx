@@ -3,7 +3,7 @@ import allFoodPageBanner from "../../assets/Menubanner/all-food-page-banner.jpg"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./coustomTabs.css";
-import MenuCard from "./MenuCard";
+import MenuCard from "../../Components/Shared/menuCard/MenuCard";
 
 const categories = ["Salad", "Pizza", "Drinks", "Desserts", "Pasta"];
 
@@ -11,7 +11,7 @@ const Menu = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-  const [sortOrder, setSortOrder] = useState(""); // Sorting state
+  const [sortOrder, setSortOrder] = useState("");
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -73,7 +73,7 @@ const Menu = () => {
       </section>
 
       {/*  Tabs & Sorting Section */}
-      <div className="w-full px-4 md:px-8 lg:px-20 py-6">
+      <div className=" w-11/12 mx-auto py-6">
         <Tabs
           selectedIndex={categories.indexOf(selectedCategory)}
           onSelect={(index) => setSelectedCategory(categories[index])}
@@ -113,10 +113,10 @@ const Menu = () => {
             ) : (
               categories.map((category, index) => (
                 <TabPanel key={index} className="w-full">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+                  <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 auto-rows-fr">
                     {sortedFoods.length > 0 ? (
                       sortedFoods.map((food, idx) => (
-                        <MenuCard key={idx} food={food} />
+                        <MenuCard key={idx} food={food}></MenuCard>
                       ))
                     ) : (
                       <p className="text-gray-500 text-center col-span-full">

@@ -14,7 +14,7 @@ const MainLayout = () => {
       <main className="min-h-[calc(100vh-556px)]">
         <Outlet />
       </main>
-      <div className="fixed bottom-10 right-10 z-[2001]">
+      <div className="fixed bottom-10 right-[4%] z-[20]">
         <ChatBot/>
       </div>
       <footer>
