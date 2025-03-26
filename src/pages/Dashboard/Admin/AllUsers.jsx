@@ -18,6 +18,7 @@ const AllUsers = () => {
       return data;
     },
   });
+
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
@@ -120,7 +121,7 @@ const AllUsers = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {users.map((user, idx) => (
-                    <tr>
+                    <tr key={idx}>
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
                           {/* <input
