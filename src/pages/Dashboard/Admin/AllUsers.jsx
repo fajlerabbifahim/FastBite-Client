@@ -18,6 +18,7 @@ const AllUsers = () => {
       return data;
     },
   });
+
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
