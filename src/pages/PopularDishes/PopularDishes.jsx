@@ -4,6 +4,7 @@ import SectionHeading from "../../Components/Shared/SectionHeading";
 import { Link } from "react-router-dom";
 import { FaInfoCircle, FaShoppingCart } from "react-icons/fa";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 
 // const RatingStars = ({ rating }) => {
@@ -31,18 +32,27 @@ import axios from "axios";
 // };
 
 const PopularDishes = () => {
-  const [foods, setFoods] = useState([]);
+  // const [foods, setFoods] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_Server}/menu`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFoods(data);
-        console.log("food data", data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${import.meta.env.VITE_Server}/menu`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setFoods(data);
+  //       console.log("food data", data);
+  //     });
+  // }, []);
+
+  const { data:foods = []} = useQuery({
+    queryKey: ["popular-dishes"],
+    queryFn: async () => {
+      const { data } = await axios.get(`${import.meta.env.VITE_Server}/menu`);
+      return data.slice().sort((a, b) => b.sellCount - a.sellCount);
+    },
+  });
+  
 
   const handleAddToCart = async(food) =>{
     const cartItemsAdd = {
