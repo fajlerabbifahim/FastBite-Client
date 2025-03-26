@@ -1,29 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import LoadingSpinner from "../../LoadingSpinner";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../LoadingSpinner";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { AuthContext } from "../../../providers/AuthProvider";
 
-const AllUsers = () => {
+const PendingApplications = () => {
+  const { notify } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const {
     data: users = [],
     isPending,
     refetch,
   } = useQuery({
-    queryKey: ["allUsers"],
+    queryKey: ["PendingApplications"],
     queryFn: async () => {
-      const { data } = await axiosPublic("/users");
+      const { data } = await axiosPublic("/become-member");
       return data;
     },
   });
-
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-
+  console.log(users);
   const handleDelete = (id) => {
+    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -34,7 +36,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosPublic.delete(`/users/${id}`);
+        const res = await axiosPublic.delete(`/become-member/${id}`);
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -44,6 +46,14 @@ const AllUsers = () => {
         // console.log(res)
       }
     });
+  };
+  const handleAccept = async (id) => {
+    // console.log(id);
+    const res = await axiosPublic.post(`/rider/${id}`);
+    if (res.data.insertedId) {
+      notify("success", "your application successful");
+      refetch();
+    }
   };
   return (
     <section className="w-11/12 mx-auto pl-2">
@@ -67,7 +77,7 @@ const AllUsers = () => {
                       scope="col"
                       className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      <div className="flex items-center gap-x-3 text-white text-lg">
+                      <div className="flex items-center gap-x-3 text-lg text-white">
                         {/* <input
                           type="checkbox"
                           className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
@@ -102,7 +112,7 @@ const AllUsers = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 font-normal text-left rtl:text-right dark:text-gray-400 text-white text-lg"
+                      className="px-4 py-3.5 text-lg text-white font-normal text-left rtl:text-right dark:text-gray-400"
                     >
                       Email address
                     </th>
@@ -146,14 +156,12 @@ const AllUsers = () => {
                           </div>
                         </div>
                       </td>
-
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         {user.role}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         {user.email}
                       </td>
-
                       {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         <button
                           // onClick={() => handleDelete(member._id)}
@@ -163,17 +171,23 @@ const AllUsers = () => {
                           <MdDelete />
                         </button>
                       </td> */}
-                      {user.role !== "admin" && (
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          <button
-                            onClick={() => handleDelete(user._id)}
-                            className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
-                          >
-                            <span className="mr-2">remove</span>
-                            <MdDelete />
-                          </button>
-                        </td>
-                      )}
+
+                      <td className="px-4 py-4 flex justify-end gap-5 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <button
+                          onClick={() => handleAccept(user._id)}
+                          className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-80"
+                        >
+                          <span className="mr-2">Accept</span>
+                          {/* <MdDelete /> */}
+                        </button>
+                        <button
+                          onClick={() => handleDelete(user._id)}
+                          className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
+                        >
+                          <span className="mr-2">remove</span>
+                          <MdDelete />
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -186,4 +200,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default PendingApplications;
