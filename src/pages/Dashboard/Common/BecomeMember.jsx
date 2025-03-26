@@ -1,182 +1,140 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
+import useUser from "../../../hooks/useUser";
+import LoadingSpinner from "../../LoadingSpinner";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 const BecomeMember = () => {
-  const { user, loading, notify } = useContext(AuthContext);
-//   const [userData, setUserData] = useState([]);
-  const axiosSecure = useAxiosSecure();
+  const [users, isPending] = useUser();
+  const { notify } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleSubmitData = () => {
-    console.log("submit form");
+  const axiosPublic = useAxiosPublic();
+  if (isPending) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+
+    const name = form.get("username");
+    const email = form.get("email");
+    const role = form.get("role");
+    const contactNumber = form.get("contactNumber");
+    const address = form.get("address");
+
+    const memberInfo = {
+      name,
+      email,
+      image: users?.image,
+      role,
+      contactNumber,
+      address,
+      isApprove: false,
+    };
+    const res = await axiosPublic.post("/become-member", memberInfo);
+    // console.log(res.data.insertedId);
+    if (res.data.insertedId) {
+      notify("success", "your application successful");
+      navigate("/dashboard/customer/my-application");
+    }
   };
   return (
-    <div className="w-11/12 mx-auto my-5 border-2 border-blue-500 rounded-xl">
-      <div className=" p-4 bg-white shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold mb-4  text-center capitalize">
-          Member registration form
-        </h1>
-
-        <form onSubmit={handleSubmitData}>
-          <div className="flex gap-2">
-            <div className="flex-1 mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                // defaultValue={userData.email}
-                // readOnly
-                name="email"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div className="mb-4 flex-1">
-              <label className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                // defaultValue={userData.name}
-                // readOnly
-                name="name"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Photo URL
+    <section className="w-11/12 my-5 lg:max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 border  hover:border-red-600 transition duration-300">
+      <h2 className="text-xl lg:text-2xl underline underline-offset-4 decoration-red-500 text-center font-semibold text-gray-700 capitalize dark:text-white">
+        Become a Seller or Delivery Man
+      </h2>
+      <form onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div>
+            <label
+              className="text-gray-700 dark:text-gray-200"
+              htmlFor="username"
+            >
+              Username
             </label>
             <input
-              type="url"
-            //   defaultValue={userData.photo}
-            //   readOnly
-              name="photo"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div className="flex gap-2">
-            <div className="mb-4 flex-1">
-              <label className="block text-sm font-medium text-gray-700">
-                Age
-              </label>
-              <input
-                type="number"
-                name="age"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div className="mb-4 flex-1">
-              <label className="block text-sm font-medium text-gray-700">
-                Experience (Year)
-              </label>
-              <input
-                type="number"
-                name="experience"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Skills
-            </label>
-            <div className="px-3 my-2 flex gap-4 items-center flex-wrap">
-              {[
-                "HllT Blast",
-                "Yoga Flow",
-                "Pilates Core",
-                "Cardio kickboxing",
-                "Zumba Dance",
-                "Spin Cycle",
-                "Barre Fitness",
-                "Meditation",
-                "CrossFit Fundamentals",
-                "Powerfitting Basics",
-                "Core Blast",
-                "Body Combat",
-                "Strength Training",
-                "Functional Fitness",
-                "Tabata Intervals",
-                "Kettlebell",
-                "Stretching",
-                "Mindful Breathing Techniques",
-                "Boxing Fundamentals",
-                "Dance Cardio",
-                "Agility and Speed Training",
-                "Injury Prevention and Recovery",
-              ].map((skill, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center flex-wrap"
-                >
-                  <input
-                    type="checkbox"
-                    id={`skill-${index}`}
-                    value={skill}
-                    name="skill"
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor={`skill-${index}`}
-                    className="ml-1 block text-sm text-gray-900"
-                  >
-                    {skill}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-4 ">
-            <label className="block text-sm font-medium text-gray-700">
-              Select Available Days
-            </label>
-            <Select
-              className="mt-1 block w-full text-xl rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              closeMenuOnSelect={false}
-              isMulti
-              options={colourOptions}
-              styles={customStyles}
-              name="availableDays"
-              value={selectedDays}
-              onChange={(selected) => setSelectedDays(selected)}
+              defaultValue={users.name}
+              readOnly
+              id="username"
+              name="username"
+              type="text"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Available Time
+          <div>
+            <label
+              className="text-gray-700 dark:text-gray-200"
+              htmlFor="emailAddress"
+            >
+              Email Address
             </label>
             <input
+              id="emailAddress"
+              type="email"
+              name="email"
+              defaultValue={users.email}
+              readOnly
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            />
+          </div>
+          <div>
+            <label className="text-gray-700 dark:text-gray-200" htmlFor="role">
+              Role
+            </label>
+            <select
+              name="role"
+              defaultValue="Select Role"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            >
+              <option disabled>Select Role</option>
+              <option value="seller">Seller</option>
+              <option value="rider">Delivery Men</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              className="text-gray-700 dark:text-gray-200"
+              htmlFor="contact-number"
+            >
+              Contact Number
+            </label>
+            <input
+              id="contact-number"
               type="number"
-              name="availableTime"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              name="contactNumber"
+              placeholder="Enter your contact number"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
+        </div>
+        <div className="mt-4">
+          <label
+            className="text-gray-700 dark:text-gray-200"
+            htmlFor="contact-number"
+          >
+            Address
+          </label>
+          <textarea
+            name="address"
+            placeholder="Enter your address"
+            className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+          />
+        </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Biography
-            </label>
-            <textarea
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              rows="4"
-              name="biography"
-            ></textarea>
-          </div>
-
+        <div className="mt-6 w-full ">
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="px-8 font-semibold cursor-pointer w-full py-2.5 text-lg leading-5 text-white  duration-300 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600 active:scale-90 transition-transform"
           >
-            Submit
+            Apply
           </button>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </section>
   );
 };
 
