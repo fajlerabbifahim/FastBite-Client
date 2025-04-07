@@ -99,7 +99,7 @@ const ManageRestaurants = () => {
                         {restaurant.owner_email}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        <button className="px-3 py-1 text-white bg-red-600 rounded-lg">
+                        <button className=" cursor-pointer px-3 py-1 text-white bg-red-600 rounded-lg">
                           Remove
                         </button>
                       </td>
