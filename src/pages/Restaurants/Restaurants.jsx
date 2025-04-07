@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useRestaurant from "../../hooks/useRestaurant";
 
 const Restaurants = () => {
-  const [restaurants, setRestaurants] = useState([]);
-
-  useEffect(() => {
-    fetch("/restaurant.json")
-      .then((res) => res.json())
-      .then((data) => setRestaurants(data));
-  }, []);
+  const [restaurants, isPending] = useRestaurant();
 
   return (
     <div className="container mx-auto p-6">
@@ -17,11 +12,11 @@ const Restaurants = () => {
         Top Restaurants
       </h1>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-        {restaurants.map((restaurant, index) => (
-          <Link to={`/RestaurantDetails/${restaurant.id}`}>
+        {restaurants.map((restaurant) => (
+          <Link to={`/restaurantDetails/${restaurant._id}`}>
             {" "}
             <div
-              key={index}
+              key={restaurant._id}
               className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-105 border border-gray-200"
             >
               <img
