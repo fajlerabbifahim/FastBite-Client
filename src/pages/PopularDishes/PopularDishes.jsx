@@ -35,7 +35,7 @@ const PopularDishes = () => {
       .then((res) => res.json())
       .then((data) => {
         setFoods(data);
-        console.log("food data", data);
+        // console.log("food data", data);
       });
   }, []);
 

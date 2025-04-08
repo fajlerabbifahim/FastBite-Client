@@ -1,27 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import LoadingSpinner from "../../LoadingSpinner";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { div, p } from "framer-motion/client";
+import { useNavigate } from "react-router-dom";
 
-const AllUsers = () => {
+const MyApplication = () => {
+  const { user, notify } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const {
     data: users = [],
     isPending,
     refetch,
   } = useQuery({
-    queryKey: ["allUsers"],
+    queryKey: ["MyApplication", user?.email],
     queryFn: async () => {
-      const { data } = await axiosPublic("/users");
+      const { data } = await axiosPublic(`/become-member/${user?.email}`);
       return data;
     },
   });
-
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+  //   console.log(users);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -34,20 +39,23 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosPublic.delete(`/users/${id}`);
+        const res = await axiosPublic.delete(`/become-member/${id}`);
+
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
           icon: "success",
         });
-        refetch();
+        navigate("/dashboard/customer/becomeMember");
         // console.log(res)
+        refetch();
       }
     });
+    console.log(id);
   };
   return (
     <section className="w-11/12 mx-auto pl-2">
-      <div className="flex items-center gap-x-3">
+      {/* <div className="flex items-center gap-x-3">
         <h2 className="text-lg font-medium text-gray-800 dark:text-white">
           Total Users
         </h2>
@@ -55,7 +63,7 @@ const AllUsers = () => {
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
           {users.length} users
         </span>
-      </div>
+      </div> */}
       <div className="flex flex-col mt-6">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -67,7 +75,7 @@ const AllUsers = () => {
                       scope="col"
                       className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      <div className="flex items-center gap-x-3 text-white text-lg">
+                      <div className="flex items-center gap-x-3 text-lg text-white">
                         {/* <input
                           type="checkbox"
                           className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
@@ -80,7 +88,7 @@ const AllUsers = () => {
                       scope="col"
                       className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      <button className="flex items-center gap-x-2 text-white text-lg">
+                      <button className="flex items-center gap-x-2 text-lg text-white">
                         <span>Role</span>
 
                         <svg
@@ -102,17 +110,17 @@ const AllUsers = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 font-normal text-left rtl:text-right dark:text-gray-400 text-white text-lg"
+                      className=" px-4 py-3.5 font-normal text-left rtl:text-right text-lg text-white dark:text-gray-400"
                     >
                       Email address
                     </th>
 
-                    {/* <th
+                    <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-lg font-normal text-left rtl:text-righttext-lg text-white  dark:text-gray-400"
                     >
-                      Teams
-                    </th> */}
+                      Status
+                    </th>
 
                     <th scope="col" className="relative py-3.5 px-4">
                       <span className="sr-only">Edit</span>
@@ -120,41 +128,49 @@ const AllUsers = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                  {users.map((user, idx) => (
-                    <tr key={idx}>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          {/* <input
+                  <tr>
+                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                      <div className="inline-flex items-center gap-x-3">
+                        {/* <input
                             type="checkbox"
                             className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                           /> */}
 
-                          <div className="flex items-center gap-x-2">
-                            <img
-                              className="object-cover w-10 h-10 rounded-full"
-                              src={user.image}
-                              alt=""
-                            />
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                {user.name}
-                              </h2>
-                              {/* <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center gap-x-2">
+                          {/* <img
+                            className="object-cover w-10 h-10 rounded-full"
+                            src={users.name}
+                            alt=""
+                          /> */}
+                          <div>
+                            <h2 className="font-medium text-gray-800 dark:text-white ">
+                              {users.name}
+                            </h2>
+                            {/* <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                               @authurmelo
                             </p> */}
-                            </div>
                           </div>
                         </div>
-                      </td>
+                      </div>
+                    </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {user.role}
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {user.email}
-                      </td>
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                      {users.role === "rider" && <p>Rider</p>}
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                      {users.email}
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                      {users.isApprove === false ? (
+                        <p className="bg-green-600 text-white text-center rounded-2xl  py-1">
+                          Pending
+                        </p>
+                      ) : (
+                        <p>''</p>
+                      )}
+                    </td>
 
-                      {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         <button
                           // onClick={() => handleDelete(member._id)}
                           classNameName="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
@@ -163,19 +179,18 @@ const AllUsers = () => {
                           <MdDelete />
                         </button>
                       </td> */}
-                      {user.role !== "admin" && (
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          <button
-                            onClick={() => handleDelete(user._id)}
-                            className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
-                          >
-                            <span className="mr-2">remove</span>
-                            <MdDelete />
-                          </button>
-                        </td>
-                      )}
-                    </tr>
-                  ))}
+                    {users.isApprove === false && (
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <button
+                          onClick={() => handleDelete(users._id)}
+                          className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
+                        >
+                          <span className="mr-2">remove</span>
+                          <MdDelete />
+                        </button>
+                      </td>
+                    )}
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -186,4 +201,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default MyApplication;

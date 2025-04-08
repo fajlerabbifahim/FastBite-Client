@@ -29,7 +29,8 @@ const Login = () => {
       toast.success("Login Successful");
       const user = { email: email };
       console.log(user.email);
-      navigate(from, { replace: true });
+      // navigate(from, { replace: true });
+      navigate("/");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);

@@ -2,17 +2,25 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./TopReviewedRestaurant.css";
 import { FaStar } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import LoadingSpinner from "../LoadingSpinner";
 
 const TopReviewedRestaurant = () => {
-  const [topRestaurant, setTopRestaurant] = useState([]);
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    fetch("restaurant.json")
-      .then((res) => res.json())
-      .then((data) => setTopRestaurant(data));
-  }, []);
+  const { data: topRestaurants = [], isLoading } = useQuery({
+    queryKey: ["topRestaurants"],
+    queryFn: async () => {
+      const { data } = await axiosPublic("/restaurants/top");
+      console.log("top restaurant data", data);
+      return data;
+    },
+  });
 
-  const repeatedRestaurants = [...topRestaurant, ...topRestaurant];
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="py-10 w-11/12 mx-auto">
@@ -22,10 +30,10 @@ const TopReviewedRestaurant = () => {
 
       <div className="overflow-hidden whitespace-nowrap w-full relative py-6">
         <div className="flex gap-8 animate-marquee">
-          {repeatedRestaurants.map((restaurant, index) => (
+          {topRestaurants.map((restaurant, index) => (
             <Link
               key={index}
-              to={`/RestaurantDetails/${restaurant.id}`}
+              to={`/restaurantDetails/${restaurant._id}`}
               className="flex gap-4  rounded-lg shadow-lg bg-white p-3 w-[400px] hover:scale-105 transition-transform duration-300"
             >
               <img

@@ -7,14 +7,30 @@ import { CiLogout } from "react-icons/ci";
 import useUser from "../../../hooks/useUser";
 import LoadingSpinner from "../../LoadingSpinner";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const CustomerMenu = () => {
-  const { user, handleLogout } = useContext(AuthContext);
+  const { user, handleLogout, notify } = useContext(AuthContext);
   const [users, isPending] = useUser();
   const navigate = useNavigate();
-  if (isPending) {
+  const axiosPublic = useAxiosPublic();
+  const {
+    data: users1 = [],
+    isPending: isPending1,
+    refetch,
+  } = useQuery({
+    queryKey: ["MyApplication", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosPublic(`/become-member/${user?.email}`);
+      return data;
+    },
+  });
+  if (isPending || isPending1) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-  // console.log(users);
+
+  // console.log(users1);
+
   const handleLogout1 = () => {
     handleLogout("s");
     navigate("/");
@@ -60,11 +76,11 @@ const CustomerMenu = () => {
           >
             My Orders
           </NavLink>
-
-          <NavLink
-            to="/dashboard/customer/becomeMember"
-            className={({ isActive }) =>
-              `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+          {users1 && (
+            <NavLink
+              to="/dashboard/customer/my-application"
+              className={({ isActive }) =>
+                `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
                                 isActive
                                   ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-30 z-10"
@@ -74,10 +90,31 @@ const CustomerMenu = () => {
                               before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-30 hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
                               after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-30 hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
                               `
-            }
-          >
-            Become Member
-          </NavLink>
+              }
+            >
+              My Application
+            </NavLink>
+          )}
+
+          {!users1 && (
+            <NavLink
+              to="/dashboard/customer/becomeMember"
+              className={({ isActive }) =>
+                `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                              ${
+                                isActive
+                                  ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-30 z-10"
+                                  : ""
+                              }
+        
+                              before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-30 hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                              after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-30 hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                              `
+              }
+            >
+              Become Member
+            </NavLink>
+          )}
           <NavLink
             to="/dashboard/customer/profile"
             className={({ isActive }) =>

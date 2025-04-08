@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FaRobot } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+
 import Modal from "react-modal";
 
 const ChatBot = () => {
@@ -10,10 +12,10 @@ const ChatBot = () => {
 
   return (
     <div className="text-center">
-      {/* 🔴 Red Theme Button */}
+      {/*  Red Theme Button */}
       <button
         onClick={openModal}
-        className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition"
+        className="flex cursor-pointer items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition"
       >
         <FaRobot className="text-lg" />
         Chat with our Bot
@@ -29,8 +31,11 @@ const ChatBot = () => {
         {/* Modal Header */}
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-lg font-bold">Chat with AI</h2>
-          <button onClick={closeModal} className="text-red-500 text-xl font-bold">
-            ✖
+          <button
+            onClick={closeModal}
+            className="cursor-pointer text-2xl font-bold"
+          >
+            <IoClose />
           </button>
         </div>
 

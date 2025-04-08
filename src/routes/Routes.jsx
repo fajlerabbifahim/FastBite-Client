@@ -19,6 +19,8 @@ import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import Profile from "../pages/Dashboard/Common/Profile";
 import BecomeSeller from "../pages/Dashboard/Customer/BecomeSeller";
 import BecomeMember from "../pages/Dashboard/Common/BecomeMember";
+import MyApplication from "../pages/Dashboard/Common/MyApplication";
+import PendingApplications from "../pages/Dashboard/Admin/PendingApplications";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,10 @@ const router = createBrowserRouter([
         element: <ManageAllFoodItems></ManageAllFoodItems>,
       },
       {
+        path: "admin/pending-applications",
+        element: <PendingApplications></PendingApplications>,
+      },
+      {
         path: "admin/manageRestaurants",
         element: <ManageRestaurants></ManageRestaurants>,
       },
@@ -104,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: "customer/becomeMember",
         element: <BecomeMember></BecomeMember>,
+      },
+      {
+        path: "customer/my-application",
+        element: <MyApplication></MyApplication>,
       },
     ],
   },
