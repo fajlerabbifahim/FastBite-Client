@@ -7,12 +7,12 @@ import { FaBars } from "react-icons/fa";
 import CustomerMenu from "../pages/Dashboard/Customer/CustomerMenu";
 import SellerMenu from "../pages/Dashboard/Seller/SellerMenu";
 import AdminMenu from "../pages/Dashboard/Admin/AdminMenu";
-import RiderMenu from "../pages/Dashboard/Rider/ReiderMenu";
 import { IoMdSunny } from "react-icons/io";
 import { MdDarkMode } from "react-icons/md";
 import { useDarkMode } from "../hooks/ThemeContext";
 import useRole from "../hooks/useRole";
 import LoadingSpinner from "../pages/LoadingSpinner";
+import RiderMenu from "../pages/Dashboard/Rider/RiderMenu";
 const DashboardLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const DashboardLayout = () => {
   // const role = "customer";
   // const role = "seller";
   // const role = "rider";
-
+  console.log(role);
   return (
     <div className="lg:grid grid-cols-12 gap-2 -mt-5 lg:mt-0">
       <div
