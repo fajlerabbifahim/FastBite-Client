@@ -36,10 +36,10 @@ export function Banner() {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     placeholder="Enter your delivery address"
-                    className="w-full pl-12 pr-4 py-4 border-0 focus:ring-0 focus:outline-none"
+                    className="w-full border-[3px]  shadow border-white  hover:border-red-600 duration-500 pl-12 pr-4 py-4  focus:ring-0 focus:outline-none"
                   />
                 </div>
-                <button className="bg-red-600 text-white font-medium px-6 py-4 flex items-center justify-center hover:bg-red-700 transition-colors">
+                <button className="bg-red-600 text-white font-medium px-6 py-4 flex items-center justify-center duration-500 hover:bg-red-700 transition-colors">
                   <span className="mr-2">Find Food</span>
                   <FaArrowRight className="h-4 w-4" />
                 </button>
