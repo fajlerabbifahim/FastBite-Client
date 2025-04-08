@@ -4,19 +4,24 @@ import { BsTelephone } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import LoadingSpinner from "../LoadingSpinner";
 
 const RestaurantDetails = () => {
   const { id } = useParams();
 
   const axiosPublic = useAxiosPublic();
 
-  const { data: restaurant } = useQuery({
+  const { data: restaurant, isLoading } = useQuery({
     queryKey: ["restaurantDetails"],
     queryFn: async () => {
       const { data } = await axiosPublic(`/restaurantDetails/${id}`);
       return data;
     },
   });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   if (!restaurant) {
     return (
