@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useRestaurant from "../../hooks/useRestaurant";
+import LoadingSpinner from "../LoadingSpinner";
 
 const Restaurants = () => {
   const [restaurants, isPending] = useRestaurant();
+
+  if (isPending) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="container mx-auto p-6">
