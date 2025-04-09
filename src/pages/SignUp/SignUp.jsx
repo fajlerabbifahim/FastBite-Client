@@ -12,41 +12,6 @@ import useAuth from "../../hooks/useAuth";
 import { imageUpload, saveUser } from "../../api/utils";
 
 const SignUp = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   formState: { errors },
-  // } = useForm();
-  // const { createUser, updateUserProfile } = useContext(AuthContext);
-  // const navigate = useNavigate();
-
-  // const onSubmit = (data) => {
-  //   createUser(data.email, data.password).then((result) => {
-  //     const loggedUser = result.user;
-  //     console.log(loggedUser);
-  //     updateUserProfile(data.name, data.photoURL)
-  //       .then(() => {
-  //         // create user entry in the database
-
-  //         const res = userinfo.then((res) => {
-  //           if (res.data.insertedId) {
-  //             console.log("user added to the database");
-  //             reset();
-  //             navigate("/");
-  //             Swal.fire({
-  //               position: "top-end",
-  //               icon: "success",
-  //               title: "User create successfully",
-  //               showConfirmButton: false,
-  //               timer: 1500,
-  //             });
-  //           }
-  //         });
-  //       })
-  //       .catch((error) => console.log(error));
-  //   });
-  // };
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
   const navigate = useNavigate();
@@ -57,22 +22,27 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const image = form.image.files[0];
+    const confirmPassword = form.confirmPassword.value;
+    if (password !== confirmPassword) {
+      toast.success("Password and Confirm password don't match");
+      return;
+    }
+    // const image = form.image.files[0];
 
-    const image_url = await imageUpload(image);
+    // const image_url = await imageUpload(image);
 
     try {
       //2. User Registration
       const result = await createUser(email, password);
 
       //3. Save username & profile photo
-      await updateUserProfile(name, image_url);
+      // await updateUserProfile(name, image_url);
       // console.log(result)
       // save user info in db if the user is new
       await saveUser({
         ...result?.user,
         displayName: name,
-        photoURL: image_url,
+        // photoURL: image_url,
       });
 
       navigate("/");
@@ -110,7 +80,7 @@ const SignUp = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="md:w-1/2 w-full p-8 space-y-6">
+        <div className="md:w-1/2 w-full p-8 space-y-2">
           <Link
             to="/"
             className="flex gap-2 items-center justify-center text-red-600 hover:text-red-700 transition-colors"
@@ -124,97 +94,13 @@ const SignUp = () => {
           <p className="text-sm text-gray-600 text-center">
             Join FastBite and start ordering delicious food
           </p>
-
-          {/* <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input
-                {...register("name", { required: true })}
-                type="text"
-                placeholder="Full Name"
-                className="w-full px-4 py-2 border rounded-sm  border-gray-300"
-              />
-            </div>
-            <div className="mt-2">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                htmlFor="LoggingEmailAddress"
-              >
-                Photo URL
-              </label>
-              <input
-                {...register("email", { required: true })}
-                type="email"
-                placeholder="Email address"
-                className="w-full px-4 py-2 border rounded-sm border-gray-300"
-              />
-              <input
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 20,
-                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-                })}
-                type="password"
-                placeholder="Password"
-                className="w-full px-4 py-2 border rounded-sm border-gray-300"
-                required
-              />
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="w-full px-4 py-2 border rounded-sm border-gray-300"
-                required
-              />
-            </div>
-
-            <div className="mt-2">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                htmlFor="LoggingEmailAddress"
-              >
-                Email Address
-              </label>
-              <input
-                id="LoggingEmailAddress"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                type="email"
-                name="email"
-              />
-            </div>
-
-            <div className="mt-2">
-              <div className="flex justify-between">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                  htmlFor="loggingPassword"
-                >
-                  Password
-                </label>
-              </div>
-              <input
-                id="loggingPassword"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                type="password"
-                name="password"
-              />
-            </div>
-
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="w-full px-6 py-2 text-md font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-              >
-                Register
-              </button>
-            </div>
-          </form> */}
           <form
             onSubmit={handleSubmit}
             noValidate=""
             action=""
             className="space-y-2 ng-untouched ng-pristine ng-valid"
           >
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
                   Name
@@ -241,7 +127,7 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
                 />
               </div> */}
-              <div>
+              {/* <div>
                 <label
                   htmlFor="image"
                   className="block text-sm dark:text-gray-300"
@@ -257,7 +143,7 @@ const SignUp = () => {
                   accept="image/*"
                   className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
                 />
-              </div>
+              </div> */}
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
                   Email address
@@ -283,6 +169,22 @@ const SignUp = () => {
                   name="password"
                   autoComplete="new-password"
                   id="password"
+                  required
+                  placeholder="*******"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
+                />
+              </div>
+              <div>
+                <div className="flex justify-between">
+                  <label htmlFor="confirmPassword" className="text-sm mb-2">
+                    Confirm Password
+                  </label>
+                </div>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  autoComplete="confirmPassword"
+                  id="confirmPassword"
                   required
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
@@ -316,7 +218,7 @@ const SignUp = () => {
             Already have an account?
             <Link
               to="/login"
-              className="text-red-600 hover:text-red-500 font-medium"
+              className="ml-2 text-red-600 hover:text-red-500 font-medium"
             >
               Login
             </Link>

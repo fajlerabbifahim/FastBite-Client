@@ -34,7 +34,7 @@ const TopReviewedRestaurant = () => {
             <Link
               key={restaurant._id}
               to={`/restaurantDetails/${restaurant._id}`}
-              className="flex gap-4  rounded-lg shadow-lg bg-white p-3 w-[400px] hover:scale-105 transition-transform duration-300"
+              className="flex gap-4 border border-red-600  rounded-lg shadow-lg bg-white p-3 w-[400px] hover:scale-105 transition-transform duration-300"
             >
               <img
                 className="w-40 rounded-md"
