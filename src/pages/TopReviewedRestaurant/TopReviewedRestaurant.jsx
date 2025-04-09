@@ -30,9 +30,9 @@ const TopReviewedRestaurant = () => {
 
       <div className="overflow-hidden whitespace-nowrap w-full relative py-6">
         <div className="flex gap-8 animate-marquee">
-          {topRestaurants.map((restaurant, index) => (
+          {topRestaurants.map((restaurant) => (
             <Link
-              key={index}
+              key={restaurant._id}
               to={`/restaurantDetails/${restaurant._id}`}
               className="flex gap-4  rounded-lg shadow-lg bg-white p-3 w-[400px] hover:scale-105 transition-transform duration-300"
             >

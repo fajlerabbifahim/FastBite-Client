@@ -4,34 +4,34 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./coustomTabs.css";
 import MenuCard from "./MenuCard";
+import LoadingSpinner from "../LoadingSpinner";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const categories = ["Salad", "Pizza", "Drinks", "Desserts", "Pasta"];
 
 const Menu = () => {
-  const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-  const [sortOrder, setSortOrder] = useState(""); // Sorting state
+  const [sortOrder, setSortOrder] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    const fetchFoods = async () => {
-      try {
-        const response = await fetch("/foods.json");
-        const data = await response.json();
-        setFoods(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching food data:", error);
-        setLoading(false);
-      }
-    };
-    fetchFoods();
-  }, []);
+  const { data: foods = [], isLoading } = useQuery({
+    queryKey: ["foods"],
+    queryFn: async () => {
+      const { data } = await axiosPublic("/foods");
+      console.log("popular dishes food here", data);
+      return data;
+    },
+  });
 
-  // Filter & Sort Foods
-  const filteredFoods = foods.filter(
-    (food) => food.category === selectedCategory
-  );
+ //filter food
+  const filteredFoods = foods
+    .filter((food) => food.category === selectedCategory)
+    .filter((food) =>
+      food.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
   const sortedFoods = [...filteredFoods].sort((a, b) => {
     if (sortOrder === "lowToHigh") return a.price - b.price;
     if (sortOrder === "highToLow") return b.price - a.price;
@@ -62,9 +62,10 @@ const Menu = () => {
               type="text"
               placeholder="Search your favorite food..."
               className="flex-grow text-gray-700 text-sm md:text-base outline-none"
-              // value={searchTerm}
-              // onChange={(e) => setSearchTerm(e.target.value)}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
+
             <button className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold ml-2">
               Search
             </button>
@@ -79,7 +80,7 @@ const Menu = () => {
           onSelect={(index) => setSelectedCategory(categories[index])}
         >
           <div className="flex flex-wrap items-center justify-between border-b py-4">
-            {/* 🔷 Tab List */}
+            {/*  Tab List */}
             <TabList className="flex flex-wrap gap-2 md:gap-4">
               {categories.map((category, index) => (
                 <Tab
@@ -106,10 +107,8 @@ const Menu = () => {
 
           {/*  Food Items Section */}
           <div className="w-full py-6">
-            {loading ? (
-              <div className="text-center text-lg font-semibold">
-                Loading...
-              </div>
+            {isLoading ? (
+              <LoadingSpinner />
             ) : (
               categories.map((category, index) => (
                 <TabPanel key={index} className="w-full">

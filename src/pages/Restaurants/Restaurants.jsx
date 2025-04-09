@@ -18,12 +18,12 @@ const Restaurants = () => {
       </h1>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
         {restaurants.map((restaurant) => (
-          <Link to={`/restaurantDetails/${restaurant._id}`}>
+          <Link
+            key={restaurant._id}
+            to={`/restaurantDetails/${restaurant._id}`}
+          >
             {" "}
-            <div
-              key={restaurant._id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-105 border border-gray-200"
-            >
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-105 border border-gray-200">
               <img
                 src={restaurant.image}
                 alt={restaurant.name}
