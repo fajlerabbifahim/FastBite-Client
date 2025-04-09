@@ -25,6 +25,7 @@ import RiderStatus from "../pages/Dashboard/Rider/RiderStatus";
 import AssignedOrdersList from "../pages/Dashboard/Rider/AssignedOrdersList";
 import AddFood from "../pages/Dashboard/Seller/AddFood";
 import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
+import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
 
 const router = createBrowserRouter([
   {
@@ -108,7 +109,7 @@ const router = createBrowserRouter([
         element: <MyOrders></MyOrders>,
       },
       {
-        path: "customer/profile",
+        path: "user-profile",
         element: <Profile></Profile>,
       },
       {
@@ -128,15 +129,19 @@ const router = createBrowserRouter([
         element: <AssignedOrdersList></AssignedOrdersList>,
       },
       {
-        path: "seller/add-food",
+        path: "seller",
+        element: <SellerDashboard></SellerDashboard>,
+      },
+      {
+        path: "seller-addFood",
         element: <AddFood></AddFood>,
       },
       {
-        path: "seller/foods",
+        path: "seller-foods",
         element: <ManageAllFoodItems></ManageAllFoodItems>,
       },
       {
-        path: "seller/orders",
+        path: "seller-orders",
         element: <ViewOrders></ViewOrders>,
       },
     ],

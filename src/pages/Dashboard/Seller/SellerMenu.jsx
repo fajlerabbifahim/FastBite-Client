@@ -41,7 +41,7 @@ const SellerMenu = () => {
         {/* <div className=""> */}
         <nav className="flex flex-col gap-1 flex-1 lg:mt-6 ">
           <NavLink
-            to="/dashboard/rider/rider-status"
+            to="/dashboard/seller"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
@@ -58,7 +58,7 @@ const SellerMenu = () => {
             Sales and Orders
           </NavLink>
           <NavLink
-            to="/dashboard/seller/add-food"
+            to="/dashboard/seller-addFood"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
@@ -75,7 +75,7 @@ const SellerMenu = () => {
             Add New Food Item
           </NavLink>
           <NavLink
-            to="/dashboard/seller/foods"
+            to="/dashboard/seller-foods"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
@@ -92,7 +92,7 @@ const SellerMenu = () => {
             Manage My Foods
           </NavLink>{" "}
           <NavLink
-            to="/dashboard/seller/orders"
+            to="/dashboard/seller-orders"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
@@ -109,7 +109,7 @@ const SellerMenu = () => {
             View Orders
           </NavLink>
           <NavLink
-            to="/dashboard/customer/profile"
+            to="/dashboard/user-profile"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${

@@ -76,7 +76,7 @@ const RiderMenu = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/customer/profile"
+            to="/dashboard/user-profile"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
