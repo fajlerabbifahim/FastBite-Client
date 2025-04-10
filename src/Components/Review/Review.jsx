@@ -100,7 +100,7 @@ const Review = () => {
             </span>
            
           </h2>
-          <p className="w-full lg:w-8/12 mx-auto text-lg text-justify lg:text-center dark:text-black">
+          <p className="w-full lg:w-8/12 mx-auto text-lg text-justify lg:text-center dark:text-gray-200">
             "Our clients consistently praise our exceptional service,
             professionalism, and commitment to quality. Their positive feedback
             inspires us to exceed expectations and deliver outstanding results
