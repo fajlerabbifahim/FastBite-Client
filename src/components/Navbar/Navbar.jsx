@@ -1,24 +1,25 @@
-import React, { useState, useCallback } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, {  useState, useCallback } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import {} from "../../providers/AuthProvider";
+import {  } from "../../providers/AuthProvider";
 import { MdDarkMode } from "react-icons/md";
 import { IoMdSunny } from "react-icons/io";
 import { useDarkMode } from "../../hooks/ThemeContext";
-import navlogo from "../../assets/Navbar_logo/navlogo.png";
+import navlogo from '../../assets/Navbar_logo/navlogo.png'
 import useAuth from "../../hooks/useAuth";
-import { toast } from "react-toastify";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logOut, handleLogout } = useAuth();
+  const { user, logOut } = useAuth()
   const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen]);
   const { darkMode, setDarkMode } = useDarkMode();
-  const navigate = useNavigate();
-  // console.log(user?.email);
-  // const handleLogoutFun = () => {
-  //   handleLogout();
-  //   navigate("/");
-  // };
+  console.log(user?.email);
+
+  const handleLogOut = () => {
+    logOut();
+  }
+  
+
+
   return (
     <div className="sticky top-0 z-[900]  bg-white dark:bg-gray-800 dark:text-white ">
       <nav className="relative shadow   ">
@@ -27,6 +28,7 @@ const Navbar = () => {
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
+               
                 {/* <Link to="/" className="text-center flex">
                   <span className="text-4xl font-extrabold text-center ">
                     F<span className="text-[#E10101]">i</span>rst B
@@ -34,10 +36,8 @@ const Navbar = () => {
                   </span>
                 </Link> */}
 
-                <Link to={"/"}>
-                  {" "}
-                  <img className="w-32" src={navlogo} alt="navlogo" />
-                </Link>
+
+               <Link to={'/'}> <img className="w-32" src={navlogo} alt="navlogo" /></Link>
               </div>
 
               {/* Mobile Menu Toggle Button */}
@@ -187,11 +187,10 @@ const Navbar = () => {
                 >
                   Contact Us
                 </NavLink>
-                {user && user?.email && (
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                     ${
                       isActive
                         ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
@@ -200,11 +199,10 @@ const Navbar = () => {
                       before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
                       after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
                       `
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                )}
+                  }
+                >
+                  Dashboard
+                </NavLink>
               </div>
 
               {/* User Actions */}
@@ -245,8 +243,8 @@ const Navbar = () => {
                     </button> */}
 
                     <button
-                      onClick={() => handleLogout("s")}
-                      className="px-4 cursor-pointer py-3 text-sm tracking-wide  capitalize transition-colors duration-700 transform bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80 font-semibold text-white"
+                      onClick={handleLogOut}
+                      className="px-4 cursor-pointer py-3 text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
                     >
                       Logout
                     </button>

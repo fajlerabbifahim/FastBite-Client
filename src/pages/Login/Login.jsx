@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+
 import Lottie from "react-lottie-player";
 import loginAnimation from "../../assets/authLotties/login-animation.json";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from "sweetalert2";
+
 import { toast } from "react-toastify";
 import { saveUser } from "../../api/utils";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full bg-white p-8 rounded-xl shadow-2xl flex flex-col md:flex-row items-center">
         {/* Left Side - Lottie Animation */}
         <div className="hidden md:flex w-full md:w-1/2 justify-center">
@@ -91,26 +92,42 @@ const Login = () => {
               <div className='flex justify-between'>
                 
               </div>
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  className="appearance-none rounded-sm w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900   sm:text-sm"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
 
-            <input
-                name='password'
-                placeholder='Password'
-                className=' w-full px-4 py-2  border rounded-3xl text-white bg-gray-500 border-white shadow-xl'
-                
-              />
+            <div className="flex items-center justify-between">
+              <div className="text-sm">
+                <button
+                  type="button"
+                  className="cursor-pointer font-medium text-red-600 hover:text-red-500"
+                >
+                  Forgot your password?
+                </button>
+              </div>
             </div>
-            <div className='flex justify-between w-10/12  mx-auto text-white my-4'>
-              <div><h2>Remember me</h2></div>
-              <div><h2>Forgot password</h2></div>
-            </div>
-            <div className='mt-6 w-10/12 mx-auto '>
+
+            <div className="space-y-4">
               <button
-                type='submit'
-                className='w-full px-6 py-3 text-sm font-bold tracking-wide text-black capitalize transition-colors duration-300 transform bg-white hover:bg-slate-300 focus:outline-none focus:ring focus:ring-gray-300 rounded-2xl'
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none"
               >
-                Sign In
+                Sign in
               </button>
+
             </div>
+              <SocialLogin></SocialLogin>
           </form>
 
           <div className="text-center">

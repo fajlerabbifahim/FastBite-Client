@@ -7,6 +7,7 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -42,11 +43,13 @@ const Footer = () => {
         <div className="md:w-1/3">
           <h3 className="text-xl font-semibold text-red-500">Explore</h3>
           <ul className="mt-4 space-y-2 text-gray-400">
-            <li>Home</li>
+           <Link to={'/'}><li>Home</li></Link>
             <li>Blog</li>
             <li>Products</li>
             <li>Clients</li>
-            <li>Contact Us</li>
+           <Link to={'/contact'}><li>Contact Us</li></Link>
+           <Link to={'/about'}><li>About Us</li></Link>
+           
           </ul>
         </div>
 
