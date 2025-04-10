@@ -21,6 +21,10 @@ import BecomeSeller from "../pages/Dashboard/Customer/BecomeSeller";
 import BecomeMember from "../pages/Dashboard/Common/BecomeMember";
 import MyApplication from "../pages/Dashboard/Common/MyApplication";
 import PendingApplications from "../pages/Dashboard/Admin/PendingApplications";
+import RiderStatus from "../pages/Dashboard/Rider/RiderStatus";
+import AssignedOrdersList from "../pages/Dashboard/Rider/AssignedOrdersList";
+import AddFood from "../pages/Dashboard/Seller/AddFood";
+import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
 
 const router = createBrowserRouter([
   {
@@ -114,6 +118,26 @@ const router = createBrowserRouter([
       {
         path: "customer/my-application",
         element: <MyApplication></MyApplication>,
+      },
+      {
+        path: "rider/rider-status",
+        element: <RiderStatus></RiderStatus>,
+      },
+      {
+        path: "rider/assigned-orders",
+        element: <AssignedOrdersList></AssignedOrdersList>,
+      },
+      {
+        path: "seller/add-food",
+        element: <AddFood></AddFood>,
+      },
+      {
+        path: "seller/foods",
+        element: <ManageAllFoodItems></ManageAllFoodItems>,
+      },
+      {
+        path: "seller/orders",
+        element: <ViewOrders></ViewOrders>,
       },
     ],
   },
