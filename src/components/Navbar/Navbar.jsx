@@ -220,7 +220,7 @@ const Navbar = () => {
               <div className="flex items-center mt-4 lg:mt-0 gap-3">
                 {user && user?.email ? (
                   <div className="flex justify-between items-center gap-2">
-                    <button
+                    {/* <button
                       type="button"
                       className="flex items-center focus:outline-none"
                       aria-label="toggle profile dropdown"
@@ -229,7 +229,7 @@ const Navbar = () => {
                         <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
                           <img
                             referrerPolicy="no-referrer"
-                            src={user?.photoURL}
+                            // src={user?.photoURL}
                             className="object-cover w-full h-full"
                             alt="avatar"
                           />
@@ -240,7 +240,7 @@ const Navbar = () => {
                           {user?.displayName}
                         </div>
                       </Tooltip>
-                    </button>
+                    </button> */}
 
                     <button
                       onClick={handleLogOut}

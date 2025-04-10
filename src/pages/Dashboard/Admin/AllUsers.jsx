@@ -130,11 +130,13 @@ const AllUsers = () => {
                           /> */}
 
                           <div className="flex items-center gap-x-2">
-                            <img
-                              className="object-cover w-10 h-10 rounded-full"
-                              src={user.image}
-                              alt=""
-                            />
+                            {user?.image && (
+                              <img
+                                className="object-cover w-10 h-10 rounded-full"
+                                src={user.image}
+                                alt=""
+                              />
+                            )}
                             <div>
                               <h2 className="font-medium text-gray-800 dark:text-white ">
                                 {user.name}
