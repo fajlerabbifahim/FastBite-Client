@@ -32,7 +32,9 @@ const Menu = () => {
   const filteredFoods = foods
     .filter((food) => food.category === selectedCategory)
     .filter((food) =>
-      food.name.toLowerCase().includes(searchTerm.toLowerCase())
+      searchTerm
+        ? food.name?.toLowerCase().includes(searchTerm.toLowerCase())
+        : true
     );
 
   const sortedFoods = [...filteredFoods].sort((a, b) => {

@@ -26,6 +26,7 @@ import AssignedOrdersList from "../pages/Dashboard/Rider/AssignedOrdersList";
 import AddFood from "../pages/Dashboard/Seller/AddFood";
 import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
 import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
+import FoodDetails from "../pages/FoodDetails/FoodDetails";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/RestaurantDetails/:id",
         element: <RestaurantDetails />,
+      },
+      {
+        path: "/food-details/:id",
+        element: <FoodDetails></FoodDetails>,
       },
       {
         path: "/about",

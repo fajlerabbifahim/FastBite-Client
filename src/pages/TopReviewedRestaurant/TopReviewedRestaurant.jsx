@@ -13,7 +13,7 @@ const TopReviewedRestaurant = () => {
     queryKey: ["topRestaurants"],
     queryFn: async () => {
       const { data } = await axiosPublic("/restaurants/top");
-      console.log("top restaurant data", data);
+      // console.log("top restaurant data", data);
       return data;
     },
   });
@@ -47,7 +47,6 @@ const TopReviewedRestaurant = () => {
                   <p className="text-sm text-gray-600">{restaurant.location}</p>
                 </div>
                 <p className="text-yellow-500 font-medium flex items-center gap-2">
-                  {" "}
                   <FaStar /> {restaurant.rating}
                 </p>
               </div>
