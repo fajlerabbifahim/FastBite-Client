@@ -1,7 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
 
-const SectionHeading = ({ title, subTitle, img }) => {
+const SectionHeading = ({ title, subTitle }) => {
   return (
     <div className="text-center mb-12 relative">
       <div className="relative">

@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-[900]  bg-white dark:bg-gray-800 dark:text-white ">
       <nav className="relative shadow   ">
-        <div className="w-11/12 py-5 mx-auto">
+        <div className="w-11/12 py-4 mx-auto">
           <div className="lg:flex justify-between">
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
@@ -84,7 +84,7 @@ const Navbar = () => {
 
             {/* Navigation Links and User Actions */}
             <div
-              className={`absolute inset-x-0  z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
+              className={`absolute inset-x-0  z-20 w-full px-4 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
                 isOpen
                   ? "translate-x-0 opacity-100 bg-slate-300 dark:bg-gray-800 dark:text-white "
                   : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
@@ -252,13 +252,13 @@ const Navbar = () => {
                   <div className="flex gap-2">
                     <Link
                       to="/signup"
-                      className="px-4 py-3 bg-[#E10101] text-white text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-80"
+                      className="px-4 py-3 bg-[#E10101] text-white text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform rounded-lg  "
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/login"
-                      className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-50"
+                      className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  "
                     >
                       Sign in
                     </Link>
