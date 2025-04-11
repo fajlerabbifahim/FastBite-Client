@@ -1,34 +1,31 @@
-import React, {  useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import {  } from "../../providers/AuthProvider";
+import {} from "../../providers/AuthProvider";
 import { MdDarkMode } from "react-icons/md";
 import { IoMdSunny } from "react-icons/io";
 import { useDarkMode } from "../../hooks/ThemeContext";
-import navlogo from '../../assets/Navbar_logo/navlogo.png'
+import navlogo from "../../assets/Navbar_logo/navlogo.png";
 import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logOut } = useAuth()
+  const { user, logOut } = useAuth();
   const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen]);
   const { darkMode, setDarkMode } = useDarkMode();
   console.log(user?.email);
 
   const handleLogOut = () => {
     logOut();
-  }
-  
-
+  };
 
   return (
     <div className="sticky top-0 z-[900]  bg-white dark:bg-gray-800 dark:text-white ">
       <nav className="relative shadow   ">
-        <div className="w-11/12 py-5 mx-auto">
+        <div className="w-11/12 py-4 mx-auto">
           <div className="lg:flex justify-between">
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
-               
                 {/* <Link to="/" className="text-center flex">
                   <span className="text-4xl font-extrabold text-center ">
                     F<span className="text-[#E10101]">i</span>rst B
@@ -36,8 +33,10 @@ const Navbar = () => {
                   </span>
                 </Link> */}
 
-
-               <Link to={'/'}> <img className="w-32" src={navlogo} alt="navlogo" /></Link>
+                <Link to={"/"}>
+                  {" "}
+                  <img className="w-32" src={navlogo} alt="navlogo" />
+                </Link>
               </div>
 
               {/* Mobile Menu Toggle Button */}
@@ -85,7 +84,7 @@ const Navbar = () => {
 
             {/* Navigation Links and User Actions */}
             <div
-              className={`absolute inset-x-0  z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
+              className={`absolute inset-x-0  z-20 w-full px-4 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
                 isOpen
                   ? "translate-x-0 opacity-100 bg-slate-300 dark:bg-gray-800 dark:text-white "
                   : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
@@ -244,7 +243,7 @@ const Navbar = () => {
 
                     <button
                       onClick={handleLogOut}
-                      className="px-4 cursor-pointer py-3 text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                      className="px-4 cursor-pointer py-3 text-sm text-white font-medium tracking-wide  capitalize transition-colors duration-700 transform bg-[#E10101] rounded-lg hover:bg-blue-500 "
                     >
                       Logout
                     </button>
@@ -253,13 +252,13 @@ const Navbar = () => {
                   <div className="flex gap-2">
                     <Link
                       to="/signup"
-                      className="px-4 py-3 bg-[#E10101] text-white text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-80"
+                      className="px-4 py-3 bg-[#E10101] text-white text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform rounded-lg  "
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/login"
-                      className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-50"
+                      className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  "
                     >
                       Sign in
                     </Link>

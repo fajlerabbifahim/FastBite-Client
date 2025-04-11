@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import the star icons
+
 import SectionHeading from "../../Components/Shared/SectionHeading";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
