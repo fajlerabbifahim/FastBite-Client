@@ -27,7 +27,8 @@ import AddFood from "../pages/Dashboard/Seller/AddFood";
 import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
 import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
-
+import PrivateRoute from "./PrivateRoute";
+import AddToCart from "../pages/Dashboard/Customer/AddToCart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -56,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/food-details/:id",
-        element: <FoodDetails></FoodDetails>,
+        element: (
+          <PrivateRoute>
+            <FoodDetails></FoodDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/about",
@@ -108,6 +113,10 @@ const router = createBrowserRouter([
       {
         path: "admin/manageRestaurants",
         element: <ManageRestaurants></ManageRestaurants>,
+      },
+      {
+        path: "customer/addToCart",
+        element: <AddToCart></AddToCart>,
       },
       {
         path: "customer/orders",

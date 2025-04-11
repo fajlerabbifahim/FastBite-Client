@@ -48,12 +48,12 @@ const products = [
 const TopReview = () => {
   return (
     <div className="p-10 text-center dark:bg-gray-900 dark:text-white">
-      <SectionHeading
+      {/* <SectionHeading
         title={"Top Reviewed Dishes"}
         subTitle={
           "Discover our most loved dishes that keep our customers coming back for more. Fresh ingredients, authentic flavors, and culinary excellence in every bite."
         }
-      />
+      /> */}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product, index) => (
