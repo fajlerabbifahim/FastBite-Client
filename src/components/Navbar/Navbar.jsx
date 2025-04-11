@@ -1,37 +1,41 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import { AuthContext } from "../../providers/AuthProvider";
-import { MdDarkMode, MdOutlinePets } from "react-icons/md";
+import {} from "../../providers/AuthProvider";
+import { MdDarkMode } from "react-icons/md";
 import { IoMdSunny } from "react-icons/io";
 import { useDarkMode } from "../../hooks/ThemeContext";
-
+import navlogo from "../../assets/Navbar_logo/navlogo.png";
+import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, handleLogout } = useContext(AuthContext);
-
+  const { user, logOut } = useAuth();
   const toggleMenu = useCallback(() => setIsOpen(!isOpen), [isOpen]);
   const { darkMode, setDarkMode } = useDarkMode();
+  console.log(user?.email);
+
+  const handleLogOut = () => {
+    logOut();
+  };
 
   return (
     <div className="sticky top-0 z-[900]  bg-white dark:bg-gray-800 dark:text-white ">
-      <nav className="relative shadow  ">
-        <div className="w-11/12 py-5 mx-auto">
+      <nav className="relative shadow   ">
+        <div className="w-11/12 py-4 mx-auto">
           <div className="lg:flex justify-between">
             {/* Logo and Brand Name */}
             <div className="flex items-center justify-between">
               <div className="relative flex justify-center items-center">
-                {/* <img
-                  className="w-12 h-12 mr-2 rounded-full"
-                  // src="https://i.ibb.co.com/6whQTLm/hotel-Rose.png"
-                  alt="First Bite"
-                  loading="lazy"
-                                /> */}
-                <Link to="/" className="text-center flex">
+                {/* <Link to="/" className="text-center flex">
                   <span className="text-4xl font-extrabold text-center ">
                     F<span className="text-[#E10101]">i</span>rst B
                     <span className="text-[#E10101]">i</span>te
                   </span>
+                </Link> */}
+
+                <Link to={"/"}>
+                  {" "}
+                  <img className="w-32" src={navlogo} alt="navlogo" />
                 </Link>
               </div>
 
@@ -80,7 +84,7 @@ const Navbar = () => {
 
             {/* Navigation Links and User Actions */}
             <div
-              className={`absolute inset-x-0  z-20 w-full px-6 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
+              className={`absolute inset-x-0  z-20 w-full px-4 py-4 transition-all duration-700 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
                 isOpen
                   ? "translate-x-0 opacity-100 bg-slate-300 dark:bg-gray-800 dark:text-white "
                   : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
@@ -182,6 +186,22 @@ const Navbar = () => {
                 >
                   Contact Us
                 </NavLink>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    `relative inline-block px-2 py-2 mx-3 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                    ${
+                      isActive
+                        ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-full z-10"
+                        : ""
+                    }
+                      before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-full hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                      after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-full hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                      `
+                  }
+                >
+                  Dashboard
+                </NavLink>
               </div>
 
               {/* User Actions */}
@@ -199,7 +219,7 @@ const Navbar = () => {
               <div className="flex items-center mt-4 lg:mt-0 gap-3">
                 {user && user?.email ? (
                   <div className="flex justify-between items-center gap-2">
-                    <button
+                    {/* <button
                       type="button"
                       className="flex items-center focus:outline-none"
                       aria-label="toggle profile dropdown"
@@ -208,7 +228,7 @@ const Navbar = () => {
                         <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
                           <img
                             referrerPolicy="no-referrer"
-                            src={user?.photoURL}
+                            // src={user?.photoURL}
                             className="object-cover w-full h-full"
                             alt="avatar"
                           />
@@ -219,11 +239,11 @@ const Navbar = () => {
                           {user?.displayName}
                         </div>
                       </Tooltip>
-                    </button>
+                    </button> */}
 
                     <button
-                      onClick={handleLogout}
-                      className="px-4 py-3 text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                      onClick={handleLogOut}
+                      className="px-4 cursor-pointer py-3 text-sm text-white font-medium tracking-wide  capitalize transition-colors duration-700 transform bg-[#E10101] rounded-lg hover:bg-blue-500 "
                     >
                       Logout
                     </button>
@@ -232,13 +252,13 @@ const Navbar = () => {
                   <div className="flex gap-2">
                     <Link
                       to="/signup"
-                      className="px-4 py-3 bg-[#E10101] text-white text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-80"
+                      className="px-4 py-3 bg-[#E10101] text-white text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform rounded-lg  "
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/login"
-                      className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  focus:outline-none focus:ring  focus:ring-opacity-50"
+                      className="px-4 py-3 bg-[#E10101] text-white  text-sm font-medium tracking-wide  capitalize transition-colors duration-700 transform  rounded-lg  "
                     >
                       Sign in
                     </Link>

@@ -8,6 +8,25 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import DashboardLayout from "../layouts/DashboardLayout";
+import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers";
+import ManageAllFoodItems from "../pages/Dashboard/Admin/ManageAllFoodItems";
+import ManageRestaurants from "../pages/Dashboard/Admin/ManageRestaurants";
+import RestaurantDetails from "../pages/RestaurantDetails/RestaurantDetails";
+import Roll from "./Roll";
+import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+import Profile from "../pages/Dashboard/Common/Profile";
+import BecomeSeller from "../pages/Dashboard/Customer/BecomeSeller";
+import BecomeMember from "../pages/Dashboard/Common/BecomeMember";
+import MyApplication from "../pages/Dashboard/Common/MyApplication";
+import PendingApplications from "../pages/Dashboard/Admin/PendingApplications";
+import RiderStatus from "../pages/Dashboard/Rider/RiderStatus";
+import AssignedOrdersList from "../pages/Dashboard/Rider/AssignedOrdersList";
+import AddFood from "../pages/Dashboard/Seller/AddFood";
+import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
+import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
+import FoodDetails from "../pages/FoodDetails/FoodDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,31 +39,118 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/menu',
-        element: <Menu></Menu>
+        path: "/menu",
+        element: <Menu></Menu>,
       },
       {
-        path: '/restaurants',
-        element: <Restaurants></Restaurants>
+        path: "/restaurants",
+        element: <Restaurants></Restaurants>,
       },
       {
-        path: '/about',
-        element: <AboutUs></AboutUs>
+        path: "/about",
+        element: <AboutUs></AboutUs>,
       },
       {
-        path: '/contact',
-        element: <ContactUs></ContactUs>
-      }
-    ]
+        path: "/RestaurantDetails/:id",
+        element: <RestaurantDetails />,
+      },
+      {
+        path: "/food-details/:id",
+        element: <FoodDetails></FoodDetails>,
+      },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
+      },
+    ],
   },
+
   {
     path: "/signup",
-    element: <SignUp/>,
+    element: <SignUp />,
   },
   {
     path: "/login",
-    element: <Login/>,
-  }
+    element: <Login />,
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        index: true,
+        element: (
+          // <PrivateRoute>
+          <Roll />
+          // </PrivateRoute>
+        ),
+      },
+      {
+        path: "admin/reports",
+        element: <AdminStatistics></AdminStatistics>,
+      },
+      {
+        path: "admin/users",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "admin/ManageAllFoodItems",
+        element: <ManageAllFoodItems></ManageAllFoodItems>,
+      },
+      {
+        path: "admin/pending-applications",
+        element: <PendingApplications></PendingApplications>,
+      },
+      {
+        path: "admin/manageRestaurants",
+        element: <ManageRestaurants></ManageRestaurants>,
+      },
+      {
+        path: "customer/orders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "user-profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "customer/becomeMember",
+        element: <BecomeMember></BecomeMember>,
+      },
+      {
+        path: "customer/my-application",
+        element: <MyApplication></MyApplication>,
+      },
+      {
+        path: "rider/rider-status",
+        element: <RiderStatus></RiderStatus>,
+      },
+      {
+        path: "rider/assigned-orders",
+        element: <AssignedOrdersList></AssignedOrdersList>,
+      },
+      {
+        path: "seller",
+        element: <SellerDashboard></SellerDashboard>,
+      },
+      {
+        path: "seller-addFood",
+        element: <AddFood></AddFood>,
+      },
+      {
+        path: "seller-foods",
+        element: <ManageAllFoodItems></ManageAllFoodItems>,
+      },
+      {
+        path: "seller-orders",
+        element: <ViewOrders></ViewOrders>,
+      },
+    ],
+  },
 ]);
 
 export default router;

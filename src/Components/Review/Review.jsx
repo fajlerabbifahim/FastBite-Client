@@ -1,50 +1,3 @@
-// import React from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-
-// // Import Swiper styles
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
-
-// // import required modules
-// import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-// import { useState } from "react";
-// import Slide from "./Slide";
-// const Review = () => {
-//   const [ImageArray, setImageArray] = useState([]);
-//   return (
-//     <div className=" py-0 mx-auto mt-0">
-//       <Swiper
-//         spaceBetween={30}
-//         centeredSlides={true}
-//         loop={true}
-//         autoplay={{
-//           delay: 5000,
-//           disableOnInteraction: false,
-//         }}
-//         pagination={{
-//           clickable: true,
-//         }}
-//         navigation={true}
-//         modules={[Autoplay, Pagination, Navigation]}
-//         className="mySwiper"
-//       >
-//         <SwiperSlide>
-
-//         </SwiperSlide>
-//         <SwiperSlide>
-
-//         </SwiperSlide>
-//         <SwiperSlide>
-
-//         </SwiperSlide>
-//       </Swiper>
-//     </div>
-//   );
-// };
-
-// export default Review;
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -82,32 +35,27 @@ const Review = () => {
   ];
 
   return (
-    <div
-      className="w-11/12 mx-auto rounded-xl px-5 lg:px-16 relative bg-center bg-cover bg-no-repeat border border-red-500"
-      style={{
-        backgroundImage: `url('https://groca.myshopify.com/cdn/shop/files/bg-2.jpg?v=1614918252&width=1500')`,
-      }}
-    >
+    <div className="w-11/12 mx-auto rounded-xl px-5 lg:px-16 relative bg-center bg-cover bg-no-repeat ">
       <div className="space-y-3">
         <div>
-          <h2 className="text-center text-3xl lg:text-5xl pt-5 font-bold text-red-600 mb-4">
+          <h2 className="text-center text-3xl lg:text-4xl pt-5 font-bold  mb-4">
             <span className="">
               {" "}
-              Our{" "}
-              <span className="underline underline-offset-4 decoration-2 decoration-green-600">
-                Client
+              Why Our{" "}
+              <span className="underline underline-offset-4 decoration-2 decoration-red-600">
+                Clients
               </span>{" "}
-              Say
+              Choose Us
             </span>
           </h2>
-          <p className="w-full lg:w-8/12 mx-auto text-lg text-justify lg:text-center dark:text-black">
+          <p className="w-full lg:w-8/12 mx-auto text-lg font-medium text-justify lg:text-center dark:text-gray-200">
             "Our clients consistently praise our exceptional service,
             professionalism, and commitment to quality. Their positive feedback
             inspires us to exceed expectations and deliver outstanding results
             every time."
           </p>
         </div>
-        <div className="lg:w-8/12 mx-auto  py-5 ">
+        <div className="lg:w-8/12 mx-auto  py-5 lg:mb-20 ">
           <Swiper
             spaceBetween={30}
             // centeredSlides={true}
@@ -122,7 +70,7 @@ const Review = () => {
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
-            className="mySwiper"
+            className="mySwiper "
           >
             {reviews.map((review, index) => (
               <SwiperSlide key={index}>

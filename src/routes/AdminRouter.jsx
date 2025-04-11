@@ -1,14 +1,13 @@
-// import React from 'react'
-// import LoadingSpinner from '../components/Shared/LoadingSpinner';
-// import { Navigate } from 'react-router-dom';
-// import useRole from '../hooks/useRole';
+// import React from "react";
+// import { Navigate } from "react-router-dom";
+// import LoadingSpinner from "../pages/LoadingSpinner";
 
 // const AdminRouter = ({ children }) => {
-//     const [role, isPending] = useRole()
+//   //   const [role, isPending] = useRole();
+//   const role = "admin";
+//   //   if (isPending) return <LoadingSpinner />;
+//   if (role === "admin") return children;
+//   return <Navigate to="/dashboard" replace="true" />;
+// };
 
-//     if (isPending) return <LoadingSpinner />
-//     if (role === 'Admin') return children
-//     return <Navigate to='/dashboard' replace='true' />
-// }
-
-// export default AdminRouter
+// export default AdminRouter;

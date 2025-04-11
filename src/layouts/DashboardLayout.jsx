@@ -1,18 +1,63 @@
-import { Outlet } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+
+// import { Menu } from 'react-icons/fa';
+import { RxCross1 } from "react-icons/rx";
+import { FaBars } from "react-icons/fa";
+import CustomerMenu from "../pages/Dashboard/Customer/CustomerMenu";
+import SellerMenu from "../pages/Dashboard/Seller/SellerMenu";
+import AdminMenu from "../pages/Dashboard/Admin/AdminMenu";
+import { IoMdSunny } from "react-icons/io";
+import { MdDarkMode } from "react-icons/md";
+import { useDarkMode } from "../hooks/ThemeContext";
+import useRole from "../hooks/useRole";
+import LoadingSpinner from "../pages/LoadingSpinner";
+import RiderMenu from "../pages/Dashboard/Rider/RiderMenu";
 const DashboardLayout = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const navigate = useNavigate();
+  const [role, isPending] = useRole();
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  if (isPending) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
+  // console.log(isMenuOpen)
+  // const role = "admin";
+
+  // const role = "customer";
+  // const role = "seller";
+  // const role = "rider";
+  console.log(role);
   return (
-    <div className='relative min-h-screen md:flex bg-white'>
-      {/* Left Side: Sidebar Component */}
-      {/* <Sidebar /> */}
-      {/* Right Side: Dashboard Dynamic Content */}
-      <div className='flex-1  md:ml-64'>
-        <div className='p-5'>
-          {/* Outlet for dynamic contents */}
-          <Outlet />
-        </div>
+    <div className="lg:grid grid-cols-12 gap-2 -mt-5 lg:mt-0">
+      <div
+        className={`lg:border-r-2 border-green-600 lg:col-span-2 absolute inset-x-0 z-20 w-full lg:px-0 transition-all duration-700 ease-in-out lg:mt-0  lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
+          isMenuOpen
+            ? "translate-x-0 opacity-100 bg-slate-400  dark:text-white"
+            : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
+        }`}
+      >
+        <nav>
+          {/*  Menu Items */}
+          {role === "admin" && <AdminMenu />}
+          {role === "customer" && <CustomerMenu />}
+          {role === "seller" && <SellerMenu />}
+          {role === "rider" && <RiderMenu />}
+        </nav>
+      </div>
+      <button
+        onClick={toggleMenu}
+        className="lg:hidden cursor-pointer fixed top-2 right-1 text-lg z-50 bg-gray-800 text-white p-4 rounded-full shadow-md"
+      >
+        {isMenuOpen ? <RxCross1 /> : <FaBars />}
+      </button>
+      <div className={`lg:col-span-10 mt-5 ${!isMenuOpen && "mt-16"}`}>
+        <Outlet isMenuOpen={isMenuOpen}></Outlet>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;

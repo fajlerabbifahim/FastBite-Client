@@ -45,7 +45,7 @@ const DownloadOurApp = () => {
             </li>
           </ul>
           <div className="flex flex-col md:flex-row gap-4">
-            <button className=" py-3 px-6 rounded-xl flex justify-center items-center bg-black text-white gap-2">
+            <button className="cursor-pointer py-3 px-6 rounded-xl flex justify-center items-center bg-black text-white gap-2">
               <div className="text-5xl">
                 <FaApple />
               </div>
@@ -54,7 +54,7 @@ const DownloadOurApp = () => {
                 <p className="text-2xl font-bold">App Store</p>
               </div>
             </button>
-            <button className=" py-3 px-6 rounded-xl flex justify-center items-center bg-primary-color  text-white gap-2">
+            <button className=" py-3 px-6 rounded-xl cursor-pointer flex justify-center items-center bg-primary-color  text-white gap-2">
               <div className="text-4xl">
                 <img className="w-10" src={playstoreIcon} alt="playstorelogo" />
               </div>
