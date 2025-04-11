@@ -48,7 +48,7 @@ const FoodDetails = () => {
     };
 
     try {
-      const res = await axiosPublic.post("/orders", orderInfo);
+      const res = await axiosPublic.post("/addToCart", orderInfo);
       if (res.data.acknowledged || res.data.modifiedCount > 0) {
         refetch(); // Update cart UI
         toast.success("Add to cart Successful");

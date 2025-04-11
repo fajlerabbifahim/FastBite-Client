@@ -3,13 +3,12 @@ import { FaHome } from "react-icons/fa";
 import Lottie from "react-lottie-player";
 import signupAnimation from "../../assets/authLotties/signup-animation.json";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
+import { saveUser } from "../../api/utils";
 
 const SignUp = () => {
-<<<<<<< HEAD
-=======
-  
->>>>>>> 5dc3e42c2b08213215e89a0a6e33555e094cbbc0
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
   const navigate = useNavigate();
@@ -92,7 +91,6 @@ const SignUp = () => {
           <p className="text-sm text-gray-600 text-center">
             Join FastBite and start ordering delicious food
           </p>
-<<<<<<< HEAD
           <form
             onSubmit={handleSubmit}
             noValidate=""
@@ -196,66 +194,6 @@ const SignUp = () => {
                 Sign Up
               </button>
             </div>
-=======
-
-           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input
-                {...register("name", { required: true })}
-                type="text"
-                placeholder="Full Name"
-                className="w-full px-4 py-2 border rounded-sm  border-gray-300"
-              />
-            </div>
-            <div className="mt-2">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                htmlFor="LoggingEmailAddress"
-              >
-                Photo URL
-              </label>
-              <input
-                {...register("email", { required: true })}
-                type="email"
-                placeholder="Email address"
-                className="w-full px-4 py-2 border rounded-sm border-gray-300"
-              />
-              <input
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 20,
-                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-                })}
-                type="password"
-                placeholder="Password"
-                className="w-full px-4 py-2 border rounded-sm border-gray-300"
-                required
-              />
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="w-full px-4 py-2 border rounded-sm border-gray-300"
-                required
-              />
-            </div>
-
-            {/* Sign Up Button */}
-            <button
-              type="submit"
-              className="cursor-pointer w-full py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-colors"
-            >
-              Sign up
-            </button>
-
-            {/* Google Signup */}
-            <button
-              type="button"
-              className="cursor-pointer w-full flex items-center border-gray-300 justify-center py-2 border rounded-sm hover:text-red-600 transition-colors"
-            >
-              <FcGoogle className="h-5 w-5 mr-2" /> Continue with Google
-            </button>
->>>>>>> 5dc3e42c2b08213215e89a0a6e33555e094cbbc0
           </form>
           <div className="flex items-center pt-0 space-x-1 ">
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
