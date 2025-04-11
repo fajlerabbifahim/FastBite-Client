@@ -1,52 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import Lottie from "react-lottie-player";
-import { useForm } from "react-hook-form";
 import signupAnimation from "../../assets/authLotties/signup-animation.json";
 import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
-import { toast } from "react-toastify";
-import { TbFidgetSpinner } from "react-icons/tb";
-import useAuth from "../../hooks/useAuth";
-import { imageUpload, saveUser } from "../../api/utils";
 
 const SignUp = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   formState: { errors },
-  // } = useForm();
-  // const { createUser, updateUserProfile } = useContext(AuthContext);
-  // const navigate = useNavigate();
-
-  // const onSubmit = (data) => {
-  //   createUser(data.email, data.password).then((result) => {
-  //     const loggedUser = result.user;
-  //     console.log(loggedUser);
-  //     updateUserProfile(data.name, data.photoURL)
-  //       .then(() => {
-  //         // create user entry in the database
-
-  //         const res = userinfo.then((res) => {
-  //           if (res.data.insertedId) {
-  //             console.log("user added to the database");
-  //             reset();
-  //             navigate("/");
-  //             Swal.fire({
-  //               position: "top-end",
-  //               icon: "success",
-  //               title: "User create successfully",
-  //               showConfirmButton: false,
-  //               timer: 1500,
-  //             });
-  //           }
-  //         });
-  //       })
-  //       .catch((error) => console.log(error));
-  //   });
-  // };
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
   const navigate = useNavigate();
@@ -57,22 +15,27 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const image = form.image.files[0];
+    const confirmPassword = form.confirmPassword.value;
+    if (password !== confirmPassword) {
+      toast.success("Password and Confirm password don't match");
+      return;
+    }
+    // const image = form.image.files[0];
 
-    const image_url = await imageUpload(image);
+    // const image_url = await imageUpload(image);
 
     try {
       //2. User Registration
       const result = await createUser(email, password);
 
       //3. Save username & profile photo
-      await updateUserProfile(name, image_url);
+      // await updateUserProfile(name, image_url);
       // console.log(result)
       // save user info in db if the user is new
       await saveUser({
         ...result?.user,
         displayName: name,
-        photoURL: image_url,
+        // photoURL: image_url,
       });
 
       navigate("/");
@@ -110,7 +73,7 @@ const SignUp = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="md:w-1/2 w-full p-8 space-y-6">
+        <div className="md:w-1/2 w-full p-8 space-y-2">
           <Link
             to="/"
             className="flex gap-2 items-center justify-center text-red-600 hover:text-red-700 transition-colors"
@@ -125,7 +88,7 @@ const SignUp = () => {
             Join FastBite and start ordering delicious food
           </p>
 
-          {/* <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <input
                 {...register("name", { required: true })}
@@ -167,134 +130,21 @@ const SignUp = () => {
               />
             </div>
 
-            <div className="mt-2">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                htmlFor="LoggingEmailAddress"
-              >
-                Email Address
-              </label>
-              <input
-                id="LoggingEmailAddress"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                type="email"
-                name="email"
-              />
-            </div>
+            {/* Sign Up Button */}
+            <button
+              type="submit"
+              className="cursor-pointer w-full py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-colors"
+            >
+              Sign up
+            </button>
 
-            <div className="mt-2">
-              <div className="flex justify-between">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                  htmlFor="loggingPassword"
-                >
-                  Password
-                </label>
-              </div>
-              <input
-                id="loggingPassword"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                type="password"
-                name="password"
-              />
-            </div>
-
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="w-full px-6 py-2 text-md font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-              >
-                Register
-              </button>
-            </div>
-          </form> */}
-          <form
-            onSubmit={handleSubmit}
-            noValidate=""
-            action=""
-            className="space-y-2 ng-untouched ng-pristine ng-valid"
-          >
-            <div className="space-y-2">
-              <div>
-                <label htmlFor="email" className="block mb-2 text-sm">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Enter Your Name Here"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
-                  data-temp-mail-org="0"
-                />
-              </div>
-              {/* <div>
-                <label htmlFor="image" className="block mb-2 text-sm">
-                  Select Image:
-                </label>
-                <input
-                  required
-                  type="file"
-                  id="image"
-                  name="image"
-                  accept="image/*"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
-                />
-              </div> */}
-              <div>
-                <label
-                  htmlFor="image"
-                  className="block text-sm dark:text-gray-300"
-                >
-                  Select Image:
-                </label>
-
-                <input
-                  type="file"
-                  required
-                  id="image"
-                  name="image"
-                  accept="image/*"
-                  className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block mb-2 text-sm">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  placeholder="Enter Your Email Here"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
-                  data-temp-mail-org="0"
-                />
-              </div>
-              <div>
-                <div className="flex justify-between">
-                  <label htmlFor="password" className="text-sm mb-2">
-                    Password
-                  </label>
-                </div>
-                <input
-                  type="password"
-                  name="password"
-                  autoComplete="new-password"
-                  id="password"
-                  required
-                  placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-red-500 bg-gray-200 text-gray-900"
-                />
-              </div>
-            </div>
-
-            <div>
-              <button className="w-full px-6 py-2.5 text-sm cursor-pointer font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                Sign Up
-              </button>
-            </div>
+            {/* Google Signup */}
+            <button
+              type="button"
+              className="cursor-pointer w-full flex items-center border-gray-300 justify-center py-2 border rounded-sm hover:text-red-600 transition-colors"
+            >
+              <FcGoogle className="h-5 w-5 mr-2" /> Continue with Google
+            </button>
           </form>
           <div className="flex items-center pt-0 space-x-1 ">
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
@@ -316,7 +166,7 @@ const SignUp = () => {
             Already have an account?
             <Link
               to="/login"
-              className="text-red-600 hover:text-red-500 font-medium"
+              className="ml-2 text-red-600 hover:text-red-500 font-medium"
             >
               Login
             </Link>

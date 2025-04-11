@@ -20,11 +20,15 @@ const Menu = () => {
     queryKey: ["foods"],
     queryFn: async () => {
       const { data } = await axiosPublic("/foods");
-      console.log("popular dishes food here", data);
+      // console.log("popular dishes food here", data);
       return data;
     },
   });
 
+  if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
+  //filter food
   const filteredFoods = foods
     .filter((food) => food.category === selectedCategory)
     .filter((food) =>

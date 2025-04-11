@@ -23,7 +23,7 @@ const RestaurantDetails = () => {
   const { data: restaurant = [], isLoading } = useQuery({
     queryKey: ["restaurantDetails"],
     queryFn: async () => {
-      const { data } = await axiosPublic(`/restaurantDetails/${id}`);
+      const { data } = await axiosPublic.get(`/restaurantDetails/${id}`);
       console.log("restaurant details data", data);
 
       return data;
@@ -63,6 +63,11 @@ const RestaurantDetails = () => {
   // save review to database
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      toast.error("Please login to submit your review");
+      return;
+    }
 
     if (rating === 0 || !reviewText.trim()) {
       toast.error("Review and rating cannot be empty");
