@@ -23,7 +23,7 @@ const TopReviewedRestaurant = () => {
   }
 
   return (
-    <div className="py-10 w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto">
       <h1 className="text-4xl font-bold text-center mb-6">
         <span className="primary-color">Top Reviewed </span> Restaurants
       </h1>

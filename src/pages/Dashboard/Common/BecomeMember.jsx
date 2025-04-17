@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import useUser from "../../../hooks/useUser";
 import LoadingSpinner from "../../LoadingSpinner";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { useDispatch } from "react-redux";
 const BecomeMember = () => {
   const [users, isPending] = useUser();
   const { notify } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }

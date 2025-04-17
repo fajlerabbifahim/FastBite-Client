@@ -8,18 +8,24 @@ import { FaHome } from "react-icons/fa";
 import useUser from "../../../hooks/useUser";
 import LoadingSpinner from "../../LoadingSpinner";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { setLogout } from "../../../features/addToCart/addToCartSlice";
+import { useDispatch } from "react-redux";
+import { setLoader } from "../../../features/loader/loaderSlice";
 
 const AdminMenu = () => {
   const { user, handleLogout } = useContext(AuthContext);
   const [users, isPending] = useUser();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+
   // console.log(users);
   const handleLogout1 = () => {
     handleLogout("s");
     navigate("/");
+    dispatch(setLogout());
   };
   return (
     <div className="h-screen container mx-auto pl-2 ">

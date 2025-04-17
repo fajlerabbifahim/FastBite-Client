@@ -6,11 +6,15 @@ import LoadingSpinner from "../../LoadingSpinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { div } from "framer-motion/client";
 import Payment from "../../Payment/Payment";
+import { useDispatch } from "react-redux";
+import { setLoader } from "../../../features/loader/loaderSlice";
+import GlobalLoader from "../../../components/GlobalLoader/GlobalLoader";
 
 const AddToCart = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
   const {
     data: Cart = [],
     isPending,
@@ -26,6 +30,7 @@ const AddToCart = () => {
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -43,7 +48,7 @@ const AddToCart = () => {
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-              {Cart?.cart?.length} Items
+              {Cart?.totalQuantity} Items
             </span>
           </div>
           <div className="flex flex-col mt-6">

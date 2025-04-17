@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import CommonDashboard from "../Common/CommonDashboard";
 import Title from "../Common/Title";
@@ -9,11 +9,15 @@ import LoadingSpinner from "../../LoadingSpinner";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useDispatch } from "react-redux";
+import { setLogout } from "../../../features/addToCart/addToCartSlice";
+import { setLoader } from "../../../features/loader/loaderSlice";
 const CustomerMenu = () => {
   const { user, handleLogout, notify } = useContext(AuthContext);
   const [users, isPending] = useUser();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   const {
     data: users1 = [],
     isPending: isPending1,
@@ -34,6 +38,7 @@ const CustomerMenu = () => {
   const handleLogout1 = () => {
     handleLogout("s");
     navigate("/");
+    dispatch(setLogout());
   };
   return (
     <div className="h-screen container mx-auto pl-2 ">

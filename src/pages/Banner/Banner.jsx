@@ -6,7 +6,7 @@ export function Banner() {
   const [location, setLocation] = useState("");
 
   return (
-    <div className="relative overflow-hidden lg:mt-16 bg-white dark:bg-gray-800 dark:text-white  py-10 md:py-5">
+    <div className="relative overflow-hidden lg:mt-0 bg-white dark:bg-gray-800 dark:text-white py-5">
       {/* Background Texture */}
       {/* <div className="absolute inset-0 bg-gray-100 bg-[url('/path-to-texture.png')] bg-cover opacity-20"></div> */}
 
@@ -26,7 +26,7 @@ export function Banner() {
             </p>
             {/* Search Box */}
             <div className="relative max-w-lg mx-auto md:mx-0">
-              <div className="flex flex-col sm:flex-row shadow-lg rounded-xl overflow-hidde ">
+              <div className="flex flex-col sm:flex-row shadow-lg rounded-xl overflow-hide ">
                 <div className="relative  flex-grow ">
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-500">
                     <FaMapMarkerAlt className="h-5 w-5" />
@@ -39,7 +39,7 @@ export function Banner() {
                     className="w-full border-[1px]  hover:border-red-500  shadow  rounded-tl-lg border-red-600  duration-500 pl-12 pr-4 py-4  focus:ring-0 focus:outline-none"
                   />
                 </div>
-                <button className="bg-red-600 roun text-white font-medium px-6 py-4 flex items-center justify-center duration-500 hover:bg-red-700 transition-colors">
+                <button className="bg-red-600  text-white font-medium px-6 py-4 flex items-center justify-center duration-500 hover:bg-red-700 transition-colors">
                   <span className="mr-2">Find Food</span>
                   <FaArrowRight className="h-4 w-4" />
                 </button>
@@ -55,15 +55,13 @@ export function Banner() {
           {/* Right Content - Image & Badges */}
           <div className="w-full md:w-1/2 relative flex justify-center">
             {/* Background Shape */}
-    <div className="absolute top-0 lg:-right-6 -right-2 w-full h-full bg-gradient-to-br from-red-500 to-gray-600 rounded-tl-[200px] rounded-br-[200px] lg:rounded-tl-[350px] lg:rounded-br-[350px] -z-10"></div>
+            <div className="absolute top-0 lg:-right-6 -right-2 w-full h-full bg-gradient-to-br from-red-500 to-gray-600 rounded-tl-[200px] rounded-br-[200px] lg:rounded-tl-[350px] lg:rounded-br-[350px] -z-10"></div>
 
             <img
               className="relative z-10 max-w-x md:max-w-sm lg:max-w-2xl rounded-r-full"
               src={bannerIMG}
               alt="Delivery Man"
             />
-
-         
 
             <div className="absolute bottom-1/4 left-0 transform -translate-x-1/2 z-20">
               <div className="bg-white rounded-lg shadow-xl p-3 transform -rotate-6">

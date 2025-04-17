@@ -6,10 +6,13 @@ import LoadingSpinner from "../../LoadingSpinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { div } from "framer-motion/client";
 import Payment from "../../Payment/Payment";
+import { setLoader } from "../../../features/loader/loaderSlice";
+import { useDispatch } from "react-redux";
 
 const MyOrders = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const { data, isPending, refetch } = useQuery({
     queryKey: ["orders"],
@@ -22,6 +25,7 @@ const MyOrders = () => {
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+
   const closeModal = () => {
     setIsOpen(false);
   };

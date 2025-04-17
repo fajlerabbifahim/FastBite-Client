@@ -3,12 +3,15 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../LoadingSpinner";
+import { useDispatch } from "react-redux";
+import { setLoader } from "../../../features/loader/loaderSlice";
 
 const ManageRestaurants = () => {
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
 
   const {
-    data: restaurants,
+    data: restaurants = [],
     isPending,
     refetch,
   } = useQuery({
@@ -21,7 +24,7 @@ const ManageRestaurants = () => {
   });
 
   if (isPending) {
-    return <LoadingSpinner></LoadingSpinner>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -34,30 +37,32 @@ const ManageRestaurants = () => {
           {restaurants.length}
         </span>
       </div>
+
       <div className="flex flex-col mt-6">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+            <div className="overflow-auto max-h-[500px] scroll-smooth border border-gray-200 dark:border-gray-700 md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead className="bg-gray-50 dark:bg-gray-800">
+                <thead className="bg-green-500 dark:bg-gray-800 sticky top-0 z-10 text-white">
                   <tr>
-                    <th className="py-3.5 px-4 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                    <th className="py-3.5 px-4 text-left text-sm font-medium">
                       Name
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                    <th className="px-4 py-3.5 text-left text-sm font-medium">
                       Contact
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                    <th className="px-4 py-3.5 text-left text-sm font-medium">
                       Status
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                    <th className="px-4 py-3.5 text-left text-sm font-medium">
                       Email address
                     </th>
-                    <th className="relative py-3.5 px-4">
-                      <span className="sr-only">Edit</span>
+                    <th className="py-3.5 px-4 text-left text-sm font-medium">
+                      Action
                     </th>
                   </tr>
                 </thead>
+
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {restaurants.map((restaurant) => (
                     <tr key={restaurant._id}>
@@ -66,13 +71,13 @@ const ManageRestaurants = () => {
                           <img
                             className="object-cover w-10 h-10 rounded-full"
                             src={restaurant.image}
-                            alt="User 1"
+                            alt="User"
                           />
                           <div>
                             <h2 className="font-medium text-gray-800 dark:text-white">
                               {restaurant.name}
                             </h2>
-                            <h3 className="flex items-center gap-1 text-gray-500 ">
+                            <h3 className="flex items-center gap-1 text-gray-500">
                               <FaMapMarkerAlt /> {restaurant.location}
                             </h3>
                           </div>
@@ -81,9 +86,6 @@ const ManageRestaurants = () => {
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         {restaurant.contact_number}
                       </td>
-                      {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {restaurant.status}
-                      </td> */}
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <span
                           className={
@@ -99,7 +101,7 @@ const ManageRestaurants = () => {
                         {restaurant.owner_email}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        <button className=" cursor-pointer px-3 py-1 text-white bg-red-600 rounded-lg">
+                        <button className="cursor-pointer px-3 py-1 text-white bg-red-600 rounded-lg hover:bg-red-500">
                           Remove
                         </button>
                       </td>
