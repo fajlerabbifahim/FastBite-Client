@@ -11,9 +11,8 @@ const Roll = () => {
   // const role = "rider";
   if (isPending) return <LoadingSpinner></LoadingSpinner>;
   if (role === "customer")
-    return <Navigate to="/dashboard/customer/orders"></Navigate>;
-  // if (role === "seller")
-  //   return <Navigate to="/dashboard/my-inventory"></Navigate>;
+    return <Navigate to="/dashboard/customer/addToCart"></Navigate>;
+  if (role === "seller") return <Navigate to="/dashboard/seller"></Navigate>;
   if (role === "rider")
     return <Navigate to="/dashboard/rider/rider-status"></Navigate>;
   else return <Navigate to="/dashboard/admin/reports"></Navigate>;

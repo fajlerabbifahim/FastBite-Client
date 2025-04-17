@@ -13,7 +13,7 @@ const TopReviewedRestaurant = () => {
     queryKey: ["topRestaurants"],
     queryFn: async () => {
       const { data } = await axiosPublic("/restaurants/top");
-      console.log("top restaurant data", data);
+      // console.log("top restaurant data", data);
       return data;
     },
   });
@@ -34,7 +34,7 @@ const TopReviewedRestaurant = () => {
             <Link
               key={restaurant._id}
               to={`/restaurantDetails/${restaurant._id}`}
-              className="flex gap-4  rounded-lg shadow-lg bg-white p-3 w-[400px] hover:scale-105 transition-transform duration-300"
+              className="flex gap-4 border border-red-600  rounded-lg shadow-lg bg-white p-3 w-[400px] hover:scale-105 transition-transform duration-300"
             >
               <img
                 className="w-40 rounded-md"
@@ -47,7 +47,6 @@ const TopReviewedRestaurant = () => {
                   <p className="text-sm text-gray-600">{restaurant.location}</p>
                 </div>
                 <p className="text-yellow-500 font-medium flex items-center gap-2">
-                  {" "}
                   <FaStar /> {restaurant.rating}
                 </p>
               </div>

@@ -25,7 +25,11 @@ import RiderStatus from "../pages/Dashboard/Rider/RiderStatus";
 import AssignedOrdersList from "../pages/Dashboard/Rider/AssignedOrdersList";
 import AddFood from "../pages/Dashboard/Seller/AddFood";
 import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
-
+import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
+import FoodDetails from "../pages/FoodDetails/FoodDetails";
+import PrivateRoute from "./PrivateRoute";
+import AddToCart from "../pages/Dashboard/Customer/AddToCart";
+import MyProfile from "../pages/Dashboard/Customer/MyProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: "/RestaurantDetails/:id",
         element: <RestaurantDetails />,
+      },
+      {
+        path: "/food-details/:id",
+        element: (
+          <PrivateRoute>
+            <FoodDetails></FoodDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/about",
@@ -104,16 +116,24 @@ const router = createBrowserRouter([
         element: <ManageRestaurants></ManageRestaurants>,
       },
       {
+        path: "customer/addToCart",
+        element: <AddToCart></AddToCart>,
+      },
+      {
         path: "customer/orders",
         element: <MyOrders></MyOrders>,
       },
       {
-        path: "customer/profile",
+        path: "user-profile",
         element: <Profile></Profile>,
       },
       {
         path: "customer/becomeMember",
         element: <BecomeMember></BecomeMember>,
+      },
+      {
+        path: "customer/myprofile",
+        element: <MyProfile></MyProfile>,
       },
       {
         path: "customer/my-application",
@@ -128,15 +148,19 @@ const router = createBrowserRouter([
         element: <AssignedOrdersList></AssignedOrdersList>,
       },
       {
-        path: "seller/add-food",
+        path: "seller",
+        element: <SellerDashboard></SellerDashboard>,
+      },
+      {
+        path: "seller-addFood",
         element: <AddFood></AddFood>,
       },
       {
-        path: "seller/foods",
+        path: "seller-foods",
         element: <ManageAllFoodItems></ManageAllFoodItems>,
       },
       {
-        path: "seller/orders",
+        path: "seller-orders",
         element: <ViewOrders></ViewOrders>,
       },
     ],

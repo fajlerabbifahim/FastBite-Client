@@ -5,18 +5,17 @@ import { Link } from "react-router-dom";
 import { useDarkMode } from "../../../hooks/ThemeContext";
 import { RxCross1 } from "react-icons/rx";
 import { FaBars } from "react-icons/fa";
+import navlogo from "../../../assets/Navbar_logo/navlogo.png";
 
 const Title = () => {
   const { darkMode, setDarkMode } = useDarkMode();
   return (
     <div>
-      <div className="relative flex justify-between items-center my-2 lg:gap-4">
-        <Link to="/dashboard/admin/reports" className="text-center flex">
-          <span className="text-3xl font-extrabold text-center ">
-            F<span className="text-[#E10101]">i</span>rst B
-            <span className="text-[#E10101]">i</span>te
-          </span>
-        </Link>
+      <div className="relative shadow- flex justify-between items-center m-2 lg:gap-4">
+        <Link to={"/"}>
+            {" "}
+            <img className="w-32" src={navlogo} alt="navlogo" />
+          </Link>
 
         <button
           onClick={() => setDarkMode(!darkMode)}

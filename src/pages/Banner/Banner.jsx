@@ -7,12 +7,12 @@ export function Banner() {
   const [location, setLocation] = useState("");
 
   return (
-    <div className="relative overflow-hidden lg:mt-16 bg-white dark:bg-gray-800 dark:text-white py-10 md:py-5">
+    <div className="relative overflow-hidden  lg:mt-16 bg-white dark:bg-gray-800 dark:text-white py-10 md:py-5">
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left Content */}
           <motion.div
-            className="w-full md:w-1/2 space-y-8 text-center md:text-left"
+            className="w-full md:w-1/2  space-y-8 text-center md:text-left"
             initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}

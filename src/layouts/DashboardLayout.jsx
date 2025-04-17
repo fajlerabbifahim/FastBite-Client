@@ -31,7 +31,7 @@ const DashboardLayout = () => {
   // const role = "rider";
   console.log(role);
   return (
-    <div className="lg:grid grid-cols-12 gap-2 -mt-5 lg:mt-0">
+    <div className="lg:grid  grid-cols-12 gap-2 -mt-5 lg:mt-0">
       <div
         className={`lg:border-r-2 border-green-600 lg:col-span-2 absolute inset-x-0 z-20 w-full lg:px-0 transition-all duration-700 ease-in-out lg:mt-0  lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:flex lg:items-center ${
           isMenuOpen
