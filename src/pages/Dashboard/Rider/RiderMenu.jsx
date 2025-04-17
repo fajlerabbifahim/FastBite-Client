@@ -7,14 +7,18 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Title from "../Common/Title";
 import { FaHome } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
+import { setLogout } from "../../../features/addToCart/addToCartSlice";
+import { useDispatch } from "react-redux";
 const RiderMenu = () => {
   const { user, handleLogout, notify } = useContext(AuthContext);
   const [users, isPending] = useUser();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   const handleLogout1 = () => {
     handleLogout("s");
     navigate("/");
+    dispatch(setLogout());
   };
   return (
     <div className="h-screen container mx-auto pl-2 ">

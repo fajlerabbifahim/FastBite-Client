@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../LoadingSpinner";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { footer } from "framer-motion/client";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setAddToCart } from "../../features/addToCart/addToCartSlice";
+import { setLoader } from "../../features/loader/loaderSlice";
 
 const FoodDetails = () => {
   const { user } = useAuth();
@@ -14,6 +17,8 @@ const FoodDetails = () => {
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(1);
   const [purchaseInfo, setPurchaseInfo] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // useEffect(() => {
   //   async function fetchData() {
   //     const { data } = await axiosPublic(`/users/${user?.email}`);
@@ -29,9 +34,10 @@ const FoodDetails = () => {
     },
   });
 
-  if (isPending || !user?.email) {
+  if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+
   // console.log(data);
   const food = data.food;
   const restaurant = data.restaurant;
@@ -39,6 +45,12 @@ const FoodDetails = () => {
   // console.log(restaurant);
 
   const addToCart = async () => {
+    if (!user?.email) {
+      // console.log("hello");
+
+      // return <Navigate to="/login" state={{ from: location }} replace="true" />;
+      return navigate("/login");
+    }
     const orderInfo = {
       email: user?.email,
       food: {
@@ -51,6 +63,9 @@ const FoodDetails = () => {
       const res = await axiosPublic.post("/addToCart", orderInfo);
       if (res.data.acknowledged || res.data.modifiedCount > 0) {
         refetch(); // Update cart UI
+        const updatedCart = await axiosPublic(`/addToCart/${user?.email}`);
+
+        dispatch(setAddToCart(updatedCart.data));
         toast.success("Add to cart Successful");
       }
     } catch (error) {

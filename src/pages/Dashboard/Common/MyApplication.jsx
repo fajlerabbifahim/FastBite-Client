@@ -7,10 +7,13 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { div, p } from "framer-motion/client";
 import { useNavigate } from "react-router-dom";
+import { setLoader } from "../../../features/loader/loaderSlice";
+import { useDispatch } from "react-redux";
 
 const MyApplication = () => {
   const { user, notify } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     data: users = [],
@@ -23,9 +26,17 @@ const MyApplication = () => {
       return data;
     },
   });
-  if (isPending) {
-    return <LoadingSpinner></LoadingSpinner>;
-  }
+  // if (isPending) {
+  //   return <LoadingSpinner></LoadingSpinner>;
+  // }
+  useEffect(() => {
+    if (isPending) {
+      dispatch(setLoader(true));
+    } else {
+      dispatch(setLoader(false));
+    }
+  }, [isPending]);
+
   //   console.log(users);
 
   const handleDelete = (id) => {

@@ -57,11 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/food-details/:id",
-        element: (
-          <PrivateRoute>
-            <FoodDetails></FoodDetails>
-          </PrivateRoute>
-        ),
+        element: <FoodDetails></FoodDetails>,
       },
       {
         path: "/about",

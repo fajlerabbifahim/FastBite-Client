@@ -40,8 +40,7 @@ const Review = () => {
         <div>
           <h2 className="text-center text-3xl lg:text-4xl pt-5 font-bold  mb-4">
             <span className="">
-              {" "}
-              Why Our{" "}
+              Why Our
               <span className="underline underline-offset-4 decoration-2 decoration-red-600">
                 Clients
               </span>{" "}

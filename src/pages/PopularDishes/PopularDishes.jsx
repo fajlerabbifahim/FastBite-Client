@@ -21,15 +21,15 @@ const PopularDishes = () => {
   }
   // console.log(foods);
   return (
-    <div className="container mx-auto w-11/12 py-12">
+    <div className="container mx-auto w-11/12 pb-5">
       {/* sheared heading  components use */}
 
-      {/* <SectionHeading
+      <SectionHeading
         title={"Our Popular Dishes"}
         subTitle={
           "Discover our most loved dishes that keep our customers coming back for more. Fresh ingredients, authentic flavors, and culinary excellence in every bite."
         }
-      /> */}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {foods.map((dish, idx) => (

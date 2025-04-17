@@ -7,14 +7,17 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Title from "../Common/Title";
 import { FaHome } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
+import { useDispatch } from "react-redux";
 const SellerMenu = () => {
   const { user, handleLogout, notify } = useContext(AuthContext);
   const [users, isPending] = useUser();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const axiosPublic = useAxiosPublic();
   const handleLogout1 = () => {
     handleLogout("s");
     navigate("/");
+    dispatch(setLogout());
   };
   return (
     <div className="h-screen container mx-auto pl-2 ">

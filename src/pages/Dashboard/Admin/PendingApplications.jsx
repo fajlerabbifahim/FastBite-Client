@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../LoadingSpinner";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { setLoader } from "../../../features/loader/loaderSlice";
+import { useDispatch } from "react-redux";
 
 const PendingApplications = () => {
   const { notify } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   const {
     data: users = [],
     isPending,
@@ -24,6 +27,7 @@ const PendingApplications = () => {
     return <LoadingSpinner></LoadingSpinner>;
   }
   console.log(users);
+
   const handleDelete = (id) => {
     // console.log(id);
     Swal.fire({
