@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useRestaurant from "../../hooks/useRestaurant";
 import LoadingSpinner from "../LoadingSpinner";
+import StarRatings from "react-star-ratings";
 
 const Restaurants = () => {
   const [restaurants, isPending] = useRestaurant();
@@ -10,6 +11,7 @@ const Restaurants = () => {
   if (isPending) {
     return <LoadingSpinner />;
   }
+  // console.log(restaurants)
 
   return (
     <div className="container mx-auto p-6">
@@ -43,17 +45,31 @@ const Restaurants = () => {
                 </p>
 
                 {/* Rating */}
-                <div className="flex items-center mt-3">
+                {/* <div className="flex items-center mt-3">
                   <span className="text-yellow-500 text-lg">
                     <FaStar />
                   </span>
                   <span className="text-gray-600 text-sm ml-2">
                     ({restaurant.rating.toFixed(1)})
                   </span>
+                </div> */}
+
+                <div className="mt-2">
+                  <StarRatings
+                    rating={restaurant.rating}
+                    starRatedColor="#FBBF24"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    name="rating"
+                  />
+                  <span className="ml-2 text-gray-600 text-sm">
+                    {restaurant.rating}
+                  </span>
                 </div>
 
                 {/* Status */}
-                <span
+                {/* <span
                   className={`inline-block px-4 py-1 text-sm font-medium rounded-full mt-4 ${
                     restaurant.status === "open"
                       ? "bg-green-100 text-green-700"
@@ -61,7 +77,7 @@ const Restaurants = () => {
                   }`}
                 >
                   {restaurant.status.toUpperCase()}
-                </span>
+                </span> */}
               </div>
             </div>
           </Link>

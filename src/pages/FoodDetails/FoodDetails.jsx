@@ -38,7 +38,7 @@ const FoodDetails = () => {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
-  // console.log(data);
+  console.log(data);
   const food = data.food;
   const restaurant = data.restaurant;
   const owner = data.owner;
@@ -52,19 +52,23 @@ const FoodDetails = () => {
       return navigate("/login");
     }
     const orderInfo = {
-      email: user?.email,
-      food: {
-        foodId: food._id,
-        foodImage: food.image,
-      },
+      customer_email: user?.email,
+      food_id: food?._id,
+      food_name: food?.name,
+      food_image: food?.image,
+      price: food?.price,
+      quantity: 1,
+      owner_email: owner?.email,
+      status: "isPending",
     };
 
     try {
       const res = await axiosPublic.post("/addToCart", orderInfo);
+      console.log(res);
       if (res.data.acknowledged || res.data.modifiedCount > 0) {
         refetch(); // Update cart UI
         const updatedCart = await axiosPublic(`/addToCart/${user?.email}`);
-
+        console.log(updatedCart);
         dispatch(setAddToCart(updatedCart.data));
         toast.success("Add to cart Successful");
       }

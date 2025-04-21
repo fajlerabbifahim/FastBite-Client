@@ -64,18 +64,18 @@ const ManageAllFoodItems = () => {
                 {/* Sticky thead */}
                 <thead className="bg-green-500 dark:bg-gray-800 text-white sticky top-0 z-10">
                   <tr>
-                    <th className="py-3.5 px-4 text-left text-lg font-medium">
-                      <div className="flex items-center gap-x-3">
-                        <span>Name</span>
+                    <th className="py-3.5 px-4 text-center text-lg font-medium">
+                      <div className="flex items-center text-center gap-x-3">
+                        <span className="">Name</span>
                       </div>
                     </th>
-                    <th className="px-4 py-3.5 text-left text-lg font-medium">
+                    <th className="px-4 py-3.5 text-right text-lg font-medium">
                       Quantity
                     </th>
-                    <th className="px-4 py-3.5 text-left text-lg font-medium">
+                    <th className="px-4 py-3.5 text-center text-lg font-medium">
                       Price
                     </th>
-                    <th className="px-4 py-3.5 text-left text-lg font-medium">
+                    <th className="px-4 py-3.5 text-center text-lg font-medium">
                       Action
                     </th>
                   </tr>
@@ -93,7 +93,7 @@ const ManageAllFoodItems = () => {
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="flex items-center gap-x-2">
                             <img
-                              className="object-cover w-10 h-10 rounded-full"
+                              className="object-cover w-20 h-20 rounded-full"
                               src={food.image}
                               alt=""
                             />
@@ -102,8 +102,12 @@ const ManageAllFoodItems = () => {
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-4 font-semibold text-lg dark:text-gray-300 whitespace-nowrap">
+
+                        <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
                           {food.quantity}
+                        </td>
+                        <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
+                          {/* {food.quantity} */}
                         </td>
                         <td className="px-4 py-4 font-semibold text-lg dark:text-gray-300 whitespace-nowrap">
                           {food.price}

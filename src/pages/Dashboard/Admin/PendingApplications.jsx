@@ -51,14 +51,15 @@ const PendingApplications = () => {
       }
     });
   };
-  const handleAccept = async (id) => {
+  const handleAccept = async (id, role) => {
     // console.log(id);
-    const res = await axiosPublic.post(`/rider/${id}`);
+    const res = await axiosPublic.post(`/member/${id}`);
     if (res.data.insertedId) {
-      notify("success", "your application successful");
+      notify("success", `new ${role} add successful`);
       refetch();
     }
   };
+
   return (
     <section className="w-11/12 mx-auto pl-2">
       <div className="flex items-center gap-x-3">
@@ -161,10 +162,11 @@ const PendingApplications = () => {
                         </div>
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {user.role}
+                        {user.role === "rider" && <p>Rider</p>}
+                        {user.role === "seller" && <p>Seller</p>}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {user.email}
+                        {user.owner_email}
                       </td>
                       {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         <button
@@ -178,7 +180,7 @@ const PendingApplications = () => {
 
                       <td className="px-4 py-4 flex justify-end gap-5 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         <button
-                          onClick={() => handleAccept(user._id)}
+                          onClick={() => handleAccept(user._id, user.role)}
                           className="cursor-pointer flex items-center px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-80"
                         >
                           <span className="mr-2">Accept</span>
