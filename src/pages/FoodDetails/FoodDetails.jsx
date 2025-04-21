@@ -77,16 +77,16 @@ const FoodDetails = () => {
     }
   };
   return (
-    <div className="w-11/12 mx-auto bg-white dark:bg-gray-800  my-5 flex flex-col md:flex-row items-center gap-6 p-6 rounded-xl shadow-md border-2 hover:border-red-400 transition duration-500 ">
+    <div className="w-11/12 mx-auto bg-white dark:bg-gray-800  my-5 flex flex-col md:flex-row items-center gap-6 p-2 rounded-xl shadow-md border-2 hover:border-red-400 transition duration-500 ">
       <img
         src={food.image}
-        alt="Chicken Biryani"
-        className="w-full md:w-1/2 h-72 object-cover rounded-lg"
+        alt={food.name}
+        className="w-full md:w-1/2 border border-red-400 h-72 object-cover rounded-lg"
       />
 
       <div className="flex-1 space-y-3">
         <h2 className="text-2xl font-bold dark:text-white">
-          <strong>{food.name}</strong>{" "}
+          <strong>{food.name}</strong>
         </h2>
         <p className="dark:text-white">
           <strong>Category :</strong> {food.category}
@@ -104,14 +104,14 @@ const FoodDetails = () => {
         >
           <strong>Seller:</strong>{" "}
           <span className="font-semibold">{owner.name}</span>
-          <img
+          {/* <img
             className="rounded-full"
             height="30"
             width="30"
             alt="Avatar"
             referrerPolicy="no-referrer"
             src={owner.image}
-          />
+          /> */}
         </div>
         <p className="text-sm ">
           <strong>Restaurant Name : </strong>
@@ -119,12 +119,12 @@ const FoodDetails = () => {
         </p>
 
         <p className="font-semibold">
-          <span className="text-lg font-semibold">Quantity :</span>{" "}
+          <span className="text-lg font-semibold">Quantity :</span>
           <span className="text-lg font-semibold"> {food.quantity}</span>
         </p>
 
         <div className="text-xl font-bold">
-          Price:{" "}
+          Price:
           <span className="text-gray-800 dark:text-white">{food.price} TK</span>
         </div>
 

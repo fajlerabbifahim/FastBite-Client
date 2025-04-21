@@ -21,7 +21,7 @@ const BecomeMember = () => {
   const handleRoleChange = (e) => {
     setRole(e.target.value);
   };
-  console.log(users._id);
+  // console.log(users._id);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -144,6 +144,7 @@ const BecomeMember = () => {
               type="number"
               name="contactNumber"
               placeholder="Enter your contact number"
+              required
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
@@ -198,6 +199,7 @@ const BecomeMember = () => {
                 type="text"
                 name="restaurant-name"
                 placeholder="Enter your restaurant name"
+                required
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
@@ -237,6 +239,7 @@ const BecomeMember = () => {
             <textarea
               name="description"
               placeholder="Enter your restaurant description"
+              required
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
@@ -248,6 +251,7 @@ const BecomeMember = () => {
           <textarea
             name="address"
             placeholder="Enter your address"
+            required
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           />
         </div>
