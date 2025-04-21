@@ -29,6 +29,7 @@ import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import PrivateRoute from "./PrivateRoute";
 import AddToCart from "../pages/Dashboard/Customer/AddToCart";
+import ManageMyFoods from "../pages/Dashboard/Seller/ManageMyFoods";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
       {
         path: "seller-orders",
         element: <ViewOrders></ViewOrders>,
+      },
+      {
+        path: "manage-my-foods",
+        element: <ManageMyFoods></ManageMyFoods>,
       },
     ],
   },
