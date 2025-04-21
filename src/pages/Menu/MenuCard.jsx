@@ -13,13 +13,13 @@ const MenuCard = ({ food }) => {
           />
         </div>
         <div className="flex flex-col pt-4 pb-0">
-          <div className="flex justify-between  px-2 items-center">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <div className="flex justify-between items-center px-2  mb-2">
+            <h3 className=" font-semibold text-gray-900 dark:text-white ">
               {food.name}
             </h3>
-            <p className=" font-bold text-lg dark:text-white">
-              <span className="text-2xl">৳</span> {food.price}
-            </p>
+            <h3 className="flex justify-center items-center font-bold  dark:text-white">
+              {food.price} TK
+            </h3>
           </div>
           <Link
             to={`/food-details/${food._id}`}

@@ -148,11 +148,11 @@ const MyApplication = () => {
                           /> */}
 
                         <div className="flex items-center gap-x-2">
-                          {/* <img
+                          <img
                             className="object-cover w-10 h-10 rounded-full"
-                            src={users.name}
+                            src={users.image}
                             alt=""
-                          /> */}
+                          />
                           <div>
                             <h2 className="font-medium text-gray-800 dark:text-white ">
                               {users.name}
@@ -167,9 +167,10 @@ const MyApplication = () => {
 
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                       {users.role === "rider" && <p>Rider</p>}
+                      {users.role === "seller" && <p>Seller</p>}
                     </td>
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                      {users.email}
+                      {users.owner_email}
                     </td>
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                       {users.isApprove === false ? (

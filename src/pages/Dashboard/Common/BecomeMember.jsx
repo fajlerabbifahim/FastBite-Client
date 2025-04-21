@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import useUser from "../../../hooks/useUser";
 import LoadingSpinner from "../../LoadingSpinner";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useDispatch } from "react-redux";
+import { imageUpload } from "../../../api/utils";
 const BecomeMember = () => {
   const [users, isPending] = useUser();
+  const [role, setRole] = useState("");
   const { notify } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -16,25 +18,55 @@ const BecomeMember = () => {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
+  };
+  console.log(users._id);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = new FormData(e.target);
+    const form = e.target;
+    const imageFile = form.image.files[0];
+    const image = await imageUpload(imageFile);
+    let memberInfo;
+    if (role === "seller") {
+      const form = new FormData(e.target);
+      const owner_id = users?._id;
+      const owner_email = form.get("email");
+      const name = form.get("restaurant-name");
+      const location = form.get("address");
+      const contact_number = form.get("contactNumber");
+      const description = form.get("description");
+      const rating = parseInt(form.get("rating"));
 
-    const name = form.get("username");
-    const email = form.get("email");
-    const role = form.get("role");
-    const contactNumber = form.get("contactNumber");
-    const address = form.get("address");
-
-    const memberInfo = {
-      name,
-      email,
-      image: users?.image,
-      role,
-      contactNumber,
-      address,
-      isApprove: false,
-    };
+      memberInfo = {
+        owner_id,
+        owner_email,
+        name,
+        location,
+        contact_number,
+        description,
+        rating,
+        role,
+        image,
+        isApprove: false,
+      };
+    } else {
+      const form = new FormData(e.target);
+      const name = form.get("username");
+      const email = form.get("email");
+      const location = form.get("address");
+      const contact_number = form.get("contactNumber");
+      memberInfo = {
+        name,
+        owner_email: email,
+        image,
+        role,
+        contact_number,
+        location,
+        isApprove: false,
+      };
+    }
+    // console.log("member", memberInfo);
     const res = await axiosPublic.post("/become-member", memberInfo);
     // console.log(res.data.insertedId);
     if (res.data.insertedId) {
@@ -88,10 +120,13 @@ const BecomeMember = () => {
             </label>
             <select
               name="role"
-              defaultValue="Select Role"
+              value={role}
+              onChange={handleRoleChange}
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             >
-              <option disabled>Select Role</option>
+              <option disabled value="">
+                Select Role
+              </option>
               <option value="seller">Seller</option>
               <option value="rider">Delivery Men</option>
             </select>
@@ -112,12 +147,102 @@ const BecomeMember = () => {
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
+          {role === "rider" && (
+            <div>
+              <label
+                className="text-gray-700 capitalize dark:text-gray-200"
+                htmlFor="select-image"
+              >
+                Select Profile Photo
+              </label>
+              <input
+                type="file"
+                required
+                id="image"
+                name="image"
+                accept="image/*"
+                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
+              />
+            </div>
+          )}
+          {role === "seller" && (
+            <div>
+              <label
+                className="text-gray-700 capitalize dark:text-gray-200"
+                htmlFor="select-image"
+              >
+                Select restaurant Image
+              </label>
+              <input
+                type="file"
+                required
+                id="image"
+                name="image"
+                accept="image/*"
+                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
+              />
+            </div>
+          )}
         </div>
+        {role === "seller" && (
+          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <div>
+              <label
+                className="text-gray-700 capitalize dark:text-gray-200"
+                htmlFor="restaurant-name"
+              >
+                restaurant name
+              </label>
+              <input
+                id="restaurant-name"
+                type="text"
+                name="restaurant-name"
+                placeholder="Enter your restaurant name"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              />
+            </div>
+
+            <div className="">
+              <label
+                className="text-gray-700 dark:text-gray-200"
+                htmlFor="role"
+              >
+                Select Rating
+              </label>
+              <select
+                name="rating"
+                // value={role}
+                // onChange={handleRoleChange}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              >
+                <option disabled>Rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+        )}
+
+        {role === "seller" && (
+          <div className="mt-4">
+            <label
+              className="text-gray-700 capitalize dark:text-gray-200"
+              htmlFor="contact-number"
+            >
+              restaurant description
+            </label>
+            <textarea
+              name="description"
+              placeholder="Enter your restaurant description"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            />
+          </div>
+        )}
         <div className="mt-4">
-          <label
-            className="text-gray-700 dark:text-gray-200"
-            htmlFor="contact-number"
-          >
+          <label className="text-gray-700 dark:text-gray-200" htmlFor="address">
             Address
           </label>
           <textarea

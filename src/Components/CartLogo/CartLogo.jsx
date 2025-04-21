@@ -59,7 +59,9 @@ const CartLogo = () => {
     }
   }, [isLoading]);
 
-  // console.log(addToCart);
+  console.log("62", addToCart);
+  const cart = addToCart?.reduce((current, item) => item.quantity + current, 0);
+  console.log(cart);
   return (
     <div className="w-11/12 mx-auto bg-transparent">
       <div className="flex justify-end my-4 relative">
@@ -69,7 +71,7 @@ const CartLogo = () => {
               <IoMdCart />
             </span>
             <p className="absolute min-w-5 min-h-5 font-bold bg-red-600 px-1 rounded-4xl -top-[12%] -right-[0.2%] text-lg text-center text-white">
-              {addToCart?.totalQuantity}
+              {cart}
             </p>
           </div>
         </Link>

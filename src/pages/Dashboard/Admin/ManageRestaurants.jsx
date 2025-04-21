@@ -26,7 +26,7 @@ const ManageRestaurants = () => {
   if (isPending) {
     return <LoadingSpinner />;
   }
-
+  // console.log(restaurants);
   return (
     <section className="w-11/12 mx-auto pl-2">
       <div className="flex items-center gap-x-3">

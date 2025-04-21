@@ -29,12 +29,12 @@ const MyOrders = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-  console.log(data[0]?.Cart?.cart);
+  console.log(data);
   const handleDelete = () => {};
   //   console.log(Cart?.cart?.length > 0);
   return (
     <div>
-      {data[0]?.Cart?.cart?.length > 0 ? (
+      {data?.length > 0 ? (
         <section className="w-11/12 mx-auto pl-2">
           <div className="flex items-center gap-x-3">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
@@ -42,7 +42,7 @@ const MyOrders = () => {
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-              {data[0]?.Cart?.cart?.length} Items
+              {data?.length} Items
             </span>
           </div>
           <div className="flex flex-col mt-6">
@@ -62,13 +62,13 @@ const MyOrders = () => {
                         </th>
                         <th
                           scope="col"
-                          className="px-4 py-3.5 font-normal text-left rtl:text-right dark:text-gray-400 text-white text-lg"
+                          className="px-4 py-3.5 font-normal text-center dark:text-gray-400 text-white text-lg"
                         >
                           Status
                         </th>{" "}
                         <th
                           scope="col"
-                          className="px-4 py-3.5 font-normal text-left rtl:text-right dark:text-gray-400 text-white text-lg"
+                          className="px-4 py-3.5 font-normal text-center dark:text-gray-400 text-white text-lg"
                         >
                           Quantity
                         </th>
@@ -84,35 +84,33 @@ const MyOrders = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      {data[0]?.Cart?.cart.map((food, idx) => (
+                      {data?.map((food, idx) => (
                         <tr key={idx}>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <div className="inline-flex items-center gap-x-3">
                               <div className="flex items-center gap-x-2">
                                 <img
                                   className="object-cover w-10 h-10 rounded-full"
-                                  src={food.image}
+                                  src={food.food_image}
                                   alt=""
                                 />
 
                                 <div>
                                   <h2 className="font-medium text-gray-800 dark:text-white ">
-                                    {food.name}
+                                    {food.food_name}
                                   </h2>
                                 </div>
                               </div>
                             </div>
                           </td>
                           <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
-                            {food.status === "isPending" ? (
+                            {food.status === "isPending" && (
                               <p className="bg-green-400 text-center rounded-2xl py-1">
                                 Pending
                               </p>
-                            ) : (
-                              ""
                             )}
                           </td>
-                          <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
+                          <td className="px-4 py-4 font-semibold text-lg text-center  dark:text-gray-300 whitespace-nowrap">
                             {food.quantity}
                           </td>
                           <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">

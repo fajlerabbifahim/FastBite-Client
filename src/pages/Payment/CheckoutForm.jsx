@@ -22,7 +22,7 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-  console.log(users);
+  // console.log(users);
   useEffect(() => {
     if (totalPrice > 0) {
       axiosPublic
@@ -33,10 +33,13 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
     }
   }, [axiosPublic, totalPrice]);
 
-  console.log(clientSecret);
+  // console.log(clientSecret);
   const handlePurchase = async (e) => {
-    console.log("hello");
+    // console.log("hello");
     e.preventDefault();
+
+    const contact = e.target.contact.value;
+    const address = e.target.address.value;
 
     if (!stripe || !elements) return;
 
@@ -68,29 +71,21 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
       if (paymentIntent.status === "succeeded") {
         setTransactionId(paymentIntent.id);
         const payment = {
-          customerName: users?.name,
-          customerEmail: users?.email,
-          price: totalPrice,
+          customer_name: users?.name,
+          customer_email: users?.email,
           transactionId: paymentIntent.id,
+          contact_number: contact,
+          address: address,
+          price: totalPrice,
           Cart: Cart,
         };
         const res = await axiosPublic.post("/orders", payment);
+        // console.log("83", res);
 
-        // console.log(classID)
-        // let id = "";
-        // if (classID) {
-        //   id = classID;
-        // } else {
-        //   const res = await axiosPublic.get(
-        //     `/class-name/${selectedClass.value}`
-        //   );
-        //   id = res.data._id;
-        // }
-
-        if (res.data.insertedId) {
+        if (res.data.acknowledged) {
           notify("success", "Your payment successful");
           // const res1 = await axiosPublic.patch(`/class-update/${id}`);
-          // console.log(res1)
+          setIsOpen(false);
           navigate("/");
         }
       }
@@ -101,30 +96,15 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
     <div className="my-2">
       <form onSubmit={handlePurchase}>
         <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-          {/* {!classData && (
-            <div className="mb-4 flex-1 ">
-              <label className="block text-sm font-medium text-gray-700">
-                Select class
-              </label>
-              <Select1
-                className="mt-1 block w-full text-xl rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                options={addClass}
-                defaultValue={selectedClass}
-                onChange={setSelectedClass}
-              />
-            </div>
-          )} */}
           <div className="space-y-1 text-sm">
             <label htmlFor="name" className="block text-gray-600">
               <strong>Name</strong>
             </label>
             <input
-              // max={5}
               className="w-full p-2 text-gray-800 border border-red-300 focus:outline-red-500 rounded-md bg-white"
               name="name"
               id="name"
               type="text"
-              // placeholder="Contact Number"
               value={users?.name}
               readOnly
             />
@@ -134,12 +114,10 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
               <strong>Email</strong>
             </label>
             <input
-              // max={5}
               className="w-full p-2 text-gray-800 border border-red-300 focus:outline-red-500 rounded-md bg-white"
               name="email"
               id="email"
               type="email"
-              // placeholder="Contact Number"
               value={users?.email}
               readOnly
             />
@@ -149,7 +127,6 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
               <strong>Contact Number</strong>
             </label>
             <input
-              // max={5}
               className="w-full p-2 text-gray-800 border border-red-300 focus:outline-red-500 rounded-md bg-white"
               name="contact"
               id="contact"
@@ -162,7 +139,6 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
               <strong>Address</strong>
             </label>
             <textarea
-              // max={5}
               className="w-full p-2 text-gray-800 border border-red-300 focus:outline-red-500 rounded-md bg-white"
               name="address"
               id="address"
@@ -196,9 +172,6 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
               />
             </div>
           </div>
-          {/* <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Pay Now
-          </button> */}
           <div className="mt-5 sm:flex sm:items-center sm:-mx-2">
             <button
               onClick={() => setIsOpen(false)}
@@ -207,15 +180,13 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
               cancel
             </button>
             <button
-              onClick={handlePurchase}
+              type="submit"
               className="w-full cursor-pointer  px-4 py-2 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-40"
             >
               {`Pay $${totalPrice}`}
             </button>
           </div>
         </div>
-        {/* {customError} <p className='text-red-500 font-semibold'>{customError}</p>
-                {transactionId && <p className='text-green-500 font-semibold'>{transactionId}</p>} */}
       </form>
     </div>
   );
