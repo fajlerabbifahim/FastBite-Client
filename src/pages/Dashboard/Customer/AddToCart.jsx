@@ -37,9 +37,9 @@ const AddToCart = () => {
     <div>
       {Cart?.cart?.length > 0 ? (
         <section className="w-11/12 mx-auto pl-2">
-          <div className="flex items-center gap-x-3">
+          <div className="flex items-endm gap-x-3">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
-              Total Items
+              Total 
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
@@ -71,7 +71,7 @@ const AddToCart = () => {
                           scope="col"
                           className="px-4 py-3.5 font-normal text-left rtl:text-right dark:text-gray-400 text-white text-lg"
                         >
-                          Price
+                          Price 
                         </th>
                         <th scope="col" className="relative py-3.5 px-4">
                           <span className="sr-only">Edit</span>
@@ -102,7 +102,7 @@ const AddToCart = () => {
                             {food.quantity}
                           </td>
                           <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
-                            {food.price}
+                            {food.price} 
                           </td>
                         </tr>
                       ))}
