@@ -1,13 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { IoMdCart } from "react-icons/io";
+import { useEffect } from "react";
+import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../pages/LoadingSpinner";
-import { useDispatch, useSelector } from "react-redux";
-
 import {
   setAddToCart,
   setError,
@@ -16,26 +12,11 @@ import {
 import { setLoader } from "../../features/loader/loaderSlice";
 
 const CartLogo = () => {
-  // const { cart } = useContext(AuthContext);
-
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  // const [isOpen, setIsOpen] = useState(false);
-  // const {
-  //   data: Cart = [],
-  //   isPending,
-  //   refetch,
-  // } = useQuery({
-  //   queryKey: ["addToCart"],
-  //   queryFn: async () => {
-  //     const { data } = await axiosPublic(`/addToCart/${user?.email}`);
-  //     return data;
-  //   },
-  // });
-  const { addToCart, isLoading, error } = useSelector(
-    (state) => state.addToCart
-  );
   const dispatch = useDispatch();
+  const { addToCart, isLoading } = useSelector((state) => state.addToCart);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,30 +33,24 @@ const CartLogo = () => {
   }, [dispatch, user?.email, axiosPublic]);
 
   useEffect(() => {
-    if (isLoading) {
-      dispatch(setLoader(true));
-    } else {
-      dispatch(setLoader(false));
-    }
-  }, [isLoading]);
+    dispatch(setLoader(isLoading));
+  }, [isLoading, dispatch]);
 
-  // console.log("62", addToCart);
-  const cart = addToCart?.reduce((current, item) => item.quantity + current, 0);
-  // console.log(cart);
+  const cartItemCount =
+    addToCart?.reduce((total, item) => total + item.quantity, 0) || 0;
+
   return (
-    <div className="w-11/12 mx-auto bg-transparent">
-      <div className="flex justify-end my-4 relative">
-        <Link to={`/dashboard/addToCart`} className=" cursor-pointer">
-          <div className="p-6 border-4 rounded-full border-amber-400 w-12 h-12 flex justify-center items-center bg-white dark:bg-black">
-            <span className="text-3xl">
-              <IoMdCart />
-            </span>
-            <p className="absolute min-w-5 min-h-5 font-bold bg-red-600 px-1 rounded-4xl -top-[12%] -right-[0.2%] text-lg text-center text-white">
-              {cart}
-            </p>
-          </div>
-        </Link>
-      </div>
+    <div className="relative">
+      <Link to="/dashboard/addToCart" className="relative group">
+        <div className="w-12 h-12 flex items-center justify-center rounded-full  transition-transform group-hover:scale-110 duration-300">
+          <FiShoppingCart className="text-[28px]" />
+        </div>
+        {cartItemCount > 0 && (
+          <span className="absolute -top-0 -right-0 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-bounce">
+            {cartItemCount}
+          </span>
+        )}
+      </Link>
     </div>
   );
 };
