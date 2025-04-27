@@ -149,7 +149,7 @@ const RestaurantDetails = () => {
         {/* Contact & Status */}
         <div className="mt-6 flex flex-col md:flex-row md:justify-between bg-gray-100 p-6 rounded-lg shadow-lg">
           <p className="text-lg font-medium text-gray-800 flex items-center gap-2">
-            <BsTelephone /> Contact:{" "}
+            <BsTelephone /> Contact:
             <span className="text-blue-600">{restaurant.contact_number}</span>
           </p>
           <span

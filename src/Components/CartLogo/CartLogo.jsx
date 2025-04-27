@@ -59,13 +59,13 @@ const CartLogo = () => {
     }
   }, [isLoading]);
 
-  console.log("62", addToCart);
+  // console.log("62", addToCart);
   const cart = addToCart?.reduce((current, item) => item.quantity + current, 0);
-  console.log(cart);
+  // console.log(cart);
   return (
     <div className="w-11/12 mx-auto bg-transparent">
       <div className="flex justify-end my-4 relative">
-        <Link to={`/dashboard/customer/addToCart`} className=" cursor-pointer">
+        <Link to={`/dashboard/addToCart`} className=" cursor-pointer">
           <div className="p-6 border-4 rounded-full border-amber-400 w-12 h-12 flex justify-center items-center bg-white dark:bg-black">
             <span className="text-3xl">
               <IoMdCart />

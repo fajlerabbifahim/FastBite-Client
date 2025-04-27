@@ -44,6 +44,40 @@ const RiderMenu = () => {
         {/* <div className=""> */}
         <nav className="flex flex-col gap-1 flex-1 lg:mt-6 ">
           <NavLink
+            to="/dashboard/customer/addToCart"
+            className={({ isActive }) =>
+              `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                                        ${
+                                          isActive
+                                            ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-20 z-10"
+                                            : ""
+                                        }
+                  
+                                        before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-20 hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                                        after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-20 hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                                        `
+            }
+          >
+            Add to Cart
+          </NavLink>
+          <NavLink
+            to="/dashboard/orders"
+            className={({ isActive }) =>
+              `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
+                                        ${
+                                          isActive
+                                            ? "text-[#E10101] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:bg-[#E10101] after:w-20 z-10"
+                                            : ""
+                                        }
+                  
+                                        before:content-[''] before:absolute before:left-0 before:bottom-[-2px] before:h-[2px] before:bg-[#E10101] before:transition-all before:duration-300 before:ease-in-out before:w-0 hover:before:w-20 hover:before:transition-all hover:before:duration-300 hover:before:ease-in-out
+                                        after:content-[''] after:absolute after:left-0 after:bottom-[5px] after:h-[2px] after:bg-[#E10101] after:transition-all after:duration-300 after:ease-in-out after:w-0 hover:after:w-20 hover:after:transition-all hover:after:duration-300 hover:after:ease-in-out
+                                        `
+            }
+          >
+            My Orders
+          </NavLink>
+          <NavLink
             to="/dashboard/rider/rider-status"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
@@ -79,7 +113,7 @@ const RiderMenu = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/user-profile"
+            to="/dashboard/profile"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${

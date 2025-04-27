@@ -43,13 +43,18 @@ const Footer = () => {
         <div className="md:w-1/3">
           <h3 className="text-xl font-semibold text-red-500">Explore</h3>
           <ul className="mt-4 space-y-2 text-gray-400">
-           <Link to={'/'}><li>Home</li></Link>
+            <Link to={"/"}>
+              <li>Home</li>
+            </Link>
             <li>Blog</li>
             <li>Products</li>
             <li>Clients</li>
-           <Link to={'/contact'}><li>Contact Us</li></Link>
-           <Link to={'/about'}><li>About Us</li></Link>
-           
+            <Link to={"/contact"}>
+              <li>Contact Us</li>
+            </Link>
+            <Link to={"/about"}>
+              <li>About Us</li>
+            </Link>
           </ul>
         </div>
 
@@ -58,7 +63,7 @@ const Footer = () => {
           <h3 className="text-xl font-semibold text-red-500">Contact Info</h3>
           <div className="mt-4 text-gray-400">
             <p className="flex items-center gap-2">
-              <FaMapMarkerAlt />{" "}
+              <FaMapMarkerAlt />
               <span>Goldschmidtstraße 13, 04103 Leipzig</span>
             </p>
             <p className="flex items-center gap-2 mt-2">

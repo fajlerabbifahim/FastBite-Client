@@ -64,7 +64,7 @@ const CustomerMenu = () => {
         {/* <div className=""> */}
         <nav className="flex flex-col gap-1 flex-1 lg:mt-6 ">
           <NavLink
-            to="/dashboard/customer/addToCart"
+            to="/dashboard/addToCart"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
@@ -81,7 +81,7 @@ const CustomerMenu = () => {
             Add to Cart
           </NavLink>
           <NavLink
-            to="/dashboard/customer/orders"
+            to="/dashboard/orders"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${
@@ -137,7 +137,7 @@ const CustomerMenu = () => {
             </NavLink>
           )}
           <NavLink
-            to="/dashboard/customer/profile"
+            to="/dashboard/profile"
             className={({ isActive }) =>
               `relative inline-block px-0 py-2 mx-0 mt-2 transition-colors duration-700 transform rounded-md lg:mt-0 dark:text-gray-200 hover:text-[#E10101] font-semibold
                               ${

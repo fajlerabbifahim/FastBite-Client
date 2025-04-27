@@ -15,7 +15,6 @@ import ManageAllFoodItems from "../pages/Dashboard/Admin/ManageAllFoodItems";
 import ManageRestaurants from "../pages/Dashboard/Admin/ManageRestaurants";
 import RestaurantDetails from "../pages/RestaurantDetails/RestaurantDetails";
 import Roll from "./Roll";
-import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import Profile from "../pages/Dashboard/Common/Profile";
 import BecomeSeller from "../pages/Dashboard/Customer/BecomeSeller";
 import BecomeMember from "../pages/Dashboard/Common/BecomeMember";
@@ -28,8 +27,9 @@ import ViewOrders from "../pages/Dashboard/Seller/ViewOrders";
 import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import PrivateRoute from "./PrivateRoute";
-import AddToCart from "../pages/Dashboard/Customer/AddToCart";
 import ManageMyFoods from "../pages/Dashboard/Seller/ManageMyFoods";
+import AddToCart from "../pages/Dashboard/Common/AddToCart";
+import MyOrders from "../pages/Dashboard/Common/MyOrders";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -112,15 +112,15 @@ const router = createBrowserRouter([
         element: <ManageRestaurants></ManageRestaurants>,
       },
       {
-        path: "customer/addToCart",
+        path: "addToCart",
         element: <AddToCart></AddToCart>,
       },
       {
-        path: "customer/orders",
+        path: "orders",
         element: <MyOrders></MyOrders>,
       },
       {
-        path: "user-profile",
+        path: "profile",
         element: <Profile></Profile>,
       },
       {

@@ -25,23 +25,22 @@ const DownloadOurApp = () => {
           </h2>
           <ul className="text-slate-500 space-y-2 mb-10">
             <li className="flex items-center gap-2">
-              {" "}
               <span className="text-yellow-400 transform scale-85">
                 <FaCircleDot />
-              </span>{" "}
+              </span>
               Higher Reach - Minimal Effort
             </li>
             <li className="flex items-center gap-2">
               <span className="text-yellow-400 transform scale-85">
                 <FaCircleDot />
-              </span>{" "}
+              </span>
               Showcase Your Brand
             </li>
             <li className="flex items-center gap-2">
               <span className="text-yellow-400 transform scale-85">
                 <FaCircleDot />
-              </span>{" "}
-              Exclusive Offers and Disconuts{" "}
+              </span>
+              Exclusive Offers and Discount
             </li>
           </ul>
           <div className="flex flex-col md:flex-row gap-4">

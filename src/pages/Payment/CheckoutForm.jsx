@@ -86,7 +86,7 @@ const CheckoutForm = ({ Cart, setIsOpen, totalPrice }) => {
           notify("success", "Your payment successful");
           // const res1 = await axiosPublic.patch(`/class-update/${id}`);
           setIsOpen(false);
-          navigate("/");
+          navigate("/dashboard/orders");
         }
       }
     }
