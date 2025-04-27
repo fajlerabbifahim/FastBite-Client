@@ -15,7 +15,7 @@ export function Banner() {
           {/* Left Content */}
           <div className="w-full md:w-1/2 space-y-8 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-              <span className="text-red-600">Fast, Fresh &amp; Right</span>{" "}
+              <span className="text-red-600">Fast, Fresh &amp; Right</span>
               <span className="text-gray-800 dark:text-white">
                 To Your Door
               </span>

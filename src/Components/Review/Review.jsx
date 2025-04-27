@@ -43,7 +43,7 @@ const Review = () => {
               Why Our
               <span className="underline underline-offset-4 decoration-2 decoration-red-600">
                 Clients
-              </span>{" "}
+              </span>
               Choose Us
             </span>
           </h2>

@@ -102,7 +102,7 @@ const FoodDetails = () => {
                 gap-2
               "
         >
-          <strong>Seller:</strong>{" "}
+          <strong>Seller:</strong>
           <span className="font-semibold">{owner.name}</span>
           {/* <img
             className="rounded-full"

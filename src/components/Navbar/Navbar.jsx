@@ -38,7 +38,6 @@ const Navbar = () => {
                 </Link> */}
 
                 <Link to={"/"}>
-                  {" "}
                   <img className="w-32" src={navlogo} alt="navlogo" />
                 </Link>
               </div>

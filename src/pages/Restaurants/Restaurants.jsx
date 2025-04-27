@@ -24,7 +24,6 @@ const Restaurants = () => {
             key={restaurant._id}
             to={`/restaurantDetails/${restaurant._id}`}
           >
-            {" "}
             <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-105 border border-gray-200">
               <img
                 src={restaurant.image}

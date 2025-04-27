@@ -97,7 +97,7 @@ const TopReview = () => {
                 ))}
               </div>
               <p className="text-green-600 text-lg font-semibold mt-2 dark:text-green-400">
-                {product.price}{" "}
+                {product.price}
                 <span className="text-gray-400 line-through dark:text-gray-500">
                   {product.discount}
                 </span>

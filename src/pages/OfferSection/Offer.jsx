@@ -20,7 +20,7 @@ const Offer = () => {
           Exclusive Membership Offer! 🎉
         </h2>
         <p className="text-gray-800 text-center mt-3 text-lg font-medium">
-          Enjoy special discounts up to{" "}
+          Enjoy special discounts up to
           <span className="font-extrabold text-red-500">30% OFF</span> as a
           premium member!
         </p>
