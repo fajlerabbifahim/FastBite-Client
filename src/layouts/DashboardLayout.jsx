@@ -46,7 +46,7 @@ const DashboardLayout = () => {
             : "opacity-0 -translate-x-full lg:opacity-100 lg:translate-x-0"
         }`}
       >
-        <nav className=" p-8 bg-gray-50 w-[90%]">
+        <nav className=" w-[90%]">
           {/* Menu Items based on Role */}
           {role === "admin" && <AdminMenu />}
           {role === "customer" && <CustomerMenu />}

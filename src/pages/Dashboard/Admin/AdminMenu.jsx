@@ -63,8 +63,8 @@ const AdminMenu = () => {
   ];
 
   return (
-    <div className="h-screen  dark:bg-gray-800">
-      <aside className="flex flex-col h-full w-64 px-4 py-6  dark:bg-gray-900 ">
+    <div className=" dark:bg-gray-800">
+      <aside className="flex flex-col h-full w-64 p-8 bg-gray-50  dark:bg-gray-900 ">
         <Title />
         <nav className="flex flex-col gap-2 flex-1 mt-4">
           {menuItems.map(({ to, label, icon }) => (
