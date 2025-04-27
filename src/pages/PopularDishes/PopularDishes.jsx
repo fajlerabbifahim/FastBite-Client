@@ -21,7 +21,7 @@ const PopularDishes = () => {
   }
   // console.log(foods);
   return (
-    <div className="container mx-auto w-11/12 pb-5">
+    <div className="container mx-auto w-11/12 py-5">
       {/* sheared heading  components use */}
 
       <SectionHeading
