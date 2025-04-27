@@ -25,7 +25,7 @@ export function Banner() {
               delivered in minutes.
             </p>
             {/* Search Box */}
-            <div className="relative max-w-lg mx-auto md:mx-0">
+            {/* <div className="relative max-w-lg mx-auto md:mx-0">
               <div className="flex flex-col sm:flex-row shadow-lg rounded-xl overflow-hide ">
                 <div className="relative  flex-grow ">
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-500">
@@ -44,7 +44,7 @@ export function Banner() {
                   <FaArrowRight className="h-4 w-4" />
                 </button>
               </div>
-            </div>
+            </div> */}
             {/* Customer Count */}
             <div className="text-sm text-gray-600 dark:text-white mt-4">
               <span className="font-bold text-red-600">10,000+</span> happy
