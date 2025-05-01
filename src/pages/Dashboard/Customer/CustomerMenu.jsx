@@ -299,7 +299,7 @@ const CustomerMenu = () => {
           </NavLink>
           <button
             onClick={handleLogout1}
-            className="flex items-center gap-3 px-4 py-2 text-gray-700 dark:text-gray-200 rounded-lg transition-colors duration-300 hover:bg-red-100 dark:hover:bg-gray-700"
+            className="cursor-pointer flex items-center gap-3 px-4 py-2 text-gray-700 dark:text-gray-200 rounded-lg transition-colors duration-300 hover:bg-red-100 dark:hover:bg-gray-700"
           >
             <FaSignOutAlt />
             <span>Logout</span>

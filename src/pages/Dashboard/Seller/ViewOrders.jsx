@@ -30,6 +30,10 @@ const ViewOrders = () => {
   }
   // console.log(orders);
   // console.log(allRider);
+  const TempOrders = orders.filter(
+    (order) =>
+      order.status !== "Handed Over to Rider" && order.status !== "Deliver"
+  );
 
   return (
     <section className="w-11/12  px-4 mx-auto">
@@ -38,7 +42,7 @@ const ViewOrders = () => {
           Total Orders
         </h2>
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-          {orders.length} orders
+          {TempOrders.length} orders
         </span>
       </div>
 
@@ -51,23 +55,19 @@ const ViewOrders = () => {
                   <tr>
                     <th className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       <div className="flex items-center gap-x-3">
-                        <span className="text-lg text-white font-semibold">
-                          Name
-                        </span>
+                        <span className="text-white font-semibold">Name</span>
                       </div>
                     </th>
                     <th className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       <button className="flex items-center gap-x-2">
-                        <span className="text-lg text-white font-semibold">
+                        <span className=" text-white font-semibold">
                           Quantity
                         </span>
                       </button>
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       <button className="flex items-center gap-x-2">
-                        <span className="text-lg text-white font-semibold">
-                          Price
-                        </span>
+                        <span className="text-white font-semibold">Price</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -78,10 +78,10 @@ const ViewOrders = () => {
                         ></svg>
                       </button>
                     </th>
-                    <th className="px-4 py-3.5 text-lg text-white font-semibold  text-left rtl:text-right  dark:text-gray-400">
+                    <th className="px-4 py-3.5  text-white font-semibold  text-left rtl:text-right  dark:text-gray-400">
                       Customer Email
                     </th>
-                    <th className="px-4 py-3.5 text-lg text-white font-semibold text-left rtl:text-right dark:text-gray-400">
+                    <th className="px-0 py-3.5  text-white font-semibold text-left rtl:text-right dark:text-gray-400">
                       Contact Number
                     </th>
                     <th className="relative py-3.5 px-4">
@@ -90,7 +90,7 @@ const ViewOrders = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                  {orders.map((order) => (
+                  {TempOrders.map((order) => (
                     <ViewOrderRow
                       key={order._id}
                       order={order}

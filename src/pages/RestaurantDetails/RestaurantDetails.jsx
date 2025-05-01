@@ -89,10 +89,7 @@ const RestaurantDetails = () => {
     refetchReview();
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-  if (isPending) {
+  if (isLoading || isPending) {
     return <LoadingSpinner />;
   }
 

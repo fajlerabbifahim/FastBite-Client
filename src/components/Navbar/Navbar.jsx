@@ -131,27 +131,28 @@ const Navbar = () => {
 
                 {user?.email ? (
                   <div className="flex items-center gap-3">
-                    <button
-                      className="flex items-center focus:outline-none"
-                      aria-label="toggle profile dropdown"
-                    >
-                      <a id="not-clickable">
-                        <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
-                          <img
-                            referrerPolicy="no-referrer"
-                            src={user?.photoURL}
-                            className="object-cover w-full h-full"
-                            alt="avatar"
-                          />
-                        </div>
-                      </a>
-                      <Tooltip anchorSelect="#not-clickable">
-                        <div className="px-2 py-1 rounded text-sm">
-                          {user?.displayName}
-                        </div>
-                      </Tooltip>
-                    </button>
-
+                    {user?.photoURL && (
+                      <button
+                        className="flex items-center focus:outline-none"
+                        aria-label="toggle profile dropdown"
+                      >
+                        <a id="not-clickable">
+                          <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
+                            <img
+                              referrerPolicy="no-referrer"
+                              src={user?.photoURL}
+                              className="object-cover w-full h-full"
+                              alt="avatar"
+                            />
+                          </div>
+                        </a>
+                        <Tooltip anchorSelect="#not-clickable">
+                          <div className="px-2 py-1 rounded text-sm">
+                            {user?.displayName}
+                          </div>
+                        </Tooltip>
+                      </button>
+                    )}
                     <button
                       onClick={handleLogOut}
                       className="px-4 py-3 text-sm font-medium tracking-wide text-white bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
