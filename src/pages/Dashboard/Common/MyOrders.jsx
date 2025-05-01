@@ -8,13 +8,22 @@ import { div } from "framer-motion/client";
 import Payment from "../../Payment/Payment";
 import { setLoader } from "../../../features/loader/loaderSlice";
 import { useDispatch } from "react-redux";
+import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
+import ProgressBarControl from "./ProgressBarControl";
+import FoodTableRow from "./FoodTableRow";
 
 const MyOrders = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const { data, isPending, refetch } = useQuery({
+  const [selectedFood, setSelectedFood] = useState(null);
+  const {
+    data: MyOrders = [],
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
       const { data } = await axiosPublic(`/orders/${user?.email}`);
@@ -25,16 +34,11 @@ const MyOrders = () => {
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
+  console.log(MyOrders);
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-  console.log(data);
-  const handleDelete = () => {};
-  //   console.log(Cart?.cart?.length > 0);
   return (
     <div>
-      {data?.length > 0 ? (
+      {MyOrders?.length > 0 ? (
         <section className="w-11/12 mx-auto pl-2">
           <div className="flex items-center gap-x-3">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
@@ -42,7 +46,7 @@ const MyOrders = () => {
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-              {data?.length} Items
+              {MyOrders?.length} Items
             </span>
           </div>
           <div className="flex flex-col mt-6">
@@ -84,43 +88,8 @@ const MyOrders = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      {data?.map((food, idx) => (
-                        <tr key={idx}>
-                          <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                            <div className="inline-flex items-center gap-x-3">
-                              <div className="flex items-center gap-x-2">
-                                <img
-                                  className="object-cover w-10 h-10 rounded-full"
-                                  src={food.food_image}
-                                  alt=""
-                                />
-
-                                <div>
-                                  <h2 className="font-medium text-gray-800 dark:text-white ">
-                                    {food.food_name}
-                                  </h2>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
-                            {food.status === "isPending" ? (
-                              <p className="bg-green-400 text-center rounded-2xl py-1">
-                                Pending
-                              </p>
-                            ) : (
-                              <p className="bg-green-400 text-center rounded-2xl py-1">
-                                {food.status}
-                              </p>
-                            )}
-                          </td>
-                          <td className="px-4 py-4 font-semibold text-lg text-center  dark:text-gray-300 whitespace-nowrap">
-                            {food.quantity}
-                          </td>
-                          <td className="px-4 py-4 font-semibold text-lg  dark:text-gray-300 whitespace-nowrap">
-                            {food.price}
-                          </td>
-                        </tr>
+                      {MyOrders?.map((food, idx) => (
+                        <FoodTableRow key={food._id} food={food}></FoodTableRow>
                       ))}
                     </tbody>
                   </table>

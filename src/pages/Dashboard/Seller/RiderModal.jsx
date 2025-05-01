@@ -2,15 +2,54 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import rider from "../../../assets/Partner/rider.json";
 import Lottie from "react-lottie-player";
-const RiderModal = ({ isOpen, setIsOpen, allRider }) => {
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
+const RiderModal = ({ isOpen, setIsOpen, allRider, order, refetch }) => {
+  const axiosPublic = useAxiosPublic();
+  console.log(order);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const riderId = form.rider.value;
+    // console.log(riderId);
+    const rider = allRider.find((rider) => rider._id === riderId);
+    // console.log("16", rider);
+    const orderInfo = {
+      food_id: order.food_id,
+      order_id: order._id,
+      rider_name: rider.name,
+      rider_email: rider.owner_email,
+      rider_number: rider.contact_number,
+      customer_name: order.customer_name,
+      customer_email: order.customer_email,
+      customer_number: order.contact,
+      customer_address: order.address,
+      food_name: order.food_name,
+      food_image: order.food_image,
+      price: order.price,
+      quantity: order.quantity,
+      status: "Handed Over to Rider",
+    };
+    // console.log("32", orderInfo);
+    const res = await axiosPublic.post("/deliver-item", orderInfo);
+    if (res.data.insertedId) {
+      toast.success("Item successfully delivered to rider.");
+      await axiosPublic.patch(`/restaurant-order/${order._id}`, {
+        status: "Handed Over to Rider",
+      });
+      refetch();
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div className="relative flex justify-center">
-      <button
+      {/* <button
         onClick={() => setIsOpen(true)}
         className="px-6 py-2 mx-auto tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
       >
         Open Modal
-      </button>
+      </button> */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -53,47 +92,46 @@ const RiderModal = ({ isOpen, setIsOpen, allRider }) => {
                     </div>
                   </motion.div>
                 </div>
-
-                <div className="mt-5 text-center">
-                  <h3
-                    className="text-lg font-medium text-gray-800 dark:text-white"
-                    id="modal-title"
-                  >
-                    Select Rider
-                  </h3>
-                  <div>
-                    <label
-                      className="text-gray-700 dark:text-gray-200"
-                      htmlFor="status"
-                    ></label>
-                    <select
-                      name="status"
-                      // onChange={(e) => handleCategoryChange(e.target.value)}
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                <form onSubmit={handleSubmit}>
+                  <div className="mt-5 text-center">
+                    <h3
+                      className="text-lg font-medium text-gray-800 dark:text-white"
+                      id="modal-title"
                     >
-                      <option disabled value="">
-                        Status
-                      </option>
+                      Select Rider
+                    </h3>
+                    <div>
+                      <label
+                        className="text-gray-700 dark:text-gray-200"
+                        htmlFor="rider"
+                      ></label>
+                      <select
+                        name="rider"
+                        // onChange={(e) => handleCategoryChange(e.target.value)}
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                      >
+                        <option disabled value="">
+                          Select Rider
+                        </option>
 
-                      {allRider.map((rider) => (
-                        <option value={rider}>{rider.name}</option>
-                      ))}
-                    </select>
+                        {allRider.map((rider) => (
+                          <option value={rider._id} key={rider._id}>
+                            {rider.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
 
-                <div className="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="cursor-pointer px-4 sm:mx-2 w-full py-2.5 text-sm font-medium dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
-                  >
-                    Cancel
-                  </button>
-
-                  <button className="cursor-pointer px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                    Confirm
-                  </button>
-                </div>
+                  <div className="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
+                    <button
+                      type="submit"
+                      className="cursor-pointer px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                </form>
               </motion.div>
             </div>
           </motion.div>

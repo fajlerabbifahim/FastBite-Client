@@ -35,7 +35,7 @@ const AddFood = () => {
 
     const food = {
       email: user?.email,
-      restaurantId: restaurant[0]._id,
+      restaurantId: restaurant[0]?._id,
       name: form.name.value,
       price: parseFloat(form.price.value),
       category,

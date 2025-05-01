@@ -59,7 +59,7 @@ const FoodDetails = () => {
       price: food?.price,
       quantity: 1,
       owner_email: owner?.email,
-      status: "isPending",
+      status: "Pending",
     };
 
     try {

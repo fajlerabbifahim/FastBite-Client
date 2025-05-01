@@ -1,32 +1,39 @@
 import React, { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { toast } from "react-toastify";
-import { useQuery } from "@tanstack/react-query";
-import RiderModal from "./RiderModal";
 
-const ViewOrderRow = ({ order, refetch, allRider }) => {
+const AssignOrderRow = ({ order, refetch }) => {
+  const {
+    _id,
+    food_image,
+    food_name,
+    quantity,
+    price,
+    customer_email,
+    customer_number,
+    status,
+  } = order || {};
+  console.log(status);
   const axiosPublic = useAxiosPublic();
   const [isOpen, setIsOpen] = useState(false);
   const handleCategoryChange = async (newStatus) => {
-    if (order.status === newStatus) return;
-    if (newStatus === "Handed Over to Rider") {
-      setIsOpen(true);
-    } else {
-      try {
-        await axiosPublic.patch(`/restaurant-order/${order._id}`, {
-          status: newStatus,
-        });
-        refetch();
-        toast.success("status update");
-      } catch (err) {
-        toast.error(err.response.data);
-      }
+    console.log(order._id);
+    if (status === newStatus) return;
+    console.log(newStatus);
+    try {
+      const res = await axiosPublic.patch(`/deliver-item/${order._id}`, {
+        status: newStatus,
+      });
+      console.log(res);
+      refetch();
+      toast.success("status update");
+    } catch (err) {
+      toast.error(err.response);
     }
   };
-
   return (
-    order.status !== "Handed Over to Rider" && (
-      <tr key={order._id}>
+    order.status !== "Deliver" && (
+      <tr>
         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
           <div className="inline-flex items-center gap-x-3">
             <div className="flex items-center gap-x-2">
@@ -57,7 +64,7 @@ const ViewOrderRow = ({ order, refetch, allRider }) => {
           {order.customer_email}
         </td>
         <td className="px-4 py-4 text-lg  dark:text-gray-300 whitespace-nowrap">
-          {order.contact}
+          {order.customer_number}
         </td>
         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
           <div>
@@ -76,22 +83,14 @@ const ViewOrderRow = ({ order, refetch, allRider }) => {
               <option disabled value="">
                 Status
               </option>
-              <option value="Pending">Pending</option>
-              <option value="Processing">Processing</option>
-              <option value="Handed Over to Rider">Handed Over to Rider</option>
+              <option value="Handed Over to Rider">Rider</option>
+              <option value="Deliver">Deliver</option>
             </select>
           </div>
-          <RiderModal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            allRider={allRider}
-            order={order}
-            refetch={refetch}
-          ></RiderModal>
         </td>
       </tr>
     )
   );
 };
 
-export default ViewOrderRow;
+export default AssignOrderRow;

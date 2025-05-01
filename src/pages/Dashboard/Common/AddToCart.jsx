@@ -213,82 +213,8 @@ const AddToCart = () => {
                     <Payment
                       Cart={Cart}
                       totalPrice={totalPrice}
-                      // handlePurchase={handlePurchase}
                       setIsOpen={setIsOpen}
                     ></Payment>
-                    {/* <div className="text-lg font-medium text-center leading-6 text-gray-900">
-                  <h1> Review Info Before Purchase</h1>
-                </div>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">Plant: {name} </p>
-                </div>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">Category: {category} </p>
-                </div>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Customer: {user?.displayName}
-                  </p>
-                </div>
-
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">Price: ${price} </p>
-                </div>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Available Quantity: {quantity}
-
-                  </p>
-                </div>
-                <div className="space-y-1 text-sm">
-                  <label htmlFor="quantity" className="mr-4 text-gray-600">
-                    <strong>Quantity</strong>
-                  </label>
-                  <input
-                    // max={quantity}
-                    value={totalQuantity}
-                    onChange={(e) => handleQuantity(parseInt(e.target.value))}
-                    className=" p-2 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
-                    name="quantity"
-                    id="quantity"
-                    type="number"
-                    placeholder="quantity"
-                    required
-                  />
-                </div> */}
-                    {/* <div className="space-y-1 text-sm">
-                  <label htmlFor="address" className="block text-gray-600">
-                    <strong>Address</strong>
-                  </label>
-                  <textarea
-                    // max={5}
-                    className="w-full p-2 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
-                    name="address"
-                    onChange={(e) =>
-                      setPurchaseInfo((prev) => {
-                        return { ...prev, address: e.target.value };
-                      })
-                    }
-                    id="address"
-                    type="text"
-                    placeholder="Shipping address..."
-                    required
-                  />
-                </div> */}
-                    {/* <div className="mt-5 sm:flex sm:items-center sm:-mx-2">
-                      <button
-                        onClick={() => setIsOpen(false)}
-                        className="w-full cursor-pointer px-4 py-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
-                      >
-                        cancel
-                      </button>
-                      <button
-                        onClick={handlePurchase}
-                        className="w-full cursor-pointer  px-4 py-2 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                      >
-                        {`Pay $${totalPrice}`}
-                      </button>
-                    </div> */}
                   </div>
                 </motion.div>
               )}
