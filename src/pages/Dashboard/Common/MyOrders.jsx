@@ -34,7 +34,7 @@ const MyOrders = () => {
   if (isPending) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-  console.log(MyOrders);
+  // console.log("37", MyOrders);
 
   return (
     <div>

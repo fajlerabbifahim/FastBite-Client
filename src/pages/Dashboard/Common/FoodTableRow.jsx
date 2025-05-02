@@ -69,6 +69,7 @@ const FoodTableRow = ({ food }) => {
                   />
                 </div>
                 <ProgressBarControl status={status} />
+
                 <div className="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
                   <button
                     onClick={closeModal}

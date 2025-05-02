@@ -10,7 +10,7 @@ function ProgressBarControl({ status }) {
     else if (status === "Handed Over to Rider") setCurrentStep(3);
     else if (status === "Deliver") setCurrentStep(4);
   }, [status]);
-  console.log("13", currentStep);
+  // console.log("13", currentStep);
   return (
     <div className="p-2">
       {/* Progress Bar */}
