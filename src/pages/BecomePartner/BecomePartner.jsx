@@ -6,23 +6,22 @@ import restaurent from "../../assets/Partner/Restaurent.json";
 import rider from "../../assets/Partner/rider.json";
 import Lottie from "react-lottie-player";
 import { AiOutlineClose } from "react-icons/ai";
+import BecomeMember from "../Dashboard/Common/BecomeMember";
 
 const BecomePartner = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [role, setRole] = useState("");
-
-  const openModal = (selectedRole) => {
-    setRole(selectedRole);
-    setModalIsOpen(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
-    setRole("");
+    setIsOpen(false);
   };
 
   return (
-    <div className="p-6 sm:p-10 text-center dark:bg-gray-900 dark:text-white">
+    <div className="p-6 sm:p-10 text-center  border-red-600 dark:bg-gray-900 dark:text-white">
       {/* <SectionHeading
         title={"Become a Partner"}
         subTitle={
@@ -69,98 +68,41 @@ const BecomePartner = () => {
               {description}
             </p>
             <button
-              onClick={() => openModal(role)}
-              className="mt-3 shadow-md hover:scale-105 transform transition-all px-4 py-2 bg-red-500 text-white rounded"
+              onClick={openModal}
+              className="mt-3 cursor-pointer shadow-md hover:scale-105 transform transition-all px-4 py-2 bg-red-500 text-white rounded"
             >
               {buttonText}
             </button>
           </motion.div>
         ))}
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        className="relative p-8 max-w-lg mx-auto bg-white rounded-xl shadow-2xl border-2 border-red-300 w-full"
-        overlayClassName="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4 z-50"
-      >
-        {/* Close Button - Top Right */}
-        <button
-          onClick={closeModal}
-          className="absolute top-4 right-4 text-red-500 hover:text-red-700 text-2xl hover:scale-110 transition-transform"
-        >
-          <AiOutlineClose />
-        </button>
-
-        <h2 className="text-2xl font-bold mb-6 text-center text-red-600">
-          Join as {role}
-        </h2>
-
-        <form className="space-y-4 text-red-700">
-          {/* Input Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-            {role === "Restaurant" && (
-              <input
-                type="text"
-                placeholder="Restaurant Name"
-                className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-              />
-            )}
-            {role === "Rider" && (
-              <input
-                type="text"
-                placeholder="Vehicle Type"
-                className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-              />
-            )}
-            <input
-              type="text"
-              placeholder="Location"
-              className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-            <input
-              type="text"
-              placeholder="Preferred Working Hours"
-              className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-            <input
-              type="text"
-              placeholder="Experience Level"
-              className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            />
-          </div>
-
-          {/* Full-width Comment */}
-          <textarea
-            placeholder="Additional Comments"
-            className="w-full px-4 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
-            rows="3"
-          ></textarea>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-2 bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-md font-semibold hover:scale-105 transition-all"
+      <div className="relative flex justify-center z-[1000]">
+        {isOpen && (
+          <div
+            className="fixed inset-0 z-10 overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
           >
-            Submit
-          </button>
-        </form>
-      </Modal>
+            <div className="bg-black/60 border-pink-700 flex items-end justify-center  px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+              <span
+                className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+
+              <div
+                className="relative my-5   inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:max-w-4xl rounded-xl dark:bg-gray-900"
+                style={{ animation: "fadeIn 0.3s ease-out" }}
+              >
+                <BecomeMember></BecomeMember>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      {/* <BecomeMember></BecomeMember> */}
     </div>
   );
 };
