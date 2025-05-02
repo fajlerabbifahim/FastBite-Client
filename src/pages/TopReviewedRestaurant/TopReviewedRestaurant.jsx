@@ -23,7 +23,11 @@ const TopReviewedRestaurant = () => {
   }
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      className="w-11/12 mx-auto"
+    >
       <h1 className="text-4xl font-bold text-center mb-6">
         <span className="primary-color">Top Reviewed </span> Restaurants
       </h1>

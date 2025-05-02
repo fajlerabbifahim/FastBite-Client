@@ -15,7 +15,7 @@ import { ThemeProvider } from "./hooks/ThemeContext.jsx";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
 import GlobalLoader from "./components/GlobalLoader/GlobalLoader.jsx";
-
+import "animate.css";
 // Create a client
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(

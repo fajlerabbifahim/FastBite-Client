@@ -21,7 +21,7 @@ const PopularDishes = () => {
   }
   // console.log(foods);
   return (
-    <div className="container mx-auto w-11/12 py-5">
+    <div className="container mx-auto w-11/12 py-5 ">
       {/* sheared heading  components use */}
 
       <SectionHeading
@@ -31,11 +31,13 @@ const PopularDishes = () => {
         }
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
         {foods.map((dish, idx) => (
           <div
             key={idx}
-            className="bg-white border-t-2 border-l-2 border-r-2 border-red-500 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg overflow-hidden transition-transform "
+            data-aos="fade-up"
+            data-aos-duration="3000"
+            className=" bg-white border-t-2 border-l-2 border-r-2 border-red-500 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg overflow-hidden transition-transform "
           >
             <div className="h-64 overflow-hidden p-2">
               <img

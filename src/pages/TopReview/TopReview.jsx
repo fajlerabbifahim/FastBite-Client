@@ -55,7 +55,11 @@ const products = [
 
 const TopReview = () => {
   return (
-    <div className="p-10 text-center dark:bg-gray-900 dark:text-white">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      className="p-10 text-center dark:bg-gray-900 dark:text-white"
+    >
       <SectionHeading
         title={"Top Reviewed Dishes"}
         subTitle={

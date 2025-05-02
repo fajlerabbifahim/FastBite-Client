@@ -55,15 +55,25 @@ export function Banner() {
           {/* Right Content - Image & Badges */}
           <div className="w-full md:w-1/2 relative flex justify-center">
             {/* Background Shape */}
-            <div className="absolute top-0 lg:-right-6 -right-2 w-full h-full bg-gradient-to-br from-red-500 to-gray-600 rounded-tl-[200px] rounded-br-[200px] lg:rounded-tl-[350px] lg:rounded-br-[350px] -z-10"></div>
-
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1500"
+              className="absolute top-0 lg:-right-6 -right-2 w-full h-full bg-gradient-to-br from-red-500 to-gray-600 rounded-tl-[200px] rounded-br-[200px] lg:rounded-tl-[350px] lg:rounded-br-[350px] -z-10 "
+            ></div>
+            {/* <h1 class="">An animated element</h1> */}
             <img
-              className="relative z-10 max-w-x md:max-w-sm lg:max-w-2xl rounded-r-full"
+              data-aos="fade-left"
+              data-aos-duration="1500"
+              className="relative z-10 max-w-x md:max-w-sm lg:max-w-2xl rounded-r-full "
               src={bannerIMG}
               alt="Delivery Man"
             />
 
-            <div className="absolute bottom-1/4 left-0 transform -translate-x-1/2 z-20">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="1500"
+              className="absolute bottom-1/4 left-0 transform -translate-x-1/2 z-20"
+            >
               <div className="bg-white rounded-lg shadow-xl p-3 transform -rotate-6">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
